@@ -53,7 +53,7 @@
             LSexo = new Label();
             RBMasculino = new RadioButton();
             RBFemenino = new RadioButton();
-            BGuardar = new Button();
+            BAgregar = new Button();
             BCancelar = new Button();
             dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
@@ -272,14 +272,15 @@
             RBFemenino.Text = "Femenino";
             RBFemenino.UseVisualStyleBackColor = true;
             // 
-            // BGuardar
+            // BAgregar
             // 
-            BGuardar.Location = new Point(429, 344);
-            BGuardar.Name = "BGuardar";
-            BGuardar.Size = new Size(75, 23);
-            BGuardar.TabIndex = 24;
-            BGuardar.Text = "Guardar";
-            BGuardar.UseVisualStyleBackColor = true;
+            BAgregar.Location = new Point(429, 344);
+            BAgregar.Name = "BAgregar";
+            BAgregar.Size = new Size(75, 23);
+            BAgregar.TabIndex = 24;
+            BAgregar.Text = "Agregar";
+            BAgregar.UseVisualStyleBackColor = true;
+            BAgregar.Click += BAgregar_Click;
             // 
             // BCancelar
             // 
@@ -306,7 +307,7 @@
             ClientSize = new Size(989, 606);
             Controls.Add(dataGridView1);
             Controls.Add(BCancelar);
-            Controls.Add(BGuardar);
+            Controls.Add(BAgregar);
             Controls.Add(RBFemenino);
             Controls.Add(RBMasculino);
             Controls.Add(LSexo);
@@ -367,7 +368,7 @@
         private Label LSexo;
         private RadioButton RBMasculino;
         private RadioButton RBFemenino;
-        private Button BGuardar;
+        private Button BAgregar;
         private Button BCancelar;
         private DataGridView dataGridView1;
     }

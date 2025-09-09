@@ -16,8 +16,8 @@ namespace formLogin
     public partial class FormUsuarios : Form
     {
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=BD_EJTALLER;Trusted_Connection=True;TrustServerCertificate=True;";
-   
-       // int idSeleccionado = 0;
+
+         int idSeleccionado = 0;
         public FormUsuarios()
         {
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace formLogin
             {
                 conn.Open();  //  abrir conexión
                 string query = "SELECT * FROM Usuarios";
-               
+
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -53,6 +53,47 @@ namespace formLogin
             }
 
 
+
+
+
+
+
+        }
+        //ARREGLAR PARA CARGAR TODOS LOS CAMPOS A LA BASE
+
+        //MODIFICAR LA BASE DE DATOS 
+        private void BAgregar_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Usuarios (Nombre, Apellido, Correo, DNI, Sexo) VALUES (@Nombre, @Apellido, @Correo, @DNI, @Sexo)";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
+                cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
+                
+                cmd.Parameters.AddWithValue("@Correo", Tcorreo.Text);
+                cmd.Parameters.AddWithValue("@DNI", TDni.Text);
+     
+                cmd.Parameters.AddWithValue("@Sexo", TUsuario.Text);
+               
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            CargarDatos();
+            LimpiarCampos();
+        }
+
+
+        private void LimpiarCampos()
+        {
+            TNombre.Clear();
+            TApellido.Clear();
+            TDni.Clear();
+            Tcorreo.Clear();
+            TUsuario.Clear();
+            idSeleccionado = 0;
         }
 
     }

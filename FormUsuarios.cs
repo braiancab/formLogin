@@ -121,63 +121,74 @@ namespace formLogin
             TDni.Clear();
             Tcorreo.Clear();
             TUsuario.Clear();
+            TTelefono.Clear();
+            TDireccion.Clear();
+            TContraseña.Clear();
+            comboBox1.SelectedIndex = -1;
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = " ";
             idSeleccionado = 0;
         }
 
         private void BActualizar_Click(object sender, EventArgs e)
         {
-            if (idSeleccionado == 0) return;
+            if (idSeleccionado == 0)
+            {
+                MessageBox.Show("Seleccione un usuario primero.");
+                return;
+            }
+
+            int idRol = Convert.ToInt32(comboBox1.SelectedValue); // ✅ Siempre válido
+            string nombre = TNombre.Text;
+            string apellido = TApellido.Text;
+            string direccion = TDireccion.Text;
+            string dni = TDni.Text;
+            DateTime fecha = dateTimePicker1.Value;
+            string correo = Tcorreo.Text;
+            string telefono = TTelefono.Text;
+            string usuario = TUsuario.Text;
+            string contraseña = TContraseña.Text;
+            string sexo = RBMasculino.Checked ? "MASCULINO" : "FEMENINO";
+
+
+
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "UPDATE Usuarios SET id_rol=@id_rol, nombre=@nombre, apellido=@apellido, direccion=@direccion, dni=@dni,fecha=@fecha,correo=@correo,telefono=@telefono,sexo=@sexo,usuario=@usuario,contraseña=@contraseña WHERE Id=@Id";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                //Obtener int de combobox1 
-
-                //
-
-                //Actualizar el comboboxx
-                //
-
-                string ValorRol = comboBox1.SelectedItem.ToString();
-                //Recortar el valor int
-                string idRolString = ValorRol.Split('-')[0];
-                //Castear a int
-                int idRol = int.Parse(idRolString);
-                cmd.Parameters.AddWithValue("@id_rol", idRol);
-                cmd.Parameters.AddWithValue("@nombre", TNombre.Text);
-                cmd.Parameters.AddWithValue("@apellido", TApellido.Text);
-                cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);
-                cmd.Parameters.AddWithValue("@dni", TDni.Text);
-                cmd.Parameters.AddWithValue("@fecha", dateTimePicker1.Value);
-                cmd.Parameters.AddWithValue("@correo", Tcorreo.Text);
-                cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
-                string sexo;
-
-                // Verificar cuál está seleccionado
-                if (RBMasculino.Checked)
-                {
-                    sexo = "MASCULINO";
-                }
-                else if (RBFemenino.Checked)
-                {
-                    sexo = "FEMENINO";
-                }
-                else
-                {
-                    // Opcional: manejar caso donde ninguno esté seleccionado
-                    sexo = null;
-                }
-
-
-                cmd.Parameters.AddWithValue("@sexo", sexo);
-                cmd.Parameters.AddWithValue("@usuario", TUsuario.Text);
-                cmd.Parameters.AddWithValue("@contraseña", TContraseña.Text);
-                cmd.Parameters.AddWithValue("@Id", idSeleccionado);
-
                 conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                string query = @"UPDATE USUARIOS
+                         SET id_rol = @id_rol,
+                             nombre = @nombre,
+                             apellido = @apellido,
+                             direccion = @direccion,
+                             dni = @dni,
+                             fecha = @fecha,
+                             correo = @correo,
+                             telefono = @telefono,
+                             sexo = @sexo,
+                             usuario = @usuario,
+                             contraseña = @contraseña
+                         WHERE id_usuario = @id_usuario";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id_rol", idRol);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@apellido", apellido);
+                    cmd.Parameters.AddWithValue("@direccion", direccion);
+                    cmd.Parameters.AddWithValue("@dni", dni);
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+                    cmd.Parameters.AddWithValue("@correo", correo);
+                    cmd.Parameters.AddWithValue("@telefono", telefono);
+                    cmd.Parameters.AddWithValue("@sexo", sexo);
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    cmd.Parameters.AddWithValue("@contraseña", contraseña);
+                    cmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
+
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+                }
             }
             CargarDatos();
             LimpiarCampos();
@@ -192,44 +203,25 @@ namespace formLogin
 
 
 
-                // copiado de chat
-
-                comboBox1.SelectedValue = Convert.ToInt32(fila.Cells["id_rol"].Value);
-
-                // fin
                 TNombre.Text = fila.Cells["nombre"].Value.ToString();
                 TApellido.Text = fila.Cells["apellido"].Value.ToString();
                 TDireccion.Text = fila.Cells["direccion"].Value.ToString();
                 TDni.Text = fila.Cells["dni"].Value.ToString();
-
-
-                // Agregado de chat
-                dateTimePicker1.Value = Convert.ToDateTime(fila.Cells["fecha"].Value);
-
-
-                // fin
-
                 Tcorreo.Text = fila.Cells["correo"].Value.ToString();
                 TTelefono.Text = fila.Cells["telefono"].Value.ToString();
-
-                //agregado de chat
-                string sexo = fila.Cells["sexo"].Value.ToString();
-                if (sexo == "MASCULINO")
-                {
-                    RBMasculino.Checked = true;
-                    RBFemenino.Checked = false;
-                }
-                else if (sexo == "FEMENINO")
-                {
-                    RBMasculino.Checked = false;
-                    RBFemenino.Checked = true;
-                }
-
-                //fin
-
                 TUsuario.Text = fila.Cells["usuario"].Value.ToString();
                 TContraseña.Text = fila.Cells["contraseña"].Value.ToString();
-                
+
+                // Sexo (RadioButton)
+                string sexo = fila.Cells["sexo"].Value.ToString();
+                RBMasculino.Checked = (sexo == "MASCULINO");
+                RBFemenino.Checked = (sexo == "FEMENINO");
+
+                // Fecha
+                dateTimePicker1.Value = Convert.ToDateTime(fila.Cells["fecha"].Value);
+
+                // Rol (ComboBox)
+                comboBox1.SelectedValue = Convert.ToInt32(fila.Cells["id_rol"].Value);
 
 
 

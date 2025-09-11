@@ -15,7 +15,7 @@ namespace formLogin
 {
     public partial class FormUsuarios : Form
     {
-        string connectionString = "Server=localhost\\SQLEXPRESS;Database=BD_EJTALLER;Trusted_Connection=True;TrustServerCertificate=True;";
+        string connectionString = "Server=localhost\\SQLEXPRESS;Database=PROYECTO_TALLER;Trusted_Connection=True;TrustServerCertificate=True;";
 
          int idSeleccionado = 0;
         public FormUsuarios()

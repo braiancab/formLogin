@@ -56,6 +56,7 @@
             BAgregar = new Button();
             BCancelar = new Button();
             dataGridView1 = new DataGridView();
+            BActualizar = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -298,6 +299,17 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(941, 150);
             dataGridView1.TabIndex = 26;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // BActualizar
+            // 
+            BActualizar.Location = new Point(348, 344);
+            BActualizar.Name = "BActualizar";
+            BActualizar.Size = new Size(75, 24);
+            BActualizar.TabIndex = 27;
+            BActualizar.Text = "Actualizar";
+            BActualizar.UseVisualStyleBackColor = true;
+            BActualizar.Click += BActualizar_Click;
             // 
             // FormUsuarios
             // 
@@ -305,6 +317,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(989, 606);
+            Controls.Add(BActualizar);
             Controls.Add(dataGridView1);
             Controls.Add(BCancelar);
             Controls.Add(BAgregar);
@@ -371,5 +384,6 @@
         private Button BAgregar;
         private Button BCancelar;
         private DataGridView dataGridView1;
+        private Button BActualizar;
     }
 }

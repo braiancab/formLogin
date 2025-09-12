@@ -213,7 +213,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1-Vendedor", "2-Admin", "3-Gerente" });
+            comboBox1.Items.AddRange(new object[] { "Vendedor", "Admin", "Gerente" });
             comboBox1.Location = new Point(588, 194);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
@@ -347,6 +347,7 @@
             Controls.Add(panel1);
             Name = "FormUsuarios";
             Text = "Usuarios";
+            Load += FormUsuarios_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

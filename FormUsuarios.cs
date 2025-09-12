@@ -22,17 +22,11 @@ namespace formLogin
         {
             InitializeComponent();
             CargarDatos();
+            this.Load += FormUsuarios_Load;
         }
         private void CargarDatos()
         {
-            //   using (SqlConnection conn = new SqlConnection(connectionString))
-            //  {
-            //    string query = "SELECT * FROM Usuarios";
-            //  SqlDataAdapter da = new SqlDataAdapter(query, conn);
-            //  DataTable dt = new DataTable();
-            // da.Fill(dt);
-            // dataGridView1.DataSource = dt;
-            // }
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();  //  abrir conexión
@@ -54,10 +48,6 @@ namespace formLogin
 
 
 
-
-
-
-
         }
 
         private void BAgregar_Click(object sender, EventArgs e)
@@ -67,14 +57,15 @@ namespace formLogin
                 string query = "INSERT INTO Usuarios (id_rol,nombre,apellido,direccion,dni,fecha,correo,telefono,sexo,usuario,contraseña) VALUES (@id_rol,@nombre,@apellido,@direccion,@dni,@fecha,@correo,@telefono,@sexo,@usuario,@contraseña)";
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                //Obtener int de combobox1 
-                string ValorRol = comboBox1.SelectedItem.ToString();
-                //Recortar el valor int
-                string idRolString = ValorRol.Split('-')[0];
-                //Castear a int
-                int idRol = int.Parse(idRolString);
 
-                cmd.Parameters.AddWithValue("@id_rol", idRol);
+
+
+
+
+
+                int idRol = comboBox1.SelectedIndex;
+
+                cmd.Parameters.AddWithValue("@id_rol", idRol + 1);
                 cmd.Parameters.AddWithValue("@nombre", TNombre.Text);
                 cmd.Parameters.AddWithValue("@apellido", TApellido.Text);
                 cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);
@@ -84,7 +75,6 @@ namespace formLogin
                 cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
 
                 string sexo;
-
                 // Verificar cuál está seleccionado
                 if (RBMasculino.Checked)
                 {
@@ -138,7 +128,7 @@ namespace formLogin
                 return;
             }
 
-            int idRol = Convert.ToInt32(comboBox1.SelectedValue); // ✅ Siempre válido
+            int idRol = comboBox1.SelectedIndex;
             string nombre = TNombre.Text;
             string apellido = TApellido.Text;
             string direccion = TDireccion.Text;
@@ -149,9 +139,6 @@ namespace formLogin
             string usuario = TUsuario.Text;
             string contraseña = TContraseña.Text;
             string sexo = RBMasculino.Checked ? "MASCULINO" : "FEMENINO";
-
-
-
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -223,26 +210,26 @@ namespace formLogin
                 // Rol (ComboBox)
                 comboBox1.SelectedValue = Convert.ToInt32(fila.Cells["id_rol"].Value);
 
-
-
-
-
             }
         }
 
+        private void FormUsuarios_Load(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT id_rol, nombre FROM Rol", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
 
+                comboBox1.DataSource = dt;
+                comboBox1.DisplayMember = "nombre";   // ADMIN, GERENTE, VENDEDOR
+                comboBox1.ValueMember = "id_rol";     // 1, 2, 3
+                comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
 
-
-
-
-
-
-
-
-
-
-
-
+        }
     }
 
 

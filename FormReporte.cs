@@ -10,13 +10,14 @@ using System.Windows.Forms;
 
 namespace formLogin
 {
-    public partial class FormBackUp : Form
+    public partial class FormReporte : Form
     {
 
         private Form _FormAnterior;
-        public FormBackUp(Form formAnterior)
+        public FormReporte(Form formAnterior)
         {
             InitializeComponent();
+
             _FormAnterior = formAnterior;
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace formLogin
 {
-    partial class FormBackUp
+    partial class FormReporte
     {
         /// <summary>
         /// Required designer variable.
@@ -29,60 +29,60 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            LVoler = new Label();
-            LBackup = new Label();
             BSalir = new Button();
+            LReporte = new Label();
+            LVolver = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
-            panel1.Controls.Add(LVoler);
-            panel1.Controls.Add(LBackup);
+            panel1.Controls.Add(LVolver);
+            panel1.Controls.Add(LReporte);
             panel1.Controls.Add(BSalir);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(906, 100);
             panel1.TabIndex = 0;
             // 
-            // LVoler
-            // 
-            LVoler.AutoSize = true;
-            LVoler.Location = new Point(32, 76);
-            LVoler.Name = "LVoler";
-            LVoler.Size = new Size(39, 15);
-            LVoler.TabIndex = 1;
-            LVoler.Text = "Volver";
-            // 
-            // LBackup
-            // 
-            LBackup.AutoSize = true;
-            LBackup.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LBackup.Location = new Point(392, 22);
-            LBackup.Name = "LBackup";
-            LBackup.Size = new Size(143, 37);
-            LBackup.TabIndex = 0;
-            LBackup.Text = "Back Up";
-            // 
             // BSalir
             // 
             BSalir.Image = Properties.Resources.volver;
-            BSalir.Location = new Point(12, 3);
+            BSalir.Location = new Point(15, 3);
             BSalir.Name = "BSalir";
             BSalir.Size = new Size(80, 70);
             BSalir.TabIndex = 1;
             BSalir.UseVisualStyleBackColor = true;
             BSalir.Click += BSalir_Click;
             // 
-            // FormBackUp
+            // LReporte
+            // 
+            LReporte.AutoSize = true;
+            LReporte.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LReporte.Location = new Point(384, 23);
+            LReporte.Name = "LReporte";
+            LReporte.Size = new Size(155, 37);
+            LReporte.TabIndex = 1;
+            LReporte.Text = "Reportes";
+            // 
+            // LVolver
+            // 
+            LVolver.AutoSize = true;
+            LVolver.Location = new Point(32, 76);
+            LVolver.Name = "LVolver";
+            LVolver.Size = new Size(39, 15);
+            LVolver.TabIndex = 1;
+            LVolver.Text = "Volver";
+            // 
+            // FormReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(929, 450);
+            ClientSize = new Size(930, 450);
             Controls.Add(panel1);
-            Name = "FormBackUp";
-            Text = "FormBackUp";
+            Name = "FormReporte";
+            Text = "FormReporte";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -91,8 +91,8 @@
         #endregion
 
         private Panel panel1;
-        private Label LBackup;
         private Button BSalir;
-        private Label LVoler;
+        private Label LReporte;
+        private Label LVolver;
     }
 }

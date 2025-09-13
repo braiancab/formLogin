@@ -168,6 +168,7 @@
             BReporte.Size = new Size(80, 70);
             BReporte.TabIndex = 3;
             BReporte.UseVisualStyleBackColor = true;
+            BReporte.Click += BReporte_Click;
             // 
             // BProductos
             // 

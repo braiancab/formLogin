@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            LVolver = new Label();
+            Bsalir = new Button();
             LUser = new Label();
             LNombre = new Label();
             LApellido = new Label();
@@ -62,26 +64,48 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(LVolver);
+            panel1.Controls.Add(Bsalir);
             panel1.Controls.Add(LUser);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(965, 91);
+            panel1.Size = new Size(906, 100);
             panel1.TabIndex = 0;
+            // 
+            // LVolver
+            // 
+            LVolver.AutoSize = true;
+            LVolver.Location = new Point(32, 76);
+            LVolver.Name = "LVolver";
+            LVolver.Size = new Size(39, 15);
+            LVolver.TabIndex = 28;
+            LVolver.Text = "Volver";
+            // 
+            // Bsalir
+            // 
+            Bsalir.BackColor = Color.White;
+            Bsalir.Image = Properties.Resources.volver;
+            Bsalir.Location = new Point(13, 3);
+            Bsalir.Name = "Bsalir";
+            Bsalir.Size = new Size(80, 70);
+            Bsalir.TabIndex = 1;
+            Bsalir.UseVisualStyleBackColor = false;
+            Bsalir.Click += Bsalir_Click;
             // 
             // LUser
             // 
             LUser.AutoSize = true;
-            LUser.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LUser.Location = new Point(459, 29);
+            LUser.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LUser.Location = new Point(377, 22);
             LUser.Name = "LUser";
-            LUser.Size = new Size(116, 32);
+            LUser.Size = new Size(154, 37);
             LUser.TabIndex = 0;
             LUser.Text = "Usuarios";
             // 
             // LNombre
             // 
             LNombre.AutoSize = true;
-            LNombre.Location = new Point(220, 124);
+            LNombre.Location = new Point(176, 125);
             LNombre.Name = "LNombre";
             LNombre.Size = new Size(57, 15);
             LNombre.TabIndex = 1;
@@ -90,7 +114,7 @@
             // LApellido
             // 
             LApellido.AutoSize = true;
-            LApellido.Location = new Point(220, 162);
+            LApellido.Location = new Point(176, 163);
             LApellido.Name = "LApellido";
             LApellido.Size = new Size(57, 15);
             LApellido.TabIndex = 2;
@@ -99,7 +123,7 @@
             // LUsuario1
             // 
             LUsuario1.AutoSize = true;
-            LUsuario1.Location = new Point(529, 269);
+            LUsuario1.Location = new Point(485, 270);
             LUsuario1.Name = "LUsuario1";
             LUsuario1.Size = new Size(53, 15);
             LUsuario1.TabIndex = 3;
@@ -108,7 +132,7 @@
             // LDni
             // 
             LDni.AutoSize = true;
-            LDni.Location = new Point(527, 162);
+            LDni.Location = new Point(483, 163);
             LDni.Name = "LDni";
             LDni.Size = new Size(39, 15);
             LDni.TabIndex = 4;
@@ -117,7 +141,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(431, 312);
+            label5.Location = new Point(387, 313);
             label5.Name = "label5";
             label5.Size = new Size(30, 15);
             label5.TabIndex = 5;
@@ -126,7 +150,7 @@
             // LDireccion
             // 
             LDireccion.AutoSize = true;
-            LDireccion.Location = new Point(527, 124);
+            LDireccion.Location = new Point(483, 125);
             LDireccion.Name = "LDireccion";
             LDireccion.Size = new Size(60, 15);
             LDireccion.TabIndex = 6;
@@ -135,7 +159,7 @@
             // LCorreo
             // 
             LCorreo.AutoSize = true;
-            LCorreo.Location = new Point(220, 204);
+            LCorreo.Location = new Point(176, 205);
             LCorreo.Name = "LCorreo";
             LCorreo.Size = new Size(49, 15);
             LCorreo.TabIndex = 7;
@@ -144,7 +168,7 @@
             // LContraseña
             // 
             LContraseña.AutoSize = true;
-            LContraseña.Location = new Point(220, 269);
+            LContraseña.Location = new Point(176, 270);
             LContraseña.Name = "LContraseña";
             LContraseña.Size = new Size(73, 15);
             LContraseña.TabIndex = 8;
@@ -152,49 +176,49 @@
             // 
             // TDireccion
             // 
-            TDireccion.Location = new Point(588, 121);
+            TDireccion.Location = new Point(544, 122);
             TDireccion.Name = "TDireccion";
             TDireccion.Size = new Size(215, 23);
             TDireccion.TabIndex = 10;
             // 
             // TDni
             // 
-            TDni.Location = new Point(588, 159);
+            TDni.Location = new Point(544, 160);
             TDni.Name = "TDni";
             TDni.Size = new Size(215, 23);
             TDni.TabIndex = 11;
             // 
             // TApellido
             // 
-            TApellido.Location = new Point(304, 159);
+            TApellido.Location = new Point(260, 160);
             TApellido.Name = "TApellido";
             TApellido.Size = new Size(215, 23);
             TApellido.TabIndex = 12;
             // 
             // TNombre
             // 
-            TNombre.Location = new Point(304, 121);
+            TNombre.Location = new Point(260, 122);
             TNombre.Name = "TNombre";
             TNombre.Size = new Size(215, 23);
             TNombre.TabIndex = 13;
             // 
             // TUsuario
             // 
-            TUsuario.Location = new Point(588, 261);
+            TUsuario.Location = new Point(544, 262);
             TUsuario.Name = "TUsuario";
             TUsuario.Size = new Size(215, 23);
             TUsuario.TabIndex = 14;
             // 
             // TContraseña
             // 
-            TContraseña.Location = new Point(304, 261);
+            TContraseña.Location = new Point(260, 262);
             TContraseña.Name = "TContraseña";
             TContraseña.Size = new Size(215, 23);
             TContraseña.TabIndex = 15;
             // 
             // Tcorreo
             // 
-            Tcorreo.Location = new Point(304, 201);
+            Tcorreo.Location = new Point(260, 202);
             Tcorreo.Name = "Tcorreo";
             Tcorreo.Size = new Size(215, 23);
             Tcorreo.TabIndex = 16;
@@ -203,7 +227,7 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Vendedor", "Admin", "Gerente" });
-            comboBox1.Location = new Point(483, 309);
+            comboBox1.Location = new Point(439, 310);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 17;
@@ -211,7 +235,7 @@
             // LTelefono
             // 
             LTelefono.AutoSize = true;
-            LTelefono.Location = new Point(527, 204);
+            LTelefono.Location = new Point(483, 205);
             LTelefono.Name = "LTelefono";
             LTelefono.Size = new Size(55, 15);
             LTelefono.TabIndex = 19;
@@ -219,7 +243,7 @@
             // 
             // TTelefono
             // 
-            TTelefono.Location = new Point(588, 201);
+            TTelefono.Location = new Point(544, 202);
             TTelefono.Name = "TTelefono";
             TTelefono.Size = new Size(215, 23);
             TTelefono.TabIndex = 20;
@@ -227,7 +251,7 @@
             // LSexo
             // 
             LSexo.AutoSize = true;
-            LSexo.Location = new Point(220, 238);
+            LSexo.Location = new Point(176, 239);
             LSexo.Name = "LSexo";
             LSexo.Size = new Size(35, 15);
             LSexo.TabIndex = 21;
@@ -236,7 +260,7 @@
             // RBMasculino
             // 
             RBMasculino.AutoSize = true;
-            RBMasculino.Location = new Point(304, 236);
+            RBMasculino.Location = new Point(260, 237);
             RBMasculino.Name = "RBMasculino";
             RBMasculino.Size = new Size(80, 19);
             RBMasculino.TabIndex = 22;
@@ -247,7 +271,7 @@
             // RBFemenino
             // 
             RBFemenino.AutoSize = true;
-            RBFemenino.Location = new Point(425, 236);
+            RBFemenino.Location = new Point(381, 237);
             RBFemenino.Name = "RBFemenino";
             RBFemenino.Size = new Size(78, 19);
             RBFemenino.TabIndex = 23;
@@ -257,7 +281,7 @@
             // 
             // BAgregar
             // 
-            BAgregar.Location = new Point(815, 355);
+            BAgregar.Location = new Point(756, 356);
             BAgregar.Name = "BAgregar";
             BAgregar.Size = new Size(75, 23);
             BAgregar.TabIndex = 24;
@@ -267,7 +291,7 @@
             // 
             // BCancelar
             // 
-            BCancelar.Location = new Point(902, 354);
+            BCancelar.Location = new Point(843, 355);
             BCancelar.Name = "BCancelar";
             BCancelar.Size = new Size(75, 23);
             BCancelar.TabIndex = 25;
@@ -279,13 +303,13 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(12, 420);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(965, 150);
+            dataGridView1.Size = new Size(906, 150);
             dataGridView1.TabIndex = 26;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // BActualizar
             // 
-            BActualizar.Location = new Point(728, 355);
+            BActualizar.Location = new Point(669, 356);
             BActualizar.Name = "BActualizar";
             BActualizar.Size = new Size(75, 24);
             BActualizar.TabIndex = 27;
@@ -298,7 +322,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(989, 606);
+            ClientSize = new Size(929, 606);
             Controls.Add(BActualizar);
             Controls.Add(dataGridView1);
             Controls.Add(BCancelar);
@@ -325,6 +349,7 @@
             Controls.Add(LApellido);
             Controls.Add(LNombre);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FormUsuarios";
             Text = "Usuarios";
             Load += FormUsuarios_Load;
@@ -364,5 +389,7 @@
         private Button BCancelar;
         private DataGridView dataGridView1;
         private Button BActualizar;
+        private Button Bsalir;
+        private Label LVolver;
     }
 }

@@ -96,14 +96,21 @@ namespace formLogin
 
         private void BUsuario_Click(object sender, EventArgs e)
         {
-            FormUsuarios f = new FormUsuarios();
+            FormUsuarios f = new FormUsuarios(this);
             f.Show();
             this.Hide();
         }
 
         private void BBackUp_Click(object sender, EventArgs e)
         {
-            FormBackUp f = new FormBackUp();
+            FormBackUp f = new FormBackUp(this);
+            f.Show();
+            this.Hide();
+        }
+
+        private void BReporte_Click(object sender, EventArgs e)
+        {
+            FormReporte f = new FormReporte(this);
             f.Show();
             this.Hide();
         }

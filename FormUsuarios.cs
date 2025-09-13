@@ -15,14 +15,18 @@ namespace formLogin
 {
     public partial class FormUsuarios : Form
     {
+
+
+        private Form _FormAnterior;
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=PROYECTO_TALLER;Trusted_Connection=True;TrustServerCertificate=True;";
 
         int idSeleccionado = 0;
-        public FormUsuarios()
+        public FormUsuarios(Form formAnterior)
         {
             InitializeComponent();
             CargarDatos();
             this.Load += FormUsuarios_Load;
+            _FormAnterior = formAnterior;
         }
         private void CargarDatos()
         {
@@ -71,7 +75,7 @@ namespace formLogin
                 cmd.Parameters.AddWithValue("@apellido", TApellido.Text);
                 cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);
                 cmd.Parameters.AddWithValue("@dni", TDni.Text);
-            
+
                 cmd.Parameters.AddWithValue("@correo", Tcorreo.Text);
                 cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
 
@@ -116,7 +120,7 @@ namespace formLogin
             TDireccion.Clear();
             TContraseña.Clear();
             comboBox1.SelectedIndex = -1;
-         
+
             idSeleccionado = 0;
         }
 
@@ -133,7 +137,7 @@ namespace formLogin
             string apellido = TApellido.Text;
             string direccion = TDireccion.Text;
             string dni = TDni.Text;
-          
+
             string correo = Tcorreo.Text;
             string telefono = TTelefono.Text;
             string usuario = TUsuario.Text;
@@ -164,7 +168,7 @@ namespace formLogin
                     cmd.Parameters.AddWithValue("@apellido", apellido);
                     cmd.Parameters.AddWithValue("@direccion", direccion);
                     cmd.Parameters.AddWithValue("@dni", dni);
-                    
+
                     cmd.Parameters.AddWithValue("@correo", correo);
                     cmd.Parameters.AddWithValue("@telefono", telefono);
                     cmd.Parameters.AddWithValue("@sexo", sexo);
@@ -205,7 +209,7 @@ namespace formLogin
                 RBFemenino.Checked = (sexo == "FEMENINO");
 
                 // Fecha
-              
+
 
                 // Rol (ComboBox)
                 comboBox1.SelectedValue = Convert.ToInt32(fila.Cells["id_rol"].Value);
@@ -229,6 +233,12 @@ namespace formLogin
                 comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             }
 
+        }
+
+        private void Bsalir_Click(object sender, EventArgs e)
+        {
+            _FormAnterior.Show();
+            this.Close();
         }
     }
 

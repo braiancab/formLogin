@@ -295,7 +295,7 @@
             BCancelar.Name = "BCancelar";
             BCancelar.Size = new Size(75, 23);
             BCancelar.TabIndex = 25;
-            BCancelar.Text = "Cancelar";
+            BCancelar.Text = "Eliminar";
             BCancelar.UseVisualStyleBackColor = true;
             // 
             // dataGridView1

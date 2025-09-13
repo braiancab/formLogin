@@ -15,12 +15,13 @@ namespace formLogin
 {
     public partial class FormUsuarios : Form
     {
+        private Form _FormAnterior; //variable del formulario anterior
+
+        //Conectar con base de datos
+        string connectionString = "Server=localhost\\SQLEXPRESS;Database=EJEMPLO;Trusted_Connection=True;TrustServerCertificate=True;";
+        int idSeleccionado = 0;     //Identifica el elemento de datagridview 
 
 
-        private Form _FormAnterior;
-        string connectionString = "Server=localhost\\SQLEXPRESS;Database=PROYECTO_TALLER;Trusted_Connection=True;TrustServerCertificate=True;";
-
-        int idSeleccionado = 0;
         public FormUsuarios(Form formAnterior)
         {
             InitializeComponent();
@@ -28,78 +29,33 @@ namespace formLogin
             this.Load += FormUsuarios_Load;
             _FormAnterior = formAnterior;
         }
+
+
+
+
         private void CargarDatos()
         {
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();  //  abrir conexión
                 string query = "SELECT * FROM Usuarios";
-
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-
-                if (dt.Rows.Count > 0)
-                {
-                    dataGridView1.DataSource = dt;
-                }
-                else
-                {
-                    MessageBox.Show("La tabla Usuarios no tiene registros.");
-                }
+                dataGridView1.DataSource = dt;
             }
-
-
-
         }
+
+
 
         private void BAgregar_Click(object sender, EventArgs e)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Usuarios (id_rol,nombre,apellido,direccion,dni,correo,telefono,sexo,usuario,contraseña) VALUES (@id_rol,@nombre,@apellido,@direccion,@dni,@correo,@telefono,@sexo,@usuario,@contraseña)";
+                string query = "INSERT INTO Usuarios (id_rol,Nombre, Apellido) VALUES (@id_rol,@Nombre, @Apellido)";
                 SqlCommand cmd = new SqlCommand(query, conn);
-
-
-
-
-
-
-
-                int idRol = comboBox1.SelectedIndex;
-                idRol = idRol + 1;
-
-                cmd.Parameters.AddWithValue("@id_rol", idRol);
-                cmd.Parameters.AddWithValue("@nombre", TNombre.Text);
-                cmd.Parameters.AddWithValue("@apellido", TApellido.Text);
-                cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);
-                cmd.Parameters.AddWithValue("@dni", TDni.Text);
-
-                cmd.Parameters.AddWithValue("@correo", Tcorreo.Text);
-                cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
-
-                string sexo;
-                // Verificar cuál está seleccionado
-                if (RBMasculino.Checked)
-                {
-                    sexo = "MASCULINO";
-                }
-                else if (RBFemenino.Checked)
-                {
-                    sexo = "FEMENINO";
-                }
-                else
-                {
-                    // Opcional: manejar caso donde ninguno esté seleccionado
-                    sexo = null;
-                }
-
-
-                cmd.Parameters.AddWithValue("@sexo", sexo);
-                cmd.Parameters.AddWithValue("@usuario", TUsuario.Text);
-                cmd.Parameters.AddWithValue("@contraseña", TContraseña.Text);
-
+                cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
+                cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
+                cmd.Parameters.AddWithValue("@id_rol", comboBox1.SelectedIndex);
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();

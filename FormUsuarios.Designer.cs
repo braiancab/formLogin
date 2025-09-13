@@ -38,7 +38,6 @@
             LDireccion = new Label();
             LCorreo = new Label();
             LContraseña = new Label();
-            LFecha = new Label();
             TDireccion = new TextBox();
             TDni = new TextBox();
             TApellido = new TextBox();
@@ -47,7 +46,6 @@
             TContraseña = new TextBox();
             Tcorreo = new TextBox();
             comboBox1 = new ComboBox();
-            dateTimePicker1 = new DateTimePicker();
             LTelefono = new Label();
             TTelefono = new TextBox();
             LSexo = new Label();
@@ -101,7 +99,7 @@
             // LUsuario1
             // 
             LUsuario1.AutoSize = true;
-            LUsuario1.Location = new Point(529, 298);
+            LUsuario1.Location = new Point(529, 269);
             LUsuario1.Name = "LUsuario1";
             LUsuario1.Size = new Size(53, 15);
             LUsuario1.TabIndex = 3;
@@ -119,7 +117,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(527, 200);
+            label5.Location = new Point(431, 312);
             label5.Name = "label5";
             label5.Size = new Size(30, 15);
             label5.TabIndex = 5;
@@ -137,7 +135,7 @@
             // LCorreo
             // 
             LCorreo.AutoSize = true;
-            LCorreo.Location = new Point(220, 233);
+            LCorreo.Location = new Point(220, 204);
             LCorreo.Name = "LCorreo";
             LCorreo.Size = new Size(49, 15);
             LCorreo.TabIndex = 7;
@@ -146,20 +144,11 @@
             // LContraseña
             // 
             LContraseña.AutoSize = true;
-            LContraseña.Location = new Point(220, 298);
+            LContraseña.Location = new Point(220, 269);
             LContraseña.Name = "LContraseña";
             LContraseña.Size = new Size(73, 15);
             LContraseña.TabIndex = 8;
             LContraseña.Text = "Contraseña: ";
-            // 
-            // LFecha
-            // 
-            LFecha.AutoSize = true;
-            LFecha.Location = new Point(220, 200);
-            LFecha.Name = "LFecha";
-            LFecha.Size = new Size(44, 15);
-            LFecha.TabIndex = 9;
-            LFecha.Text = "Fecha: ";
             // 
             // TDireccion
             // 
@@ -191,21 +180,21 @@
             // 
             // TUsuario
             // 
-            TUsuario.Location = new Point(588, 290);
+            TUsuario.Location = new Point(588, 261);
             TUsuario.Name = "TUsuario";
             TUsuario.Size = new Size(215, 23);
             TUsuario.TabIndex = 14;
             // 
             // TContraseña
             // 
-            TContraseña.Location = new Point(304, 290);
+            TContraseña.Location = new Point(304, 261);
             TContraseña.Name = "TContraseña";
             TContraseña.Size = new Size(215, 23);
             TContraseña.TabIndex = 15;
             // 
             // Tcorreo
             // 
-            Tcorreo.Location = new Point(304, 230);
+            Tcorreo.Location = new Point(304, 201);
             Tcorreo.Name = "Tcorreo";
             Tcorreo.Size = new Size(215, 23);
             Tcorreo.TabIndex = 16;
@@ -214,22 +203,15 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Vendedor", "Admin", "Gerente" });
-            comboBox1.Location = new Point(588, 194);
+            comboBox1.Location = new Point(483, 309);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 17;
             // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(304, 194);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 18;
-            // 
             // LTelefono
             // 
             LTelefono.AutoSize = true;
-            LTelefono.Location = new Point(527, 233);
+            LTelefono.Location = new Point(527, 204);
             LTelefono.Name = "LTelefono";
             LTelefono.Size = new Size(55, 15);
             LTelefono.TabIndex = 19;
@@ -237,7 +219,7 @@
             // 
             // TTelefono
             // 
-            TTelefono.Location = new Point(588, 230);
+            TTelefono.Location = new Point(588, 201);
             TTelefono.Name = "TTelefono";
             TTelefono.Size = new Size(215, 23);
             TTelefono.TabIndex = 20;
@@ -245,7 +227,7 @@
             // LSexo
             // 
             LSexo.AutoSize = true;
-            LSexo.Location = new Point(220, 267);
+            LSexo.Location = new Point(220, 238);
             LSexo.Name = "LSexo";
             LSexo.Size = new Size(35, 15);
             LSexo.TabIndex = 21;
@@ -254,7 +236,7 @@
             // RBMasculino
             // 
             RBMasculino.AutoSize = true;
-            RBMasculino.Location = new Point(304, 265);
+            RBMasculino.Location = new Point(304, 236);
             RBMasculino.Name = "RBMasculino";
             RBMasculino.Size = new Size(80, 19);
             RBMasculino.TabIndex = 22;
@@ -265,7 +247,7 @@
             // RBFemenino
             // 
             RBFemenino.AutoSize = true;
-            RBFemenino.Location = new Point(425, 265);
+            RBFemenino.Location = new Point(425, 236);
             RBFemenino.Name = "RBFemenino";
             RBFemenino.Size = new Size(78, 19);
             RBFemenino.TabIndex = 23;
@@ -275,7 +257,7 @@
             // 
             // BAgregar
             // 
-            BAgregar.Location = new Point(429, 344);
+            BAgregar.Location = new Point(815, 355);
             BAgregar.Name = "BAgregar";
             BAgregar.Size = new Size(75, 23);
             BAgregar.TabIndex = 24;
@@ -285,7 +267,7 @@
             // 
             // BCancelar
             // 
-            BCancelar.Location = new Point(529, 344);
+            BCancelar.Location = new Point(902, 354);
             BCancelar.Name = "BCancelar";
             BCancelar.Size = new Size(75, 23);
             BCancelar.TabIndex = 25;
@@ -303,7 +285,7 @@
             // 
             // BActualizar
             // 
-            BActualizar.Location = new Point(348, 344);
+            BActualizar.Location = new Point(728, 355);
             BActualizar.Name = "BActualizar";
             BActualizar.Size = new Size(75, 24);
             BActualizar.TabIndex = 27;
@@ -326,7 +308,6 @@
             Controls.Add(LSexo);
             Controls.Add(TTelefono);
             Controls.Add(LTelefono);
-            Controls.Add(dateTimePicker1);
             Controls.Add(comboBox1);
             Controls.Add(Tcorreo);
             Controls.Add(TContraseña);
@@ -335,7 +316,6 @@
             Controls.Add(TApellido);
             Controls.Add(TDni);
             Controls.Add(TDireccion);
-            Controls.Add(LFecha);
             Controls.Add(LContraseña);
             Controls.Add(LCorreo);
             Controls.Add(LDireccion);
@@ -367,7 +347,6 @@
         private Label LDireccion;
         private Label LCorreo;
         private Label LContraseña;
-        private Label LFecha;
         private TextBox TDireccion;
         private TextBox TDni;
         private TextBox TApellido;
@@ -376,7 +355,6 @@
         private TextBox TContraseña;
         private TextBox Tcorreo;
         private ComboBox comboBox1;
-        private DateTimePicker dateTimePicker1;
         private Label LTelefono;
         private TextBox TTelefono;
         private Label LSexo;

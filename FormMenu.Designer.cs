@@ -139,6 +139,7 @@
             BBackUp.Size = new Size(80, 70);
             BBackUp.TabIndex = 6;
             BBackUp.UseVisualStyleBackColor = true;
+            BBackUp.Click += BBackUp_Click;
             // 
             // BUsuario
             // 

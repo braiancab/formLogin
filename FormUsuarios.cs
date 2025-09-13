@@ -54,7 +54,7 @@ namespace formLogin
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Usuarios (id_rol,nombre,apellido,direccion,dni,fecha,correo,telefono,sexo,usuario,contraseña) VALUES (@id_rol,@nombre,@apellido,@direccion,@dni,@fecha,@correo,@telefono,@sexo,@usuario,@contraseña)";
+                string query = "INSERT INTO Usuarios (id_rol,nombre,apellido,direccion,dni,correo,telefono,sexo,usuario,contraseña) VALUES (@id_rol,@nombre,@apellido,@direccion,@dni,@correo,@telefono,@sexo,@usuario,@contraseña)";
                 SqlCommand cmd = new SqlCommand(query, conn);
 
 
@@ -64,13 +64,14 @@ namespace formLogin
 
 
                 int idRol = comboBox1.SelectedIndex;
+                idRol = idRol + 1;
 
-                cmd.Parameters.AddWithValue("@id_rol", idRol + 1);
+                cmd.Parameters.AddWithValue("@id_rol", idRol);
                 cmd.Parameters.AddWithValue("@nombre", TNombre.Text);
                 cmd.Parameters.AddWithValue("@apellido", TApellido.Text);
                 cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);
                 cmd.Parameters.AddWithValue("@dni", TDni.Text);
-                cmd.Parameters.AddWithValue("@fecha", dateTimePicker1.Value);
+            
                 cmd.Parameters.AddWithValue("@correo", Tcorreo.Text);
                 cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
 
@@ -115,8 +116,7 @@ namespace formLogin
             TDireccion.Clear();
             TContraseña.Clear();
             comboBox1.SelectedIndex = -1;
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = " ";
+         
             idSeleccionado = 0;
         }
 
@@ -133,7 +133,7 @@ namespace formLogin
             string apellido = TApellido.Text;
             string direccion = TDireccion.Text;
             string dni = TDni.Text;
-            DateTime fecha = dateTimePicker1.Value;
+          
             string correo = Tcorreo.Text;
             string telefono = TTelefono.Text;
             string usuario = TUsuario.Text;
@@ -149,7 +149,7 @@ namespace formLogin
                              apellido = @apellido,
                              direccion = @direccion,
                              dni = @dni,
-                             fecha = @fecha,
+                             
                              correo = @correo,
                              telefono = @telefono,
                              sexo = @sexo,
@@ -164,7 +164,7 @@ namespace formLogin
                     cmd.Parameters.AddWithValue("@apellido", apellido);
                     cmd.Parameters.AddWithValue("@direccion", direccion);
                     cmd.Parameters.AddWithValue("@dni", dni);
-                    cmd.Parameters.AddWithValue("@fecha", fecha);
+                    
                     cmd.Parameters.AddWithValue("@correo", correo);
                     cmd.Parameters.AddWithValue("@telefono", telefono);
                     cmd.Parameters.AddWithValue("@sexo", sexo);
@@ -205,7 +205,7 @@ namespace formLogin
                 RBFemenino.Checked = (sexo == "FEMENINO");
 
                 // Fecha
-                dateTimePicker1.Value = Convert.ToDateTime(fila.Cells["fecha"].Value);
+              
 
                 // Rol (ComboBox)
                 comboBox1.SelectedValue = Convert.ToInt32(fila.Cells["id_rol"].Value);

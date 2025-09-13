@@ -100,5 +100,12 @@ namespace formLogin
             f.Show();
             this.Hide();
         }
+
+        private void BBackUp_Click(object sender, EventArgs e)
+        {
+            FormBackUp f = new FormBackUp();
+            f.Show();
+            this.Hide();
+        }
     }
 }

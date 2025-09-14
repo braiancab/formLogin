@@ -1,4 +1,6 @@
-﻿using System;
+﻿//using System.Data.SqlClient;//
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using System.Data.SqlClient;//
-using Microsoft.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 
 namespace formLogin
@@ -18,7 +19,7 @@ namespace formLogin
         private Form _FormAnterior; //variable del formulario anterior
 
         //Conectar con base de datos
-        string connectionString = "Server=localhost\\SQLEXPRESS;Database=EJEMPLO;Trusted_Connection=True;TrustServerCertificate=True;";
+        string connectionString = "Server=localhost\\SQLEXPRESS;Database=BD_TALLER;Trusted_Connection=True;TrustServerCertificate=True;";
         int idSeleccionado = 0;     //Identifica el elemento de datagridview 
 
 
@@ -49,18 +50,41 @@ namespace formLogin
 
         private void BAgregar_Click(object sender, EventArgs e)
         {
+
+            if (!ValidarCampos())
+                return;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Usuarios (id_rol,Nombre, Apellido) VALUES (@id_rol,@Nombre, @Apellido)";
+                string query = "INSERT INTO Usuarios (id_rol,Nombre,Apellido,Correo,Direccion,Dni,Telefono,Sexo,Contraseña,Usuario) VALUES (@id_rol,@Nombre, @Apellido,@Correo,@Direccion,@Dni,@Telefono,@Sexo,@Contraseña,@Usuario)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
                 cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
-                cmd.Parameters.AddWithValue("@id_rol", comboBox1.SelectedIndex);
+                cmd.Parameters.AddWithValue("@id_rol", comboBox1.SelectedValue);
+                cmd.Parameters.AddWithValue("@Correo", Tcorreo.Text);
+                cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text );
+                cmd.Parameters.AddWithValue("@Dni", TDni.Text);
+                cmd.Parameters.AddWithValue("@Telefono", TTelefono.Text );
+
+                string sexo = "";
+
+                if (RBMasculino.Checked)
+                {
+                    sexo = "Masculino";
+                }
+                else if (RBFemenino.Checked)
+                {
+                    sexo = "Femenino";
+                }
+                cmd.Parameters.AddWithValue("@Sexo", sexo);
+                cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text );
+                cmd.Parameters.AddWithValue("@Usuario", TUsuario.Text);
+
                 conn.Open();
                 cmd.ExecuteNonQuery();
-                conn.Close();
+              
             }
             CargarDatos();
+
             LimpiarCampos();
         }
 
@@ -82,60 +106,39 @@ namespace formLogin
 
         private void BActualizar_Click(object sender, EventArgs e)
         {
-            if (idSeleccionado == 0)
-            {
-                MessageBox.Show("Seleccione un usuario primero.");
+            if (idSeleccionado == 0) return;
+            if (!ValidarCampos())
                 return;
-            }
-
-            int idRol = comboBox1.SelectedIndex;
-            string nombre = TNombre.Text;
-            string apellido = TApellido.Text;
-            string direccion = TDireccion.Text;
-            string dni = TDni.Text;
-
-            string correo = Tcorreo.Text;
-            string telefono = TTelefono.Text;
-            string usuario = TUsuario.Text;
-            string contraseña = TContraseña.Text;
-            string sexo = RBMasculino.Checked ? "MASCULINO" : "FEMENINO";
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
-                string query = @"UPDATE USUARIOS
-                         SET id_rol = @id_rol,
-                             nombre = @nombre,
-                             apellido = @apellido,
-                             direccion = @direccion,
-                             dni = @dni,
-                             
-                             correo = @correo,
-                             telefono = @telefono,
-                             sexo = @sexo,
-                             usuario = @usuario,
-                             contraseña = @contraseña
-                         WHERE id_usuario = @id_usuario";
+                string query = "UPDATE Usuarios SET id_rol=@id_rol,Nombre=@Nombre,Apellido=@Apellido,Direccion=@Direccion,Dni=@Dni,Correo=@Correo,Telefono=@Telefono,Sexo=@sexo,Usuario=@Usuario,Contraseña=@Contraseña  WHERE id_usuario=@id_usuario";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id_rol", comboBox1.SelectedIndex);
+                cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
+                cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
+                cmd.Parameters.AddWithValue("@Correo",Tcorreo.Text);
+                cmd.Parameters.AddWithValue("@Direccion",TDireccion.Text);
+                cmd.Parameters.AddWithValue("@Dni",TDni.Text);
+                cmd.Parameters.AddWithValue("@Telefono",TTelefono.Text);
+                string sexo = "";
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                if (RBMasculino.Checked)
                 {
-                    cmd.Parameters.AddWithValue("@id_rol", idRol);
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@apellido", apellido);
-                    cmd.Parameters.AddWithValue("@direccion", direccion);
-                    cmd.Parameters.AddWithValue("@dni", dni);
-
-                    cmd.Parameters.AddWithValue("@correo", correo);
-                    cmd.Parameters.AddWithValue("@telefono", telefono);
-                    cmd.Parameters.AddWithValue("@sexo", sexo);
-                    cmd.Parameters.AddWithValue("@usuario", usuario);
-                    cmd.Parameters.AddWithValue("@contraseña", contraseña);
-                    cmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
-
-                    cmd.ExecuteNonQuery();
-
-                    conn.Close();
+                    sexo = "Masculino";
                 }
+                else if (RBFemenino.Checked)
+                {
+                    sexo = "Femenino";
+                }
+
+                cmd.Parameters.AddWithValue("@Sexo", sexo);
+                cmd.Parameters.AddWithValue("@Contraseña",TContraseña.Text);
+                cmd.Parameters.AddWithValue("@Usuario",TUsuario.Text);
+                cmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
             }
             CargarDatos();
             LimpiarCampos();
@@ -147,31 +150,24 @@ namespace formLogin
             {
                 DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
                 idSeleccionado = Convert.ToInt32(fila.Cells["id_usuario"].Value);
-
-
-
-                TNombre.Text = fila.Cells["nombre"].Value.ToString();
-                TApellido.Text = fila.Cells["apellido"].Value.ToString();
-                TDireccion.Text = fila.Cells["direccion"].Value.ToString();
-                TDni.Text = fila.Cells["dni"].Value.ToString();
-                Tcorreo.Text = fila.Cells["correo"].Value.ToString();
-                TTelefono.Text = fila.Cells["telefono"].Value.ToString();
-                TUsuario.Text = fila.Cells["usuario"].Value.ToString();
-                TContraseña.Text = fila.Cells["contraseña"].Value.ToString();
-
-                // Sexo (RadioButton)
+                comboBox1.SelectedValue = Convert.ToInt32(fila.Cells["id_rol"].Value);
+                TNombre.Text = fila.Cells["Nombre"].Value.ToString();
+                TApellido.Text = fila.Cells["Apellido"].Value.ToString();
+                Tcorreo.Text = fila.Cells["Correo"].Value.ToString();
+                TDireccion.Text = fila.Cells["Direccion"].Value.ToString();
+                TDni.Text = fila.Cells["Dni"].Value.ToString();
+                TTelefono.Text = fila.Cells["Telefono"].Value.ToString();
+             
                 string sexo = fila.Cells["sexo"].Value.ToString();
                 RBMasculino.Checked = (sexo == "MASCULINO");
                 RBFemenino.Checked = (sexo == "FEMENINO");
 
-                // Fecha
 
-
-                // Rol (ComboBox)
-                comboBox1.SelectedValue = Convert.ToInt32(fila.Cells["id_rol"].Value);
-
+                TContraseña.Text = fila.Cells["Contraseña"].Value.ToString();
+                TUsuario.Text = fila.Cells["Usuario"].Value.ToString();
             }
         }
+
 
         private void FormUsuarios_Load(object sender, EventArgs e)
         {
@@ -196,6 +192,71 @@ namespace formLogin
             _FormAnterior.Show();
             this.Close();
         }
+
+        private void BEliminar_Click(object sender, EventArgs e)
+        {
+            if (idSeleccionado == 0) return;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "DELETE FROM Usuarios WHERE id_usuario=@id_usuario";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            CargarDatos();
+            LimpiarCampos();
+        }
+
+
+        private bool ValidarCampos()
+        {
+            if (string.IsNullOrWhiteSpace(TNombre.Text) ||
+                string.IsNullOrWhiteSpace(TApellido.Text) ||
+                string.IsNullOrWhiteSpace(TDireccion.Text) ||
+                string.IsNullOrWhiteSpace(TDni.Text) ||
+                string.IsNullOrWhiteSpace(Tcorreo.Text) ||
+                string.IsNullOrWhiteSpace(TTelefono.Text) ||
+                string.IsNullOrWhiteSpace(TContraseña.Text) ||
+                string.IsNullOrWhiteSpace(TUsuario.Text)
+
+                )
+            {
+                MessageBox.Show("Todos los campos deben estar completos.");
+                return false;
+            }
+           
+
+            if (comboBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un rol en el ComboBox.");
+                return false;
+            }
+            bool seleccionado = groupBox1.Controls.OfType<System.Windows.Forms.RadioButton>().Any(r => r.Checked);
+            if (!seleccionado)
+            {
+                MessageBox.Show("Debe seleccionar una opción en los RadioButton.");
+                return false;
+            }
+
+            // ✅ Si pasa todas las validaciones
+            return true;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 

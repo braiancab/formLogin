@@ -29,10 +29,30 @@ namespace formLogin
             CargarDatos();
             this.Load += FormUsuarios_Load;
             _FormAnterior = formAnterior;
+
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(Form_KeyDown);
+
+
         }
 
 
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // evita el sonido "beep"
+                SendKeys.Send("{TAB}");    // mueve al siguiente control
+            }
 
+            // Si cae en el botón Salir, vuelve a mover
+            if (ActiveControl == BsalirUs)
+            {
+                SelectNextControl(ActiveControl, true, true, true, true);
+            }
+
+
+        }
 
         private void CargarDatos()
         {
@@ -61,9 +81,9 @@ namespace formLogin
                 cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
                 cmd.Parameters.AddWithValue("@id_rol", comboBox1.SelectedValue);
                 cmd.Parameters.AddWithValue("@Correo", Tcorreo.Text);
-                cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text );
+                cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text);
                 cmd.Parameters.AddWithValue("@Dni", TDni.Text);
-                cmd.Parameters.AddWithValue("@Telefono", TTelefono.Text );
+                cmd.Parameters.AddWithValue("@Telefono", TTelefono.Text);
 
                 string sexo = "";
 
@@ -76,12 +96,12 @@ namespace formLogin
                     sexo = "Femenino";
                 }
                 cmd.Parameters.AddWithValue("@Sexo", sexo);
-                cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text );
+                cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
                 cmd.Parameters.AddWithValue("@Usuario", TUsuario.Text);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
-              
+
             }
             CargarDatos();
 
@@ -116,10 +136,10 @@ namespace formLogin
                 cmd.Parameters.AddWithValue("@id_rol", comboBox1.SelectedIndex);
                 cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
                 cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
-                cmd.Parameters.AddWithValue("@Correo",Tcorreo.Text);
-                cmd.Parameters.AddWithValue("@Direccion",TDireccion.Text);
-                cmd.Parameters.AddWithValue("@Dni",TDni.Text);
-                cmd.Parameters.AddWithValue("@Telefono",TTelefono.Text);
+                cmd.Parameters.AddWithValue("@Correo", Tcorreo.Text);
+                cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text);
+                cmd.Parameters.AddWithValue("@Dni", TDni.Text);
+                cmd.Parameters.AddWithValue("@Telefono", TTelefono.Text);
                 string sexo = "";
 
                 if (RBMasculino.Checked)
@@ -132,8 +152,8 @@ namespace formLogin
                 }
 
                 cmd.Parameters.AddWithValue("@Sexo", sexo);
-                cmd.Parameters.AddWithValue("@Contraseña",TContraseña.Text);
-                cmd.Parameters.AddWithValue("@Usuario",TUsuario.Text);
+                cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
+                cmd.Parameters.AddWithValue("@Usuario", TUsuario.Text);
                 cmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
 
                 conn.Open();
@@ -157,7 +177,7 @@ namespace formLogin
                 TDireccion.Text = fila.Cells["Direccion"].Value.ToString();
                 TDni.Text = fila.Cells["Dni"].Value.ToString();
                 TTelefono.Text = fila.Cells["Telefono"].Value.ToString();
-             
+
                 string sexo = fila.Cells["sexo"].Value.ToString();
                 RBMasculino.Checked = (sexo == "MASCULINO");
                 RBFemenino.Checked = (sexo == "FEMENINO");
@@ -228,7 +248,7 @@ namespace formLogin
                 MessageBox.Show("Todos los campos deben estar completos.");
                 return false;
             }
-           
+
 
             if (comboBox1.SelectedIndex == -1)
             {
@@ -246,17 +266,7 @@ namespace formLogin
             return true;
         }
 
-
-
-
-
-
-
-
-
-
-
-
+       
     }
 
 

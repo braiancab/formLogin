@@ -30,7 +30,7 @@
         {
             panel1 = new Panel();
             LVolver = new Label();
-            Bsalir = new Button();
+            BsalirUs = new Button();
             LUser = new Label();
             LNombre = new Label();
             LApellido = new Label();
@@ -67,7 +67,7 @@
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(LVolver);
-            panel1.Controls.Add(Bsalir);
+            panel1.Controls.Add(BsalirUs);
             panel1.Controls.Add(LUser);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
@@ -83,16 +83,17 @@
             LVolver.TabIndex = 28;
             LVolver.Text = "Volver";
             // 
-            // Bsalir
+            // BsalirUs
             // 
-            Bsalir.BackColor = Color.White;
-            Bsalir.Image = Properties.Resources.volver;
-            Bsalir.Location = new Point(13, 3);
-            Bsalir.Name = "Bsalir";
-            Bsalir.Size = new Size(80, 70);
-            Bsalir.TabIndex = 1;
-            Bsalir.UseVisualStyleBackColor = false;
-            Bsalir.Click += Bsalir_Click;
+            BsalirUs.BackColor = Color.White;
+            BsalirUs.Image = Properties.Resources.volver;
+            BsalirUs.Location = new Point(13, 3);
+            BsalirUs.Name = "BsalirUs";
+            BsalirUs.Size = new Size(80, 70);
+            BsalirUs.TabIndex = 30;
+            BsalirUs.TabStop = false;
+            BsalirUs.UseVisualStyleBackColor = false;
+            BsalirUs.Click += Bsalir_Click;
             // 
             // LUser
             // 
@@ -181,49 +182,49 @@
             TDireccion.Location = new Point(405, 22);
             TDireccion.Name = "TDireccion";
             TDireccion.Size = new Size(215, 23);
-            TDireccion.TabIndex = 10;
+            TDireccion.TabIndex = 5;
             // 
             // TDni
             // 
             TDni.Location = new Point(405, 60);
             TDni.Name = "TDni";
             TDni.Size = new Size(215, 23);
-            TDni.TabIndex = 11;
+            TDni.TabIndex = 6;
             // 
             // TApellido
             // 
             TApellido.Location = new Point(121, 60);
             TApellido.Name = "TApellido";
             TApellido.Size = new Size(215, 23);
-            TApellido.TabIndex = 12;
+            TApellido.TabIndex = 2;
             // 
             // TNombre
             // 
             TNombre.Location = new Point(121, 22);
             TNombre.Name = "TNombre";
             TNombre.Size = new Size(215, 23);
-            TNombre.TabIndex = 13;
+            TNombre.TabIndex = 1;
             // 
             // TUsuario
             // 
             TUsuario.Location = new Point(405, 158);
             TUsuario.Name = "TUsuario";
             TUsuario.Size = new Size(215, 23);
-            TUsuario.TabIndex = 14;
+            TUsuario.TabIndex = 8;
             // 
             // TContraseña
             // 
             TContraseña.Location = new Point(121, 158);
             TContraseña.Name = "TContraseña";
             TContraseña.Size = new Size(215, 23);
-            TContraseña.TabIndex = 15;
+            TContraseña.TabIndex = 4;
             // 
             // Tcorreo
             // 
             Tcorreo.Location = new Point(121, 98);
             Tcorreo.Name = "Tcorreo";
             Tcorreo.Size = new Size(215, 23);
-            Tcorreo.TabIndex = 16;
+            Tcorreo.TabIndex = 3;
             // 
             // comboBox1
             // 
@@ -232,7 +233,7 @@
             comboBox1.Location = new Point(304, 203);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 17;
+            comboBox1.TabIndex = 9;
             // 
             // LTelefono
             // 
@@ -248,7 +249,7 @@
             TTelefono.Location = new Point(405, 98);
             TTelefono.Name = "TTelefono";
             TTelefono.Size = new Size(215, 23);
-            TTelefono.TabIndex = 20;
+            TTelefono.TabIndex = 7;
             // 
             // LSexo
             // 
@@ -287,6 +288,7 @@
             BAgregar.Name = "BAgregar";
             BAgregar.Size = new Size(75, 23);
             BAgregar.TabIndex = 24;
+            BAgregar.TabStop = false;
             BAgregar.Text = "Agregar";
             BAgregar.UseVisualStyleBackColor = true;
             BAgregar.Click += BAgregar_Click;
@@ -297,6 +299,7 @@
             BEliminar.Name = "BEliminar";
             BEliminar.Size = new Size(75, 23);
             BEliminar.TabIndex = 25;
+            BEliminar.TabStop = false;
             BEliminar.Text = "Eliminar";
             BEliminar.UseVisualStyleBackColor = true;
             BEliminar.Click += BEliminar_Click;
@@ -316,6 +319,7 @@
             BActualizar.Name = "BActualizar";
             BActualizar.Size = new Size(75, 24);
             BActualizar.TabIndex = 27;
+            BActualizar.TabStop = false;
             BActualizar.Text = "Actualizar";
             BActualizar.UseVisualStyleBackColor = true;
             BActualizar.Click += BActualizar_Click;
@@ -402,7 +406,7 @@
         private Button BEliminar;
         private DataGridView dataGridView1;
         private Button BActualizar;
-        private Button Bsalir;
+        private Button BsalirUs;
         private Label LVolver;
         private GroupBox groupBox1;
     }

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            BSalir = new Button();
-            LReporte = new Label();
             LVolver = new Label();
+            LReporte = new Label();
+            BSalir = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,15 +46,14 @@
             panel1.Size = new Size(906, 100);
             panel1.TabIndex = 0;
             // 
-            // BSalir
+            // LVolver
             // 
-            BSalir.Image = Properties.Resources.volver;
-            BSalir.Location = new Point(15, 3);
-            BSalir.Name = "BSalir";
-            BSalir.Size = new Size(80, 70);
-            BSalir.TabIndex = 1;
-            BSalir.UseVisualStyleBackColor = true;
-            BSalir.Click += BSalir_Click;
+            LVolver.AutoSize = true;
+            LVolver.Location = new Point(32, 76);
+            LVolver.Name = "LVolver";
+            LVolver.Size = new Size(39, 15);
+            LVolver.TabIndex = 1;
+            LVolver.Text = "Volver";
             // 
             // LReporte
             // 
@@ -66,14 +65,16 @@
             LReporte.TabIndex = 1;
             LReporte.Text = "Reportes";
             // 
-            // LVolver
+            // BSalir
             // 
-            LVolver.AutoSize = true;
-            LVolver.Location = new Point(32, 76);
-            LVolver.Name = "LVolver";
-            LVolver.Size = new Size(39, 15);
-            LVolver.TabIndex = 1;
-            LVolver.Text = "Volver";
+            BSalir.Image = Properties.Resources.volver;
+            BSalir.Location = new Point(15, 3);
+            BSalir.Name = "BSalir";
+            BSalir.Size = new Size(80, 70);
+            BSalir.TabIndex = 1;
+            BSalir.TabStop = false;
+            BSalir.UseVisualStyleBackColor = true;
+            BSalir.Click += BSalir_Click;
             // 
             // FormReporte
             // 

@@ -35,10 +35,10 @@
             LBasededatos = new Label();
             LRuta = new Label();
             groupBox1 = new GroupBox();
+            BBackUp = new Button();
             comboBoxBD = new ComboBox();
             BRuta = new Button();
             TRuta = new TextBox();
-            BBackUp = new Button();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -122,6 +122,16 @@
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             // 
+            // BBackUp
+            // 
+            BBackUp.Location = new Point(284, 197);
+            BBackUp.Name = "BBackUp";
+            BBackUp.Size = new Size(84, 29);
+            BBackUp.TabIndex = 6;
+            BBackUp.Text = "Back Up";
+            BBackUp.UseVisualStyleBackColor = true;
+            BBackUp.Click += BBackUp_Click;
+            // 
             // comboBoxBD
             // 
             comboBoxBD.FormattingEnabled = true;
@@ -147,20 +157,11 @@
             TRuta.Size = new Size(338, 23);
             TRuta.TabIndex = 3;
             // 
-            // BBackUp
-            // 
-            BBackUp.Location = new Point(284, 197);
-            BBackUp.Name = "BBackUp";
-            BBackUp.Size = new Size(84, 29);
-            BBackUp.TabIndex = 6;
-            BBackUp.Text = "Back Up";
-            BBackUp.UseVisualStyleBackColor = true;
-            BBackUp.Click += BBackUp_Click;
-            // 
             // FormBackUp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Azure;
             ClientSize = new Size(929, 450);
             Controls.Add(groupBox1);
             Controls.Add(panel1);

@@ -14,14 +14,7 @@ namespace formLogin
            
         }
 
-        private void TNombreUsuario_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permite solo letras y la tecla de retroceso (Backspace)
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
+        
 
         private void BIngresar_Click(object sender, EventArgs e)
         {
@@ -60,7 +53,7 @@ namespace formLogin
                     {
                         int idRol = Convert.ToInt32(result);
 
-                        MessageBox.Show("✅ Bienvenido " + usuario + " - Rol: " + idRol);
+                        MessageBox.Show("Bienvenido " + usuario );
 
 
 

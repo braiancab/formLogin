@@ -46,7 +46,6 @@
             TNombreUsuario.Name = "TNombreUsuario";
             TNombreUsuario.Size = new Size(161, 23);
             TNombreUsuario.TabIndex = 0;
-            TNombreUsuario.KeyPress += TNombreUsuario_KeyPress;
             TNombreUsuario.KeyUp += TNombreUsuario_KeyUp;
             // 
             // TContraUsuario

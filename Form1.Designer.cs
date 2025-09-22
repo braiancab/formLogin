@@ -36,7 +36,6 @@
             panel1 = new Panel();
             BIngresar = new Button();
             pictureBox1 = new PictureBox();
-            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -125,22 +124,12 @@
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
-            // button1
-            // 
-            button1.Location = new Point(158, 305);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 7;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(595, 368);
-            Controls.Add(button1);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
@@ -162,6 +151,5 @@
         private Panel panel1;
         private Button BIngresar;
         private PictureBox pictureBox1;
-        private Button button1;
     }
 }

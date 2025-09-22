@@ -179,6 +179,7 @@
             BProductos.Size = new Size(80, 70);
             BProductos.TabIndex = 2;
             BProductos.UseVisualStyleBackColor = true;
+            BProductos.Click += BProductos_Click;
             // 
             // BSalir
             // 

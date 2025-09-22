@@ -51,6 +51,8 @@
             comboBox1 = new ComboBox();
             BGuardar = new Button();
             BCancelar = new Button();
+            LTotal = new Label();
+            LPrecioTotal = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -99,6 +101,8 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(LPrecioTotal);
+            panel2.Controls.Add(LTotal);
             panel2.Controls.Add(comboBox1);
             panel2.Controls.Add(LFactura);
             panel2.Controls.Add(textBox1);
@@ -269,6 +273,24 @@
             BCancelar.Text = "Cancelar";
             BCancelar.UseVisualStyleBackColor = true;
             // 
+            // LTotal
+            // 
+            LTotal.AutoSize = true;
+            LTotal.Location = new Point(284, 207);
+            LTotal.Name = "LTotal";
+            LTotal.Size = new Size(47, 15);
+            LTotal.TabIndex = 17;
+            LTotal.Text = "Total $: ";
+            // 
+            // LPrecioTotal
+            // 
+            LPrecioTotal.AutoSize = true;
+            LPrecioTotal.Location = new Point(337, 207);
+            LPrecioTotal.Name = "LPrecioTotal";
+            LPrecioTotal.Size = new Size(43, 15);
+            LPrecioTotal.TabIndex = 18;
+            LPrecioTotal.Text = " Precio";
+            // 
             // FormCarrito
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -315,5 +337,7 @@
         private Label LFecha;
         private Button BGuardar;
         private Button BCancelar;
+        private Label LPrecioTotal;
+        private Label LTotal;
     }
 }

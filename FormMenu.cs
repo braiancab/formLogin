@@ -129,5 +129,12 @@ namespace formLogin
             f.Show();
             this.Hide();
         }
+
+        private void BProductos_Click(object sender, EventArgs e)
+        {
+            FormProducto f = new FormProducto(this);
+            f.Show();
+            this.Hide();
+        }
     }
 }

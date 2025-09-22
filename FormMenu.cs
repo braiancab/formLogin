@@ -122,5 +122,12 @@ namespace formLogin
             this.Hide();
 
         }
+
+        private void BCarrito_Click(object sender, EventArgs e)
+        {
+            FormCarrito f = new FormCarrito(this);
+            f.Show();
+            this.Hide();
+        }
     }
 }

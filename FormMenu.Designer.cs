@@ -159,6 +159,7 @@
             BCarrito.Size = new Size(80, 70);
             BCarrito.TabIndex = 4;
             BCarrito.UseVisualStyleBackColor = true;
+            BCarrito.Click += BCarrito_Click;
             // 
             // BReporte
             // 

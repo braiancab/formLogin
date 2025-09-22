@@ -19,6 +19,18 @@ namespace formLogin
             _FormAnterior = formAnterior;
         }
 
-     
+
+
+        private void BSalir_Click(object sender, EventArgs e)
+        {
+
+            _FormAnterior.Show();
+            this.Close();
+        }
+
+        private void FormCarrito_Load(object sender, EventArgs e)
+        {
+            TVendedor.Text = "Vendedor";
+        }
     }
 }

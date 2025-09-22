@@ -114,5 +114,13 @@ namespace formLogin
             f.Show();
             this.Hide();
         }
+
+        private void BCliente_Click(object sender, EventArgs e)
+        {
+            Clientes f = new Clientes(this);
+            f.Show();
+            this.Hide();
+
+        }
     }
 }

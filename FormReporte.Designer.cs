@@ -33,6 +33,7 @@
             LReporte = new Label();
             BSalir = new Button();
             groupBox1 = new GroupBox();
+            BGenerar = new Button();
             RBRecaudacion = new RadioButton();
             RBProductos = new RadioButton();
             LTipoReporte = new Label();
@@ -46,7 +47,6 @@
             label2 = new Label();
             label1 = new Label();
             LTextoReporte = new Label();
-            BGenerar = new Button();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -76,7 +76,7 @@
             // 
             LReporte.AutoSize = true;
             LReporte.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LReporte.Location = new Point(384, 23);
+            LReporte.Location = new Point(392, 26);
             LReporte.Name = "LReporte";
             LReporte.Size = new Size(155, 37);
             LReporte.TabIndex = 1;
@@ -115,6 +115,15 @@
             groupBox1.Size = new Size(655, 370);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
+            // 
+            // BGenerar
+            // 
+            BGenerar.Location = new Point(275, 341);
+            BGenerar.Name = "BGenerar";
+            BGenerar.Size = new Size(129, 23);
+            BGenerar.TabIndex = 10;
+            BGenerar.Text = "Generar Reporte";
+            BGenerar.UseVisualStyleBackColor = true;
             // 
             // RBRecaudacion
             // 
@@ -234,15 +243,6 @@
             LTextoReporte.Size = new Size(101, 15);
             LTextoReporte.TabIndex = 0;
             LTextoReporte.Text = "Seleccione fecha: ";
-            // 
-            // BGenerar
-            // 
-            BGenerar.Location = new Point(275, 341);
-            BGenerar.Name = "BGenerar";
-            BGenerar.Size = new Size(129, 23);
-            BGenerar.TabIndex = 10;
-            BGenerar.Text = "Generar Reporte";
-            BGenerar.UseVisualStyleBackColor = true;
             // 
             // FormReporte
             // 

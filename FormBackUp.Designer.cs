@@ -67,7 +67,7 @@
             // 
             LBackup.AutoSize = true;
             LBackup.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LBackup.Location = new Point(392, 22);
+            LBackup.Location = new Point(392, 26);
             LBackup.Name = "LBackup";
             LBackup.Size = new Size(143, 37);
             LBackup.TabIndex = 0;
@@ -116,7 +116,7 @@
             groupBox1.Controls.Add(LBasededatos);
             groupBox1.Controls.Add(LRuta);
             groupBox1.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox1.Location = new Point(141, 118);
+            groupBox1.Location = new Point(145, 118);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(655, 232);
             groupBox1.TabIndex = 3;

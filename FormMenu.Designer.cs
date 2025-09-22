@@ -197,6 +197,7 @@
             BCliente.Size = new Size(80, 70);
             BCliente.TabIndex = 0;
             BCliente.UseVisualStyleBackColor = true;
+            BCliente.Click += BCliente_Click;
             // 
             // FormMenu
             // 

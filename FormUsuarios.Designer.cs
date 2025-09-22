@@ -99,7 +99,7 @@
             // 
             LUser.AutoSize = true;
             LUser.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LUser.Location = new Point(377, 22);
+            LUser.Location = new Point(392, 26);
             LUser.Name = "LUser";
             LUser.Size = new Size(154, 37);
             LUser.TabIndex = 0;

@@ -133,6 +133,16 @@ namespace formLogin.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lista_de_contactos {
+            get {
+                object obj = ResourceManager.GetObject("lista-de-contactos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nueva_cuenta {
             get {
                 object obj = ResourceManager.GetObject("nueva-cuenta", resourceCulture);

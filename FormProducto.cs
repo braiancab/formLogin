@@ -12,9 +12,19 @@ namespace formLogin
 {
     public partial class FormProducto : Form
     {
-        public FormProducto()
+
+        private Form _FormAnterior;
+
+        public FormProducto(Form formAnterior)
         {
             InitializeComponent();
+            _FormAnterior = formAnterior;
+        }
+
+        private void BVolver_Click(object sender, EventArgs e)
+        {
+            _FormAnterior.Show();
+            this.Close();
         }
     }
 }

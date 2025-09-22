@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            BVolver = new Button();
-            LVolver = new Label();
             LProductos = new Label();
+            LVolver = new Label();
+            BVolver = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,14 +46,15 @@
             panel1.Size = new Size(906, 100);
             panel1.TabIndex = 0;
             // 
-            // BVolver
+            // LProductos
             // 
-            BVolver.Image = Properties.Resources.volver;
-            BVolver.Location = new Point(12, 3);
-            BVolver.Name = "BVolver";
-            BVolver.Size = new Size(80, 70);
-            BVolver.TabIndex = 1;
-            BVolver.UseVisualStyleBackColor = true;
+            LProductos.AutoSize = true;
+            LProductos.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LProductos.Location = new Point(392, 26);
+            LProductos.Name = "LProductos";
+            LProductos.Size = new Size(173, 37);
+            LProductos.TabIndex = 1;
+            LProductos.Text = "Productos";
             // 
             // LVolver
             // 
@@ -64,15 +65,15 @@
             LVolver.TabIndex = 1;
             LVolver.Text = "Volver";
             // 
-            // LProductos
+            // BVolver
             // 
-            LProductos.AutoSize = true;
-            LProductos.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LProductos.Location = new Point(392, 26);
-            LProductos.Name = "LProductos";
-            LProductos.Size = new Size(173, 37);
-            LProductos.TabIndex = 1;
-            LProductos.Text = "Productos";
+            BVolver.Image = Properties.Resources.volver;
+            BVolver.Location = new Point(12, 3);
+            BVolver.Name = "BVolver";
+            BVolver.Size = new Size(80, 70);
+            BVolver.TabIndex = 1;
+            BVolver.UseVisualStyleBackColor = true;
+            BVolver.Click += BVolver_Click;
             // 
             // FormProducto
             // 

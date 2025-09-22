@@ -32,5 +32,12 @@ namespace formLogin
         {
             TVendedor.Text = "Vendedor";
         }
+
+        private void BNuevoCliente_Click(object sender, EventArgs e)
+        {
+            Clientes f = new Clientes(this);
+            f.Show();
+            this.Hide();
+        }
     }
 }

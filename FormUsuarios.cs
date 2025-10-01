@@ -249,8 +249,28 @@ namespace formLogin
                 return false;
             }
 
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
 
-            if (comboBox1.SelectedIndex == -1)
+                // Primero verificamos si el DNI ya existe
+                string checkQuery = "SELECT COUNT(*) FROM Usuarios WHERE Dni = @Dni";
+                using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@Dni", TDni.Text.Trim());
+
+                    int count = (int)checkCmd.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        MessageBox.Show("El DNI ya se encuentra registrado en el sistema.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false; // Cancelamos la inserción
+                    }
+                }
+            }
+
+
+                if (comboBox1.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un rol en el ComboBox.");
                 return false;

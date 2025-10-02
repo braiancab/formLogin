@@ -3,18 +3,23 @@ using System.Data;
 
 namespace formLogin
 {
+
+
     public partial class Form1 : Form
     {
+
+
+        private bool verContra = false;
         //Conectar con base de datos
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=BD_TALLER;Trusted_Connection=True;TrustServerCertificate=True;";
-      //  int idSeleccionado = 0;     //Identifica el elemento de datagridview 
+        //  int idSeleccionado = 0;     //Identifica el elemento de datagridview 
         public Form1()
         {
             InitializeComponent();
-           
+
         }
 
-        
+
 
         private void BIngresar_Click(object sender, EventArgs e)
         {
@@ -53,7 +58,7 @@ namespace formLogin
                     {
                         int idRol = Convert.ToInt32(result);
 
-                        MessageBox.Show("Bienvenido " + usuario );
+                        MessageBox.Show("Bienvenido " + usuario);
 
 
 
@@ -64,7 +69,7 @@ namespace formLogin
                                 FormMenu fg = new FormMenu("gerente", this);
                                 fg.Show();
                                 this.Hide();
-                               
+
                                 break;
 
                             case 1: // Vendedor
@@ -100,7 +105,7 @@ namespace formLogin
 
         }
 
-        
+
         // Ver como hacer para presionar enter y pase a otro textbox
         private void TNombreUsuario_KeyUp(object sender, KeyEventArgs e)
         {
@@ -124,5 +129,18 @@ namespace formLogin
             }
         }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            verContra = !verContra;
+            if (verContra)
+            {
+                TContraUsuario.PasswordChar = '\0';
+                pictureBox2.Image = formLogin.Properties.Resources.visible;
+            } else
+            {
+                TContraUsuario.PasswordChar = '*';
+                pictureBox2.Image = formLogin.Properties.Resources.ojo;
+            }
+        }
     }
 }

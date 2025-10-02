@@ -75,8 +75,9 @@ namespace formLogin
                 return;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Usuarios (id_rol,Nombre,Apellido,Correo,Direccion,Dni,Telefono,Sexo,Contraseña,Usuario) VALUES (@id_rol,@Nombre, @Apellido,@Correo,@Direccion,@Dni,@Telefono,@Sexo,@Contraseña,@Usuario)";
+                string query = "INSERT INTO Usuarios (id_rol,activo,Nombre,Apellido,Correo,Direccion,Dni,Telefono,Sexo,Contraseña,Usuario) VALUES (@id_rol,@activo,@Nombre, @Apellido,@Correo,@Direccion,@Dni,@Telefono,@Sexo,@Contraseña,@Usuario)";
                 SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@activo", 1);
                 cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
                 cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
                 cmd.Parameters.AddWithValue("@id_rol", comboBox1.SelectedValue);
@@ -217,9 +218,11 @@ namespace formLogin
         {
             if (idSeleccionado == 0) return;
 
+
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM Usuarios WHERE id_usuario=@id_usuario";
+                string query = "UPDATE Usuarios SET activo=0 WHERE id_usuario = @id_usuario";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
 

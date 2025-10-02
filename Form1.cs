@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace formLogin
 {
@@ -46,19 +47,20 @@ namespace formLogin
                 try
                 {
                     conn.Open();
-                    string query = "SELECT id_rol FROM Usuarios WHERE usuario = @usuario AND contraseña = @contraseña";
+                    string query = "SELECT id_rol FROM Usuarios WHERE usuario = @usuario AND contraseña = @contraseña AND activo = 1";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@usuario", usuario);
                     cmd.Parameters.AddWithValue("@contraseña", contraseña);
-
+                 
                     object result = cmd.ExecuteScalar();
+                    
 
-                    if (result != null) // Si encontró un usuario válido
+                    if (result != null ) // Si encontró un usuario válido
                     {
                         int idRol = Convert.ToInt32(result);
 
-                        MessageBox.Show("Bienvenido " + usuario);
+                      
 
 
 
@@ -66,21 +68,21 @@ namespace formLogin
                         switch (idRol)
                         {
                             case 0: // Gerente
-                                FormMenu fg = new FormMenu("gerente", this);
+                                FormMenu fg = new FormMenu("Gerente", this);
                                 fg.Show();
                                 this.Hide();
 
                                 break;
 
                             case 1: // Vendedor
-                                FormMenu fv = new FormMenu("vendedor", this);
+                                FormMenu fv = new FormMenu("Vendedor", this);
                                 fv.Show();
                                 this.Hide();
                                 break;
 
                             case 2: // Admin
 
-                                FormMenu fa = new FormMenu("admin", this);
+                                FormMenu fa = new FormMenu("Admin", this);
                                 fa.Show();
                                 this.Hide();
                                 break;
@@ -94,7 +96,7 @@ namespace formLogin
                     }
                     else
                     {
-                        MessageBox.Show("❌ Usuario o contraseña incorrectos");
+                        MessageBox.Show(" Acceso no permitido");
                     }
                 }
                 catch (Exception ex)

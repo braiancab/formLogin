@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label2 = new Label();
+            LRolUser = new Label();
+            label1 = new Label();
             LClientes = new Label();
             LProductos = new Label();
             LReportes = new Label();
@@ -67,6 +70,34 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(906, 100);
             panel1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(786, 124);
+            label2.Name = "label2";
+            label2.Size = new Size(55, 21);
+            label2.TabIndex = 14;
+            label2.Text = "Perfil:";
+            // 
+            // LRolUser
+            // 
+            LRolUser.AutoSize = true;
+            LRolUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LRolUser.Location = new Point(839, 124);
+            LRolUser.Name = "LRolUser";
+            LRolUser.Size = new Size(67, 21);
+            LRolUser.TabIndex = 1;
+            LRolUser.Text = "usuario";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(803, 130);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 15);
+            label1.TabIndex = 1;
             // 
             // LClientes
             // 
@@ -207,13 +238,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(926, 606);
+            Controls.Add(label2);
             Controls.Add(panel1);
+            Controls.Add(LRolUser);
+            Controls.Add(label1);
             Name = "FormMenu";
             Text = "FormMenu";
             Load += FormMenu_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -233,5 +268,8 @@
         private Label LUsuarios;
         private Label LBackup;
         private Label LSalir;
+        private Label label1;
+        private Label LRolUser;
+        private Label label2;
     }
 }

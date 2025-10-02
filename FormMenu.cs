@@ -26,7 +26,7 @@ namespace formLogin
 
 
 
-            if (rol == "admin")
+            if (rol == "Admin")
             {
                 //Botones por rol
                 BBackUp.Enabled = true;
@@ -44,8 +44,9 @@ namespace formLogin
                 LUsuarios.Enabled = true;
                 LProductos.Enabled = false;
                 LReportes.Enabled = true;
+                LRolUser.Text = rol;
             }
-            else if (rol == "gerente")
+            else if (rol == "Gerente")
             {
                 //Botones por rol
                 BBackUp.Enabled = false;
@@ -63,8 +64,9 @@ namespace formLogin
                 LUsuarios.Enabled = false;
                 LProductos.Enabled = true;
                 LReportes.Enabled = true;
+                LRolUser.Text = rol;
             }
-            else if (rol == "vendedor")
+            else if (rol == "Vendedor")
             {
                 //Botones por rol
                 BBackUp.Enabled = false;
@@ -82,6 +84,7 @@ namespace formLogin
                 LUsuarios.Enabled = false;
                 LProductos.Enabled = false;
                 LReportes.Enabled = true;
+                LRolUser.Text = rol;
             }
 
             //label1.Text = $"Rol actual: {rol.ToUpper()}";
@@ -136,5 +139,7 @@ namespace formLogin
             f.Show();
             this.Hide();
         }
+
+        
     }
 }

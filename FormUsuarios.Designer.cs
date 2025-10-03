@@ -58,6 +58,7 @@
             dataGridView1 = new DataGridView();
             BActualizar = new Button();
             groupBox1 = new GroupBox();
+            BActivar = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
@@ -327,6 +328,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = SystemColors.ActiveCaption;
+            groupBox1.Controls.Add(BActivar);
             groupBox1.Controls.Add(TNombre);
             groupBox1.Controls.Add(LNombre);
             groupBox1.Controls.Add(LApellido);
@@ -353,6 +355,17 @@
             groupBox1.Size = new Size(655, 232);
             groupBox1.TabIndex = 28;
             groupBox1.TabStop = false;
+            // 
+            // BActivar
+            // 
+            BActivar.Location = new Point(481, 129);
+            BActivar.Name = "BActivar";
+            BActivar.Size = new Size(75, 23);
+            BActivar.TabIndex = 24;
+            BActivar.Text = "Activar";
+            BActivar.UseVisualStyleBackColor = true;
+            BActivar.Visible = false;
+            BActivar.Click += BActivar_Click;
             // 
             // FormUsuarios
             // 
@@ -409,5 +422,6 @@
         private Button BsalirUs;
         private Label LVolver;
         private GroupBox groupBox1;
+        private Button BActivar;
     }
 }

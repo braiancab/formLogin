@@ -179,6 +179,19 @@ namespace formLogin
                 TDni.Text = fila.Cells["Dni"].Value.ToString();
                 TTelefono.Text = fila.Cells["Telefono"].Value.ToString();
 
+
+                int activo = Convert.ToInt32(fila.Cells["activo"].Value);
+
+                if (activo == 0)
+                {
+                    BActivar.Visible = true;  // mostrar botón activar
+                }
+                else
+                {
+                    BActivar.Visible = false; // ocultar si ya está activo
+                }
+
+
                 string sexo = fila.Cells["sexo"].Value.ToString();
                 RBMasculino.Checked = (sexo == "MASCULINO");
                 RBFemenino.Checked = (sexo == "FEMENINO");
@@ -273,7 +286,7 @@ namespace formLogin
             }
 
 
-                if (comboBox1.SelectedIndex == -1)
+            if (comboBox1.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar un rol en el ComboBox.");
                 return false;
@@ -289,6 +302,32 @@ namespace formLogin
             return true;
         }
 
+        private void BActivar_Click(object sender, EventArgs e)
+        {
+
+            if (dataGridView1.CurrentRow != null)
+            {
+                int idUsuario = Convert.ToInt32(dataGridView1.CurrentRow.Cells["id_usuario"].Value);
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE Usuarios SET activo = 1 WHERE id_usuario = @id_usuario";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id_usuario", idUsuario);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Usuario activado correctamente.");
+
+                // Recargar los datos en el DataGridView
+                CargarDatos();
+
+                BActivar.Visible = false; // ocultar el botón otra vez
+            }
+        }   
     }
 
 

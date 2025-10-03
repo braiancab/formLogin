@@ -327,7 +327,50 @@ namespace formLogin
 
                 BActivar.Visible = false; // ocultar el botón otra vez
             }
-        }   
+        }
+
+        private void BFiltrar_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = "SELECT * FROM Usuarios WHERE 1=1"; // base de la consulta
+
+                // Filtros dinámicos
+                if (!string.IsNullOrWhiteSpace(TFiltroNombre.Text))
+                    query += " AND nombre LIKE @nombre";
+
+                if (!string.IsNullOrWhiteSpace(TFiltroApellido.Text))
+                    query += " AND apellido LIKE @apellido";
+
+                if (!string.IsNullOrWhiteSpace(TFiltroDni.Text))
+                    query += " AND dni LIKE @dni";
+
+                if (RBActivo.Checked)  // si seleccionaste activo
+                    query += " AND activo = 1";
+                else if (RBInactivo.Checked) // si seleccionaste Inactivo
+                    query += " AND activo = 0";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                // Agregar parámetros solo si los campos tienen valor
+                if (!string.IsNullOrWhiteSpace(TFiltroNombre.Text))
+                    cmd.Parameters.AddWithValue("@nombre", "%" + TFiltroNombre.Text + "%");
+
+                if (!string.IsNullOrWhiteSpace(TFiltroApellido.Text))
+                    cmd.Parameters.AddWithValue("@apellido", "%" + TFiltroApellido.Text + "%");
+
+                if (!string.IsNullOrWhiteSpace(TFiltroDni.Text))
+                    cmd.Parameters.AddWithValue("@dni", "%" + TFiltroDni.Text + "%");
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+            }
+        }
     }
 
 

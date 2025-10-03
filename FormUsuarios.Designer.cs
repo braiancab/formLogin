@@ -59,6 +59,16 @@
             BActualizar = new Button();
             groupBox1 = new GroupBox();
             BActivar = new Button();
+            TFiltroNombre = new TextBox();
+            TFiltroApellido = new TextBox();
+            RBActivo = new RadioButton();
+            LFiltroNombre = new Label();
+            LFiltroApellido = new Label();
+            LFiltroDni = new Label();
+            TFiltroDni = new TextBox();
+            BFiltrar = new Button();
+            RBInactivo = new RadioButton();
+            RBTodos = new RadioButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
@@ -231,7 +241,7 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Vendedor", "Admin", "Gerente" });
-            comboBox1.Location = new Point(304, 203);
+            comboBox1.Location = new Point(292, 203);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 9;
@@ -285,7 +295,7 @@
             // 
             // BAgregar
             // 
-            BAgregar.Location = new Point(756, 356);
+            BAgregar.Location = new Point(463, 357);
             BAgregar.Name = "BAgregar";
             BAgregar.Size = new Size(75, 23);
             BAgregar.TabIndex = 24;
@@ -296,7 +306,7 @@
             // 
             // BEliminar
             // 
-            BEliminar.Location = new Point(843, 355);
+            BEliminar.Location = new Point(550, 356);
             BEliminar.Name = "BEliminar";
             BEliminar.Size = new Size(75, 23);
             BEliminar.TabIndex = 25;
@@ -308,7 +318,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 420);
+            dataGridView1.Location = new Point(8, 444);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(906, 150);
             dataGridView1.TabIndex = 26;
@@ -316,7 +326,7 @@
             // 
             // BActualizar
             // 
-            BActualizar.Location = new Point(669, 356);
+            BActualizar.Location = new Point(376, 357);
             BActualizar.Name = "BActualizar";
             BActualizar.Size = new Size(75, 24);
             BActualizar.TabIndex = 27;
@@ -367,12 +377,113 @@
             BActivar.Visible = false;
             BActivar.Click += BActivar_Click;
             // 
+            // TFiltroNombre
+            // 
+            TFiltroNombre.Location = new Point(71, 419);
+            TFiltroNombre.Name = "TFiltroNombre";
+            TFiltroNombre.Size = new Size(132, 23);
+            TFiltroNombre.TabIndex = 29;
+            // 
+            // TFiltroApellido
+            // 
+            TFiltroApellido.Location = new Point(266, 419);
+            TFiltroApellido.Name = "TFiltroApellido";
+            TFiltroApellido.Size = new Size(132, 23);
+            TFiltroApellido.TabIndex = 30;
+            // 
+            // RBActivo
+            // 
+            RBActivo.AutoSize = true;
+            RBActivo.Location = new Point(665, 423);
+            RBActivo.Name = "RBActivo";
+            RBActivo.Size = new Size(59, 19);
+            RBActivo.TabIndex = 31;
+            RBActivo.TabStop = true;
+            RBActivo.Text = "Activo";
+            RBActivo.UseVisualStyleBackColor = true;
+            // 
+            // LFiltroNombre
+            // 
+            LFiltroNombre.AutoSize = true;
+            LFiltroNombre.Location = new Point(11, 425);
+            LFiltroNombre.Name = "LFiltroNombre";
+            LFiltroNombre.Size = new Size(54, 15);
+            LFiltroNombre.TabIndex = 32;
+            LFiltroNombre.Text = "Nombre:";
+            // 
+            // LFiltroApellido
+            // 
+            LFiltroApellido.AutoSize = true;
+            LFiltroApellido.Location = new Point(206, 425);
+            LFiltroApellido.Name = "LFiltroApellido";
+            LFiltroApellido.Size = new Size(54, 15);
+            LFiltroApellido.TabIndex = 33;
+            LFiltroApellido.Text = "Apellido:";
+            // 
+            // LFiltroDni
+            // 
+            LFiltroDni.AutoSize = true;
+            LFiltroDni.Location = new Point(401, 425);
+            LFiltroDni.Name = "LFiltroDni";
+            LFiltroDni.Size = new Size(30, 15);
+            LFiltroDni.TabIndex = 34;
+            LFiltroDni.Text = "DNI:";
+            // 
+            // TFiltroDni
+            // 
+            TFiltroDni.Location = new Point(437, 419);
+            TFiltroDni.Name = "TFiltroDni";
+            TFiltroDni.Size = new Size(132, 23);
+            TFiltroDni.TabIndex = 35;
+            // 
+            // BFiltrar
+            // 
+            BFiltrar.Location = new Point(839, 419);
+            BFiltrar.Name = "BFiltrar";
+            BFiltrar.Size = new Size(75, 23);
+            BFiltrar.TabIndex = 36;
+            BFiltrar.Text = "Filtrar";
+            BFiltrar.UseVisualStyleBackColor = true;
+            BFiltrar.Click += BFiltrar_Click;
+            // 
+            // RBInactivo
+            // 
+            RBInactivo.AutoSize = true;
+            RBInactivo.Location = new Point(592, 423);
+            RBInactivo.Name = "RBInactivo";
+            RBInactivo.Size = new Size(67, 19);
+            RBInactivo.TabIndex = 37;
+            RBInactivo.TabStop = true;
+            RBInactivo.Text = "Inactivo";
+            RBInactivo.UseVisualStyleBackColor = true;
+            // 
+            // RBTodos
+            // 
+            RBTodos.AutoSize = true;
+            RBTodos.Location = new Point(738, 423);
+            RBTodos.Name = "RBTodos";
+            RBTodos.Size = new Size(56, 19);
+            RBTodos.TabIndex = 38;
+            RBTodos.TabStop = true;
+            RBTodos.Text = "Todos";
+            RBTodos.UseVisualStyleBackColor = true;
+            // 
             // FormUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(926, 606);
+            Controls.Add(RBTodos);
+            Controls.Add(RBInactivo);
+            Controls.Add(BFiltrar);
+            Controls.Add(TFiltroDni);
+            Controls.Add(LFiltroDni);
+            Controls.Add(LFiltroApellido);
+            Controls.Add(LFiltroNombre);
+            Controls.Add(RBActivo);
+            Controls.Add(TFiltroApellido);
+            Controls.Add(TFiltroNombre);
             Controls.Add(groupBox1);
             Controls.Add(BActualizar);
             Controls.Add(dataGridView1);
@@ -388,6 +499,7 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -423,5 +535,15 @@
         private Label LVolver;
         private GroupBox groupBox1;
         private Button BActivar;
+        private TextBox TFiltroNombre;
+        private TextBox TFiltroApellido;
+        private RadioButton RBActivo;
+        private Label LFiltroNombre;
+        private Label LFiltroApellido;
+        private Label LFiltroDni;
+        private TextBox TFiltroDni;
+        private Button BFiltrar;
+        private RadioButton RBInactivo;
+        private RadioButton RBTodos;
     }
 }

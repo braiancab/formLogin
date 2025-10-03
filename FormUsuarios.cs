@@ -21,7 +21,7 @@ namespace formLogin
         //Conectar con base de datos
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=BD_TALLER;Trusted_Connection=True;TrustServerCertificate=True;";
         int idSeleccionado = 0;     //Identifica el elemento de datagridview 
-
+        private SqlConnection conn;
 
         public FormUsuarios(Form formAnterior)
         {
@@ -250,6 +250,8 @@ namespace formLogin
 
         private bool ValidarCampos()
         {
+            
+
             if (string.IsNullOrWhiteSpace(TNombre.Text) ||
                 string.IsNullOrWhiteSpace(TApellido.Text) ||
                 string.IsNullOrWhiteSpace(TDireccion.Text) ||
@@ -270,10 +272,11 @@ namespace formLogin
                 conn.Open();
 
                 // Primero verificamos si el DNI ya existe
-                string checkQuery = "SELECT COUNT(*) FROM Usuarios WHERE Dni = @Dni";
+                string checkQuery = "SELECT COUNT(*) FROM Usuarios WHERE Dni = @Dni AND id_usuario <> @id_usuario";
                 using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                 {
                     checkCmd.Parameters.AddWithValue("@Dni", TDni.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
 
                     int count = (int)checkCmd.ExecuteScalar();
 
@@ -283,7 +286,42 @@ namespace formLogin
                         return false; // Cancelamos la inserción
                     }
                 }
+
+                // Validar Correo
+                string checkCorreoQuery = "SELECT COUNT(*) FROM Usuarios WHERE correo = @correo AND id_usuario <> @id_usuario";
+                using (SqlCommand checkCmd = new SqlCommand(checkCorreoQuery, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@correo", Tcorreo.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
+
+                    int count = (int)checkCmd.ExecuteScalar();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("El correo electrónico ya se encuentra registrado en el sistema.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+
+                // Validar Teléfono
+                string checkTelefonoQuery = "SELECT COUNT(*) FROM Usuarios WHERE telefono = @telefono AND id_usuario <> @id_usuario";
+                using (SqlCommand checkCmd = new SqlCommand(checkTelefonoQuery, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@telefono", TTelefono.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
+
+                    int count = (int)checkCmd.ExecuteScalar();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("El teléfono ya se encuentra registrado en el sistema.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+
+
             }
+
+           
+
 
 
             if (comboBox1.SelectedIndex == -1)

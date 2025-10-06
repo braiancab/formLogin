@@ -43,6 +43,23 @@ namespace formLogin
             }
         }
 
+        private void FormProducto_Load(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT id_rol, nombre FROM Rol", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                comboBox1.DataSource = dt;
+                comboBox1.DisplayMember = "nombre";   // ADMIN, GERENTE, VENDEDOR
+                comboBox1.ValueMember = "id_rol";     // 1, 2, 3
+                comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
+
+        }
 
         private void BVolver_Click(object sender, EventArgs e)
         {

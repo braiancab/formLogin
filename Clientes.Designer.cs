@@ -254,6 +254,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(906, 150);
             dataGridView1.TabIndex = 2;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // BActivos
             // 

@@ -33,8 +33,7 @@
             LVolver = new Label();
             BSalir = new Button();
             panel2 = new Panel();
-            BCancelar = new Button();
-            BGuardar = new Button();
+            BAgregar = new Button();
             pictureBox1 = new PictureBox();
             LSexo = new Label();
             RBFemenino = new RadioButton();
@@ -48,9 +47,8 @@
             TNYApellido = new TextBox();
             LNYApellido = new Label();
             dataGridView1 = new DataGridView();
-            BActivos = new Button();
-            BInactivos = new Button();
-            BTodos = new Button();
+            BEliminar = new Button();
+            BActualizar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -101,8 +99,9 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
-            panel2.Controls.Add(BCancelar);
-            panel2.Controls.Add(BGuardar);
+            panel2.Controls.Add(BEliminar);
+            panel2.Controls.Add(BActualizar);
+            panel2.Controls.Add(BAgregar);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(LSexo);
             panel2.Controls.Add(RBFemenino);
@@ -120,24 +119,15 @@
             panel2.Size = new Size(655, 232);
             panel2.TabIndex = 1;
             // 
-            // BCancelar
+            // BAgregar
             // 
-            BCancelar.Location = new Point(243, 197);
-            BCancelar.Name = "BCancelar";
-            BCancelar.Size = new Size(75, 23);
-            BCancelar.TabIndex = 13;
-            BCancelar.Text = "Cancelar";
-            BCancelar.UseVisualStyleBackColor = true;
-            BCancelar.Click += BCancelar_Click;
-            // 
-            // BGuardar
-            // 
-            BGuardar.Location = new Point(122, 197);
-            BGuardar.Name = "BGuardar";
-            BGuardar.Size = new Size(75, 23);
-            BGuardar.TabIndex = 12;
-            BGuardar.Text = "Guardar";
-            BGuardar.UseVisualStyleBackColor = true;
+            BAgregar.Location = new Point(60, 192);
+            BAgregar.Name = "BAgregar";
+            BAgregar.Size = new Size(75, 23);
+            BAgregar.TabIndex = 12;
+            BAgregar.Text = "Agregar";
+            BAgregar.UseVisualStyleBackColor = true;
+            BAgregar.Click += BAgregar_Click;
             // 
             // pictureBox1
             // 
@@ -256,32 +246,23 @@
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // BActivos
+            // BEliminar
             // 
-            BActivos.Location = new Point(839, 391);
-            BActivos.Name = "BActivos";
-            BActivos.Size = new Size(75, 23);
-            BActivos.TabIndex = 3;
-            BActivos.Text = "Activos";
-            BActivos.UseVisualStyleBackColor = true;
+            BEliminar.Location = new Point(243, 192);
+            BEliminar.Name = "BEliminar";
+            BEliminar.Size = new Size(75, 23);
+            BEliminar.TabIndex = 4;
+            BEliminar.Text = "Eliminar";
+            BEliminar.UseVisualStyleBackColor = true;
             // 
-            // BInactivos
+            // BActualizar
             // 
-            BInactivos.Location = new Point(758, 391);
-            BInactivos.Name = "BInactivos";
-            BInactivos.Size = new Size(75, 23);
-            BInactivos.TabIndex = 4;
-            BInactivos.Text = "Inactivos";
-            BInactivos.UseVisualStyleBackColor = true;
-            // 
-            // BTodos
-            // 
-            BTodos.Location = new Point(677, 391);
-            BTodos.Name = "BTodos";
-            BTodos.Size = new Size(75, 23);
-            BTodos.TabIndex = 5;
-            BTodos.Text = "Todos";
-            BTodos.UseVisualStyleBackColor = true;
+            BActualizar.Location = new Point(153, 192);
+            BActualizar.Name = "BActualizar";
+            BActualizar.Size = new Size(75, 23);
+            BActualizar.TabIndex = 5;
+            BActualizar.Text = "Actualizar";
+            BActualizar.UseVisualStyleBackColor = true;
             // 
             // Clientes
             // 
@@ -289,9 +270,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(926, 606);
-            Controls.Add(BTodos);
-            Controls.Add(BInactivos);
-            Controls.Add(BActivos);
             Controls.Add(dataGridView1);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -325,11 +303,9 @@
         private RadioButton RBFemenino;
         private RadioButton RBMasculino;
         private PictureBox pictureBox1;
-        private Button BGuardar;
-        private Button BCancelar;
+        private Button BAgregar;
         private DataGridView dataGridView1;
-        private Button BActivos;
-        private Button BInactivos;
-        private Button BTodos;
+        private Button BEliminar;
+        private Button BActualizar;
     }
 }

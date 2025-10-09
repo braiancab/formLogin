@@ -33,6 +33,8 @@
             LVolver = new Label();
             BSalir = new Button();
             panel2 = new Panel();
+            BEliminar = new Button();
+            BActualizar = new Button();
             BAgregar = new Button();
             pictureBox1 = new PictureBox();
             LSexo = new Label();
@@ -47,8 +49,7 @@
             TNYApellido = new TextBox();
             LNYApellido = new Label();
             dataGridView1 = new DataGridView();
-            BEliminar = new Button();
-            BActualizar = new Button();
+            BActivar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -99,6 +100,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(BActivar);
             panel2.Controls.Add(BEliminar);
             panel2.Controls.Add(BActualizar);
             panel2.Controls.Add(BAgregar);
@@ -118,6 +120,25 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(655, 232);
             panel2.TabIndex = 1;
+            // 
+            // BEliminar
+            // 
+            BEliminar.Location = new Point(243, 192);
+            BEliminar.Name = "BEliminar";
+            BEliminar.Size = new Size(75, 23);
+            BEliminar.TabIndex = 4;
+            BEliminar.Text = "Eliminar";
+            BEliminar.UseVisualStyleBackColor = true;
+            // 
+            // BActualizar
+            // 
+            BActualizar.Location = new Point(153, 192);
+            BActualizar.Name = "BActualizar";
+            BActualizar.Size = new Size(75, 23);
+            BActualizar.TabIndex = 5;
+            BActualizar.Text = "Actualizar";
+            BActualizar.UseVisualStyleBackColor = true;
+            BActualizar.Click += BActualizar_Click;
             // 
             // BAgregar
             // 
@@ -246,23 +267,14 @@
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // BEliminar
+            // BActivar
             // 
-            BEliminar.Location = new Point(243, 192);
-            BEliminar.Name = "BEliminar";
-            BEliminar.Size = new Size(75, 23);
-            BEliminar.TabIndex = 4;
-            BEliminar.Text = "Eliminar";
-            BEliminar.UseVisualStyleBackColor = true;
-            // 
-            // BActualizar
-            // 
-            BActualizar.Location = new Point(153, 192);
-            BActualizar.Name = "BActualizar";
-            BActualizar.Size = new Size(75, 23);
-            BActualizar.TabIndex = 5;
-            BActualizar.Text = "Actualizar";
-            BActualizar.UseVisualStyleBackColor = true;
+            BActivar.Location = new Point(482, 167);
+            BActivar.Name = "BActivar";
+            BActivar.Size = new Size(75, 23);
+            BActivar.TabIndex = 13;
+            BActivar.Text = "Activar";
+            BActivar.UseVisualStyleBackColor = true;
             // 
             // Clientes
             // 
@@ -307,5 +319,6 @@
         private DataGridView dataGridView1;
         private Button BEliminar;
         private Button BActualizar;
+        private Button BActivar;
     }
 }

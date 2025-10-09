@@ -43,7 +43,31 @@ namespace formLogin
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
+                idSeleccionado = Convert.ToInt32(fila.Cells["id_cliente"].Value);
 
+                TNYApellido.Text = fila.Cells["nomYape"].Value.ToString();
+                TDni.Text = fila.Cells["dni"].Value.ToString();
+                TDireccion.Text = fila.Cells["direccion"].Value.ToString();
+                TTelefono.Text = fila.Cells["telefono"].Value.ToString();
+                int activo = Convert.ToInt32(fila.Cells["activo"].Value);
+
+                string sexo = fila.Cells["sexo"].Value.ToString();
+                RBMasculino.Checked = (sexo == "MASCULINO");
+                RBFemenino.Checked = (sexo == "FEMENINO");
+
+
+                if (activo == 0)
+                {
+                    BActivar.Visible = true;  // mostrar botón activar
+                }
+                else
+                {
+                    BActivar.Visible = false; // ocultar si ya está activo
+                }
+            }
         }
 
 
@@ -94,7 +118,7 @@ namespace formLogin
                     sexo = "Femenino";
                 }
                 cmd.Parameters.AddWithValue("@Sexo", sexo);
-              
+
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -155,7 +179,41 @@ namespace formLogin
             return true;
         }
 
+        private void BActualizar_Click(object sender, EventArgs e)
+        {
+            if (idSeleccionado == 0) return;
+            if (!validarCampos())
+                return;
 
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Usuarios SET nomYape=@nomYape,direccion=@direccion,dni=@dni,telefono=@telefono,sexo=@sexo WHERE id_cliente=@id_cliente";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                
+                cmd.Parameters.AddWithValue("@nomYape", TNYApellido.Text);
+                cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);                                
+                cmd.Parameters.AddWithValue("@dni", TDni.Text);
+                cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
+                string sexo = "";
 
+                if (RBMasculino.Checked)
+                {
+                    sexo = "Masculino";
+                }
+                else if (RBFemenino.Checked)
+                {
+                    sexo = "Femenino";
+                }
+
+                cmd.Parameters.AddWithValue("@Sexo", sexo);          
+                cmd.Parameters.AddWithValue("@id_cliente", idSeleccionado);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            cargarDatos();
+            limpiarCampos();
+        }
     }
 }

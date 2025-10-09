@@ -33,6 +33,8 @@
             LVolver = new Label();
             BSalir = new Button();
             panel2 = new Panel();
+            BVaciar = new Button();
+            BActivar = new Button();
             BEliminar = new Button();
             BActualizar = new Button();
             BAgregar = new Button();
@@ -49,7 +51,6 @@
             TNYApellido = new TextBox();
             LNYApellido = new Label();
             dataGridView1 = new DataGridView();
-            BActivar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -100,6 +101,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(BVaciar);
             panel2.Controls.Add(BActivar);
             panel2.Controls.Add(BEliminar);
             panel2.Controls.Add(BActualizar);
@@ -121,6 +123,26 @@
             panel2.Size = new Size(655, 232);
             panel2.TabIndex = 1;
             // 
+            // BVaciar
+            // 
+            BVaciar.Location = new Point(351, 65);
+            BVaciar.Name = "BVaciar";
+            BVaciar.Size = new Size(75, 23);
+            BVaciar.TabIndex = 14;
+            BVaciar.Text = "Vaciar";
+            BVaciar.UseVisualStyleBackColor = true;
+            BVaciar.Click += BVaciar_Click;
+            // 
+            // BActivar
+            // 
+            BActivar.Location = new Point(488, 167);
+            BActivar.Name = "BActivar";
+            BActivar.Size = new Size(75, 23);
+            BActivar.TabIndex = 13;
+            BActivar.Text = "Activar";
+            BActivar.UseVisualStyleBackColor = true;
+            BActivar.Click += BActivar_Click;
+            // 
             // BEliminar
             // 
             BEliminar.Location = new Point(243, 192);
@@ -129,6 +151,7 @@
             BEliminar.TabIndex = 4;
             BEliminar.Text = "Eliminar";
             BEliminar.UseVisualStyleBackColor = true;
+            BEliminar.Click += BEliminar_Click;
             // 
             // BActualizar
             // 
@@ -260,21 +283,11 @@
             // 
             // dataGridView1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 420);
+            dataGridView1.Location = new Point(8, 444);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(906, 150);
-            dataGridView1.TabIndex = 2;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // BActivar
-            // 
-            BActivar.Location = new Point(482, 167);
-            BActivar.Name = "BActivar";
-            BActivar.Size = new Size(75, 23);
-            BActivar.TabIndex = 13;
-            BActivar.Text = "Activar";
-            BActivar.UseVisualStyleBackColor = true;
+            dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // Clientes
             // 
@@ -320,5 +333,6 @@
         private Button BEliminar;
         private Button BActualizar;
         private Button BActivar;
+        private Button BVaciar;
     }
 }

@@ -48,14 +48,14 @@ namespace formLogin
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT id_rol, nombre FROM Rol", con);
+                SqlCommand cmd = new SqlCommand("SELECT id_categoria, descripcion FROM Categoria", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-
+    
                 comboBox1.DataSource = dt;
-                comboBox1.DisplayMember = "nombre";   // ADMIN, GERENTE, VENDEDOR
-                comboBox1.ValueMember = "id_rol";     // 1, 2, 3
+                comboBox1.DisplayMember = "descripcion";   // ADMIN, GERENTE, VENDEDOR
+                comboBox1.ValueMember = "id_categoria";     // 1, 2, 3
                 comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             }
 

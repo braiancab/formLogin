@@ -51,6 +51,14 @@
             TNYApellido = new TextBox();
             LNYApellido = new Label();
             dataGridView1 = new DataGridView();
+            LNombre = new Label();
+            TFiltroNombre = new TextBox();
+            LDoc = new Label();
+            TFiltroDni = new TextBox();
+            RBInactivo = new RadioButton();
+            RBActivo = new RadioButton();
+            RBTodos = new RadioButton();
+            BFiltrar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -289,12 +297,95 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
+            // LNombre
+            // 
+            LNombre.AutoSize = true;
+            LNombre.Location = new Point(11, 425);
+            LNombre.Name = "LNombre";
+            LNombre.Size = new Size(54, 15);
+            LNombre.TabIndex = 2;
+            LNombre.Text = "Nombre:";
+            // 
+            // TFiltroNombre
+            // 
+            TFiltroNombre.Location = new Point(71, 419);
+            TFiltroNombre.Name = "TFiltroNombre";
+            TFiltroNombre.Size = new Size(132, 23);
+            TFiltroNombre.TabIndex = 3;
+            // 
+            // LDoc
+            // 
+            LDoc.AutoSize = true;
+            LDoc.Location = new Point(209, 425);
+            LDoc.Name = "LDoc";
+            LDoc.Size = new Size(30, 15);
+            LDoc.TabIndex = 4;
+            LDoc.Text = "DNI:";
+            // 
+            // TFiltroDni
+            // 
+            TFiltroDni.Location = new Point(245, 419);
+            TFiltroDni.Name = "TFiltroDni";
+            TFiltroDni.Size = new Size(132, 23);
+            TFiltroDni.TabIndex = 5;
+            // 
+            // RBInactivo
+            // 
+            RBInactivo.AutoSize = true;
+            RBInactivo.Location = new Point(560, 421);
+            RBInactivo.Name = "RBInactivo";
+            RBInactivo.Size = new Size(67, 19);
+            RBInactivo.TabIndex = 6;
+            RBInactivo.TabStop = true;
+            RBInactivo.Text = "Inactivo";
+            RBInactivo.UseVisualStyleBackColor = true;
+            // 
+            // RBActivo
+            // 
+            RBActivo.AutoSize = true;
+            RBActivo.Location = new Point(633, 421);
+            RBActivo.Name = "RBActivo";
+            RBActivo.Size = new Size(59, 19);
+            RBActivo.TabIndex = 7;
+            RBActivo.TabStop = true;
+            RBActivo.Text = "Activo";
+            RBActivo.UseVisualStyleBackColor = true;
+            // 
+            // RBTodos
+            // 
+            RBTodos.AutoSize = true;
+            RBTodos.Location = new Point(698, 421);
+            RBTodos.Name = "RBTodos";
+            RBTodos.Size = new Size(56, 19);
+            RBTodos.TabIndex = 8;
+            RBTodos.TabStop = true;
+            RBTodos.Text = "Todos";
+            RBTodos.UseVisualStyleBackColor = true;
+            // 
+            // BFiltrar
+            // 
+            BFiltrar.Location = new Point(839, 419);
+            BFiltrar.Name = "BFiltrar";
+            BFiltrar.Size = new Size(75, 23);
+            BFiltrar.TabIndex = 9;
+            BFiltrar.Text = "Filtrar";
+            BFiltrar.UseVisualStyleBackColor = true;
+            BFiltrar.Click += BFiltrar_Click;
+            // 
             // Clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(926, 606);
+            Controls.Add(BFiltrar);
+            Controls.Add(RBTodos);
+            Controls.Add(RBActivo);
+            Controls.Add(RBInactivo);
+            Controls.Add(TFiltroDni);
+            Controls.Add(LDoc);
+            Controls.Add(TFiltroNombre);
+            Controls.Add(LNombre);
             Controls.Add(dataGridView1);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -307,6 +398,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -334,5 +426,13 @@
         private Button BActualizar;
         private Button BActivar;
         private Button BVaciar;
+        private Label LNombre;
+        private TextBox TFiltroNombre;
+        private Label LDoc;
+        private TextBox TFiltroDni;
+        private RadioButton RBInactivo;
+        private RadioButton RBActivo;
+        private RadioButton RBTodos;
+        private Button BFiltrar;
     }
 }

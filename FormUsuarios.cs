@@ -250,7 +250,7 @@ namespace formLogin
 
         private bool ValidarCampos()
         {
-            
+
 
             if (string.IsNullOrWhiteSpace(TNombre.Text) ||
                 string.IsNullOrWhiteSpace(TApellido.Text) ||
@@ -320,7 +320,7 @@ namespace formLogin
 
             }
 
-           
+
 
 
 
@@ -408,6 +408,11 @@ namespace formLogin
 
                 dataGridView1.DataSource = dt;
             }
+        }
+
+        private void BVaciar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
         }
     }
 

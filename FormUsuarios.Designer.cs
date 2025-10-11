@@ -58,6 +58,7 @@
             dataGridView1 = new DataGridView();
             BActualizar = new Button();
             groupBox1 = new GroupBox();
+            BVaciar = new Button();
             BActivar = new Button();
             TFiltroNombre = new TextBox();
             TFiltroApellido = new TextBox();
@@ -338,6 +339,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = SystemColors.ActiveCaption;
+            groupBox1.Controls.Add(BVaciar);
             groupBox1.Controls.Add(BActivar);
             groupBox1.Controls.Add(TNombre);
             groupBox1.Controls.Add(LNombre);
@@ -366,14 +368,25 @@
             groupBox1.TabIndex = 28;
             groupBox1.TabStop = false;
             // 
+            // BVaciar
+            // 
+            BVaciar.Location = new Point(545, 202);
+            BVaciar.Name = "BVaciar";
+            BVaciar.Size = new Size(75, 23);
+            BVaciar.TabIndex = 25;
+            BVaciar.Text = "Vaciar";
+            BVaciar.UseVisualStyleBackColor = true;
+            BVaciar.Click += BVaciar_Click;
+            // 
             // BActivar
             // 
-            BActivar.Location = new Point(481, 129);
+            BActivar.BackColor = Color.Transparent;
+            BActivar.Location = new Point(545, 127);
             BActivar.Name = "BActivar";
             BActivar.Size = new Size(75, 23);
             BActivar.TabIndex = 24;
             BActivar.Text = "Activar";
-            BActivar.UseVisualStyleBackColor = true;
+            BActivar.UseVisualStyleBackColor = false;
             BActivar.Visible = false;
             BActivar.Click += BActivar_Click;
             // 
@@ -545,5 +558,6 @@
         private Button BFiltrar;
         private RadioButton RBInactivo;
         private RadioButton RBTodos;
+        private Button BVaciar;
     }
 }

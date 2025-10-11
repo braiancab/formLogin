@@ -41,34 +41,7 @@ namespace formLogin
 
 
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
-                idSeleccionado = Convert.ToInt32(fila.Cells["id_cliente"].Value);
 
-                TNYApellido.Text = fila.Cells["nomYape"].Value.ToString();
-                TDni.Text = fila.Cells["dni"].Value.ToString();
-                TDireccion.Text = fila.Cells["direccion"].Value.ToString();
-                TTelefono.Text = fila.Cells["telefono"].Value.ToString();
-                int activo = Convert.ToInt32(fila.Cells["activo"].Value);
-
-                string sexo = fila.Cells["sexo"].Value.ToString();
-                RBMasculino.Checked = (sexo == "MASCULINO");
-                RBFemenino.Checked = (sexo == "FEMENINO");
-
-
-                if (activo == 0)
-                {
-                    BActivar.Visible = true;  // mostrar botón activar
-                }
-                else
-                {
-                    BActivar.Visible = false; // ocultar si ya está activo
-                }
-            }
-        }
 
 
         private void limpiarCampos()
@@ -122,6 +95,7 @@ namespace formLogin
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
+                conn.Close();
 
             }
             cargarDatos();
@@ -187,11 +161,11 @@ namespace formLogin
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "UPDATE Usuarios SET nomYape=@nomYape,direccion=@direccion,dni=@dni,telefono=@telefono,sexo=@sexo WHERE id_cliente=@id_cliente";
+                string query = "UPDATE Cliente SET nomYape=@nomYape,direccion=@direccion,dni=@dni,telefono=@telefono,sexo=@sexo WHERE id_cliente=@id_cliente";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                
+
                 cmd.Parameters.AddWithValue("@nomYape", TNYApellido.Text);
-                cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);                                
+                cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);
                 cmd.Parameters.AddWithValue("@dni", TDni.Text);
                 cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
                 string sexo = "";
@@ -205,7 +179,7 @@ namespace formLogin
                     sexo = "Femenino";
                 }
 
-                cmd.Parameters.AddWithValue("@Sexo", sexo);          
+                cmd.Parameters.AddWithValue("@Sexo", sexo);
                 cmd.Parameters.AddWithValue("@id_cliente", idSeleccionado);
 
                 conn.Open();
@@ -214,6 +188,124 @@ namespace formLogin
             }
             cargarDatos();
             limpiarCampos();
+        }
+
+        private void BVaciar_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
+        }
+
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
+                idSeleccionado = Convert.ToInt32(fila.Cells["id_cliente"].Value);
+
+                TNYApellido.Text = fila.Cells["nomYape"].Value.ToString();
+                TDni.Text = fila.Cells["dni"].Value.ToString();
+                TDireccion.Text = fila.Cells["direccion"].Value.ToString();
+                TTelefono.Text = fila.Cells["telefono"].Value.ToString();
+                int activo = Convert.ToInt32(fila.Cells["activo"].Value);
+
+                string sexo = fila.Cells["sexo"].Value.ToString();
+                RBMasculino.Checked = (sexo == "MASCULINO");
+                RBFemenino.Checked = (sexo == "FEMENINO");
+
+
+                if (activo == 0)
+                {
+                    BActivar.Visible = true;  // mostrar botón activar
+                }
+                else
+                {
+                    BActivar.Visible = false; // ocultar si ya está activo
+                }
+            }
+        }
+
+        private void BEliminar_Click(object sender, EventArgs e)
+        {
+            if (idSeleccionado == 0) return;
+
+
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Cliente SET activo=0 WHERE id_cliente = @id_cliente";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id_cliente", idSeleccionado);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            cargarDatos();
+            limpiarCampos();
+        }
+
+        private void BActivar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                int idUsuario = Convert.ToInt32(dataGridView1.CurrentRow.Cells["id_cliente"].Value);
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE Cliente SET activo = 1 WHERE id_cliente = @id_cliente";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id_cliente", idUsuario);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Usuario activado correctamente.");
+
+                // Recargar los datos en el DataGridView
+                cargarDatos();
+
+                BActivar.Visible = false; // ocultar el botón otra vez
+            }
+        }
+
+        private void BFiltrar_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = "SELECT * FROM Cliente WHERE 1=1"; // base de la consulta
+
+                // Filtros dinámicos
+                if (!string.IsNullOrWhiteSpace(TFiltroNombre.Text))
+                    query += " AND nomYape LIKE @nombre";
+
+                if (!string.IsNullOrWhiteSpace(TFiltroDni.Text))
+                    query += " AND dni LIKE @dni";
+
+                if (RBActivo.Checked)  // si seleccionaste activo
+                    query += " AND activo = 1";
+                else if (RBInactivo.Checked) // si seleccionaste Inactivo
+                    query += " AND activo = 0";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                // Agregar parámetros solo si los campos tienen valor
+                if (!string.IsNullOrWhiteSpace(TFiltroNombre.Text))
+                    cmd.Parameters.AddWithValue("@nombre", "%" + TFiltroNombre.Text + "%");
+
+                if (!string.IsNullOrWhiteSpace(TFiltroDni.Text))
+                    cmd.Parameters.AddWithValue("@dni", "%" + TFiltroDni.Text + "%");
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+            }
         }
     }
 }

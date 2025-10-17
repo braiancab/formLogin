@@ -332,7 +332,7 @@ namespace formLogin
             bool seleccionado = groupBox1.Controls.OfType<System.Windows.Forms.RadioButton>().Any(r => r.Checked);
             if (!seleccionado)
             {
-                MessageBox.Show("Debe seleccionar una opción en los RadioButton.");
+                MessageBox.Show("Debe seleccionar sexo.");
                 return false;
             }
 

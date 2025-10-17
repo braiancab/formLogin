@@ -138,6 +138,19 @@ namespace formLogin
                     }
                 }
 
+                string checkTelefonoQuery = "SELECT COUNT(*) FROM Cliente WHERE telefono = @telefono AND id_cliente <> @id_cliente";
+                using (SqlCommand checkCmd = new SqlCommand(checkTelefonoQuery, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@telefono", TTelefono.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@id_cliente", idSeleccionado);
+
+                    int count = (int)checkCmd.ExecuteScalar();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("El teléfono ya se encuentra registrado en el sistema.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
 
 
             }
@@ -145,7 +158,7 @@ namespace formLogin
             bool seleccionado = panel2.Controls.OfType<System.Windows.Forms.RadioButton>().Any(r => r.Checked);
             if (!seleccionado)
             {
-                MessageBox.Show("Debe seleccionar una opción en los RadioButton.");
+                MessageBox.Show("Debe seleccionar sexo.");
                 return false;
             }
 

@@ -39,16 +39,16 @@
             BActualizar = new Button();
             BAgregar = new Button();
             pictureBox1 = new PictureBox();
-            LSexo = new Label();
-            RBFemenino = new RadioButton();
-            RBMasculino = new RadioButton();
+            LTipo = new Label();
+            RBEmpresa = new RadioButton();
+            RBPersona = new RadioButton();
             TTelefono = new TextBox();
             LTelefono = new Label();
             TDireccion = new TextBox();
             LDireccion = new Label();
             TDni = new TextBox();
-            LDni = new Label();
-            TNYApellido = new TextBox();
+            LCUIT = new Label();
+            TNRazonSocial = new TextBox();
             LNYApellido = new Label();
             dataGridView1 = new DataGridView();
             LNombre = new Label();
@@ -115,16 +115,16 @@
             panel2.Controls.Add(BActualizar);
             panel2.Controls.Add(BAgregar);
             panel2.Controls.Add(pictureBox1);
-            panel2.Controls.Add(LSexo);
-            panel2.Controls.Add(RBFemenino);
-            panel2.Controls.Add(RBMasculino);
+            panel2.Controls.Add(LTipo);
+            panel2.Controls.Add(RBEmpresa);
+            panel2.Controls.Add(RBPersona);
             panel2.Controls.Add(TTelefono);
             panel2.Controls.Add(LTelefono);
             panel2.Controls.Add(TDireccion);
             panel2.Controls.Add(LDireccion);
             panel2.Controls.Add(TDni);
-            panel2.Controls.Add(LDni);
-            panel2.Controls.Add(TNYApellido);
+            panel2.Controls.Add(LCUIT);
+            panel2.Controls.Add(TNRazonSocial);
             panel2.Controls.Add(LNYApellido);
             panel2.Location = new Point(145, 118);
             panel2.Name = "panel2";
@@ -194,40 +194,40 @@
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
             // 
-            // LSexo
+            // LTipo
             // 
-            LSexo.AutoSize = true;
-            LSexo.Location = new Point(78, 142);
-            LSexo.Name = "LSexo";
-            LSexo.Size = new Size(38, 15);
-            LSexo.TabIndex = 10;
-            LSexo.Text = "Sexo: ";
+            LTipo.AutoSize = true;
+            LTipo.Location = new Point(92, 142);
+            LTipo.Name = "LTipo";
+            LTipo.Size = new Size(33, 15);
+            LTipo.TabIndex = 10;
+            LTipo.Text = "Tipo:";
             // 
-            // RBFemenino
+            // RBEmpresa
             // 
-            RBFemenino.AutoSize = true;
-            RBFemenino.Location = new Point(240, 142);
-            RBFemenino.Name = "RBFemenino";
-            RBFemenino.Size = new Size(78, 19);
-            RBFemenino.TabIndex = 9;
-            RBFemenino.TabStop = true;
-            RBFemenino.Text = "Femenino";
-            RBFemenino.UseVisualStyleBackColor = true;
+            RBEmpresa.AutoSize = true;
+            RBEmpresa.Location = new Point(255, 142);
+            RBEmpresa.Name = "RBEmpresa";
+            RBEmpresa.Size = new Size(70, 19);
+            RBEmpresa.TabIndex = 9;
+            RBEmpresa.TabStop = true;
+            RBEmpresa.Text = "Empresa";
+            RBEmpresa.UseVisualStyleBackColor = true;
             // 
-            // RBMasculino
+            // RBPersona
             // 
-            RBMasculino.AutoSize = true;
-            RBMasculino.Location = new Point(122, 142);
-            RBMasculino.Name = "RBMasculino";
-            RBMasculino.Size = new Size(80, 19);
-            RBMasculino.TabIndex = 8;
-            RBMasculino.TabStop = true;
-            RBMasculino.Text = "Masculino";
-            RBMasculino.UseVisualStyleBackColor = true;
+            RBPersona.AutoSize = true;
+            RBPersona.Location = new Point(137, 142);
+            RBPersona.Name = "RBPersona";
+            RBPersona.Size = new Size(67, 19);
+            RBPersona.TabIndex = 8;
+            RBPersona.TabStop = true;
+            RBPersona.Text = "Persona";
+            RBPersona.UseVisualStyleBackColor = true;
             // 
             // TTelefono
             // 
-            TTelefono.Location = new Point(122, 113);
+            TTelefono.Location = new Point(137, 113);
             TTelefono.Name = "TTelefono";
             TTelefono.Size = new Size(196, 23);
             TTelefono.TabIndex = 7;
@@ -235,7 +235,7 @@
             // LTelefono
             // 
             LTelefono.AutoSize = true;
-            LTelefono.Location = new Point(58, 116);
+            LTelefono.Location = new Point(72, 116);
             LTelefono.Name = "LTelefono";
             LTelefono.Size = new Size(58, 15);
             LTelefono.TabIndex = 6;
@@ -243,7 +243,7 @@
             // 
             // TDireccion
             // 
-            TDireccion.Location = new Point(122, 80);
+            TDireccion.Location = new Point(137, 80);
             TDireccion.Name = "TDireccion";
             TDireccion.Size = new Size(196, 23);
             TDireccion.TabIndex = 5;
@@ -251,7 +251,7 @@
             // LDireccion
             // 
             LDireccion.AutoSize = true;
-            LDireccion.Location = new Point(53, 83);
+            LDireccion.Location = new Point(67, 83);
             LDireccion.Name = "LDireccion";
             LDireccion.Size = new Size(63, 15);
             LDireccion.TabIndex = 4;
@@ -259,35 +259,35 @@
             // 
             // TDni
             // 
-            TDni.Location = new Point(122, 48);
+            TDni.Location = new Point(137, 48);
             TDni.Name = "TDni";
             TDni.Size = new Size(196, 23);
             TDni.TabIndex = 3;
             // 
-            // LDni
+            // LCUIT
             // 
-            LDni.AutoSize = true;
-            LDni.Location = new Point(83, 51);
-            LDni.Name = "LDni";
-            LDni.Size = new Size(33, 15);
-            LDni.TabIndex = 2;
-            LDni.Text = "DNI: ";
+            LCUIT.AutoSize = true;
+            LCUIT.Location = new Point(97, 51);
+            LCUIT.Name = "LCUIT";
+            LCUIT.Size = new Size(35, 15);
+            LCUIT.TabIndex = 2;
+            LCUIT.Text = "CUIT:";
             // 
-            // TNYApellido
+            // TNRazonSocial
             // 
-            TNYApellido.Location = new Point(122, 16);
-            TNYApellido.Name = "TNYApellido";
-            TNYApellido.Size = new Size(196, 23);
-            TNYApellido.TabIndex = 1;
+            TNRazonSocial.Location = new Point(137, 16);
+            TNRazonSocial.Name = "TNRazonSocial";
+            TNRazonSocial.Size = new Size(196, 23);
+            TNRazonSocial.TabIndex = 1;
             // 
             // LNYApellido
             // 
             LNYApellido.AutoSize = true;
             LNYApellido.Location = new Point(3, 19);
             LNYApellido.Name = "LNYApellido";
-            LNYApellido.Size = new Size(113, 15);
+            LNYApellido.Size = new Size(127, 15);
             LNYApellido.TabIndex = 0;
-            LNYApellido.Text = "Nombre y Apellido: ";
+            LNYApellido.Text = "Nombre/ Razon social:";
             // 
             // dataGridView1
             // 
@@ -408,17 +408,17 @@
         private Label LVolver;
         private Label LCliente;
         private Panel panel2;
-        private TextBox TNYApellido;
+        private TextBox TNRazonSocial;
         private Label LNYApellido;
         private TextBox TDni;
-        private Label LDni;
+        private Label LCUIT;
         private TextBox TTelefono;
         private Label LTelefono;
         private TextBox TDireccion;
         private Label LDireccion;
-        private Label LSexo;
-        private RadioButton RBFemenino;
-        private RadioButton RBMasculino;
+        private Label LTipo;
+        private RadioButton RBEmpresa;
+        private RadioButton RBPersona;
         private PictureBox pictureBox1;
         private Button BAgregar;
         private DataGridView dataGridView1;

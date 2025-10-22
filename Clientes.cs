@@ -46,7 +46,7 @@ namespace formLogin
 
         private void limpiarCampos()
         {
-            TNYApellido.Clear();
+            TNRazonSocial.Clear();
             TDireccion.Clear();
             TTelefono.Clear();
             TDni.Clear();
@@ -75,20 +75,20 @@ namespace formLogin
                 string query = "INSERT INTO Cliente (activo,nomYape,direccion,dni,telefono,sexo) VALUES (@activo,@nomYape,@direccion,@dni,@telefono,@Sexo)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@activo", 1);
-                cmd.Parameters.AddWithValue("@nomYape", TNYApellido.Text);
+                cmd.Parameters.AddWithValue("@nomYape", TNRazonSocial.Text);
                 cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);
                 cmd.Parameters.AddWithValue("@dni", TDni.Text);
                 cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
 
                 string sexo = "";
 
-                if (RBMasculino.Checked)
+                if (RBPersona.Checked)
                 {
-                    sexo = "Masculino";
+                    sexo = "Persona";
                 }
-                else if (RBFemenino.Checked)
+                else if (RBEmpresa.Checked)
                 {
-                    sexo = "Femenino";
+                    sexo = "Empresa";
                 }
                 cmd.Parameters.AddWithValue("@Sexo", sexo);
 
@@ -111,7 +111,7 @@ namespace formLogin
             if (string.IsNullOrWhiteSpace(TDireccion.Text) ||
                 string.IsNullOrWhiteSpace(TDni.Text) ||
                 string.IsNullOrWhiteSpace(TTelefono.Text) ||
-                string.IsNullOrWhiteSpace(TNYApellido.Text)
+                string.IsNullOrWhiteSpace(TNRazonSocial.Text)
                 )
             {
                 MessageBox.Show("Todos los campos deben estar completos.");
@@ -177,22 +177,22 @@ namespace formLogin
                 string query = "UPDATE Cliente SET nomYape=@nomYape,direccion=@direccion,dni=@dni,telefono=@telefono,sexo=@sexo WHERE id_cliente=@id_cliente";
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@nomYape", TNYApellido.Text);
+                cmd.Parameters.AddWithValue("@nomYape", TNRazonSocial.Text);
                 cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);
                 cmd.Parameters.AddWithValue("@dni", TDni.Text);
                 cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
-                string sexo = "";
+                string Tipo = "";
 
-                if (RBMasculino.Checked)
+                if (RBPersona.Checked)
                 {
-                    sexo = "Masculino";
+                    Tipo = "Persona";
                 }
-                else if (RBFemenino.Checked)
+                else if (RBEmpresa.Checked)
                 {
-                    sexo = "Femenino";
+                    Tipo = "Empresa";
                 }
 
-                cmd.Parameters.AddWithValue("@Sexo", sexo);
+                cmd.Parameters.AddWithValue("@Sexo", Tipo);
                 cmd.Parameters.AddWithValue("@id_cliente", idSeleccionado);
 
                 conn.Open();
@@ -216,15 +216,15 @@ namespace formLogin
                 DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
                 idSeleccionado = Convert.ToInt32(fila.Cells["id_cliente"].Value);
 
-                TNYApellido.Text = fila.Cells["nomYape"].Value.ToString();
+                TNRazonSocial.Text = fila.Cells["nomYape"].Value.ToString();
                 TDni.Text = fila.Cells["dni"].Value.ToString();
                 TDireccion.Text = fila.Cells["direccion"].Value.ToString();
                 TTelefono.Text = fila.Cells["telefono"].Value.ToString();
                 int activo = Convert.ToInt32(fila.Cells["activo"].Value);
 
                 string sexo = fila.Cells["sexo"].Value.ToString();
-                RBMasculino.Checked = (sexo == "MASCULINO");
-                RBFemenino.Checked = (sexo == "FEMENINO");
+                RBPersona.Checked = (sexo == "MASCULINO");
+                RBEmpresa.Checked = (sexo == "FEMENINO");
 
 
                 if (activo == 0)
@@ -320,5 +320,7 @@ namespace formLogin
                 dataGridView1.DataSource = dt;
             }
         }
+
+       
     }
 }

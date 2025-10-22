@@ -20,5 +20,11 @@ namespace formLogin
 
             _FormAnterior = formAnterior;
         }
+
+        private void BSalir_Click(object sender, EventArgs e)
+        {
+            _FormAnterior.Show();
+            this.Close();
+        }
     }
 }

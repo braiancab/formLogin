@@ -41,6 +41,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(BAgregar);
             panel1.Controls.Add(LProductos);
             panel1.Controls.Add(LVolver);
             panel1.Controls.Add(BVolver);
@@ -81,15 +82,15 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 420);
+            dataGridView1.Location = new Point(12, 202);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(906, 150);
+            dataGridView1.Size = new Size(906, 292);
             dataGridView1.TabIndex = 2;
             // 
             // BAgregar
             // 
-            BAgregar.Location = new Point(12, 130);
+            BAgregar.Location = new Point(755, 16);
             BAgregar.Name = "BAgregar";
             BAgregar.Size = new Size(138, 57);
             BAgregar.TabIndex = 3;
@@ -103,7 +104,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(926, 562);
-            Controls.Add(BAgregar);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Name = "FormProducto";

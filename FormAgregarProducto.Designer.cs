@@ -33,7 +33,18 @@
             LVolver = new Label();
             LProductos = new Label();
             panel2 = new Panel();
+            LDescripcion = new Label();
+            LNombre = new Label();
+            TNombre = new TextBox();
+            TDescripcion = new TextBox();
+            LPrecio = new Label();
+            textBox1 = new TextBox();
+            LStock = new Label();
+            textBox2 = new TextBox();
+            LCategoria = new Label();
+            comboBox1 = new ComboBox();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -78,10 +89,101 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(comboBox1);
+            panel2.Controls.Add(LCategoria);
+            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(LStock);
+            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(LPrecio);
+            panel2.Controls.Add(TDescripcion);
+            panel2.Controls.Add(TNombre);
+            panel2.Controls.Add(LNombre);
+            panel2.Controls.Add(LDescripcion);
             panel2.Location = new Point(145, 118);
             panel2.Name = "panel2";
             panel2.Size = new Size(655, 232);
             panel2.TabIndex = 1;
+            // 
+            // LDescripcion
+            // 
+            LDescripcion.AutoSize = true;
+            LDescripcion.Location = new Point(14, 67);
+            LDescripcion.Name = "LDescripcion";
+            LDescripcion.Size = new Size(72, 15);
+            LDescripcion.TabIndex = 0;
+            LDescripcion.Text = "Descripcion:";
+            // 
+            // LNombre
+            // 
+            LNombre.AutoSize = true;
+            LNombre.Location = new Point(29, 28);
+            LNombre.Name = "LNombre";
+            LNombre.Size = new Size(57, 15);
+            LNombre.TabIndex = 1;
+            LNombre.Text = "Nombre: ";
+            // 
+            // TNombre
+            // 
+            TNombre.Location = new Point(107, 25);
+            TNombre.Name = "TNombre";
+            TNombre.Size = new Size(180, 23);
+            TNombre.TabIndex = 2;
+            // 
+            // TDescripcion
+            // 
+            TDescripcion.Location = new Point(107, 64);
+            TDescripcion.Name = "TDescripcion";
+            TDescripcion.Size = new Size(180, 23);
+            TDescripcion.TabIndex = 3;
+            // 
+            // LPrecio
+            // 
+            LPrecio.AutoSize = true;
+            LPrecio.Location = new Point(43, 103);
+            LPrecio.Name = "LPrecio";
+            LPrecio.Size = new Size(43, 15);
+            LPrecio.TabIndex = 4;
+            LPrecio.Text = "Precio:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(107, 100);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 23);
+            textBox1.TabIndex = 5;
+            // 
+            // LStock
+            // 
+            LStock.AutoSize = true;
+            LStock.Location = new Point(47, 139);
+            LStock.Name = "LStock";
+            LStock.Size = new Size(39, 15);
+            LStock.TabIndex = 6;
+            LStock.Text = "Stock:";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(107, 136);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(100, 23);
+            textBox2.TabIndex = 7;
+            // 
+            // LCategoria
+            // 
+            LCategoria.AutoSize = true;
+            LCategoria.Location = new Point(22, 172);
+            LCategoria.Name = "LCategoria";
+            LCategoria.Size = new Size(64, 15);
+            LCategoria.TabIndex = 8;
+            LCategoria.Text = "Categoria: ";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(107, 169);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 9;
             // 
             // FormAgregarProducto
             // 
@@ -95,6 +197,8 @@
             Text = "FormAgregarProducto";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -105,5 +209,15 @@
         private Label LVolver;
         private Label LProductos;
         private Panel panel2;
+        private Label LNombre;
+        private Label LDescripcion;
+        private TextBox TNombre;
+        private TextBox TDescripcion;
+        private Label LCategoria;
+        private TextBox textBox2;
+        private Label LStock;
+        private TextBox textBox1;
+        private Label LPrecio;
+        private ComboBox comboBox1;
     }
 }

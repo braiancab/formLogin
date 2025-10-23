@@ -64,6 +64,10 @@ namespace formLogin
                 u.id_rol,
                 r.nombre AS rol,
                 u.activo,
+                 CASE 
+                  WHEN u.activo = 1 THEN 'Activo'
+                 ELSE 'Inactivo'
+                 END AS estado,
                 u.nombre,
                 u.apellido,
                 u.direccion,
@@ -81,7 +85,20 @@ namespace formLogin
                 da.Fill(dt);
 
                 dataGridView1.DataSource = dt;
+                dataGridView1.Columns["id_usuario"].HeaderText = "Identificacion";
+                dataGridView1.Columns["rol"].HeaderText = "Rol";
+                dataGridView1.Columns["activo"].Visible = false; // lo ocultás visualmente
                 dataGridView1.Columns["id_rol"].Visible = false; // lo ocultás visualmente
+                dataGridView1.Columns["estado"].HeaderText = "Estado";
+                dataGridView1.Columns["nombre"].HeaderText = "Nombre";
+                dataGridView1.Columns["apellido"].HeaderText = "Apellido";
+                dataGridView1.Columns["direccion"].HeaderText = "Dirección";
+                dataGridView1.Columns["dni"].HeaderText = "DNI";
+                dataGridView1.Columns["correo"].HeaderText = "Correo electrónico";
+                dataGridView1.Columns["telefono"].HeaderText = "Teléfono";
+                dataGridView1.Columns["sexo"].HeaderText = "Sexo";
+                dataGridView1.Columns["usuario"].HeaderText = "Usuario";
+                dataGridView1.Columns["contraseña"].HeaderText = "Contraseña";
             }
         }
 

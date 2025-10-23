@@ -58,11 +58,30 @@ namespace formLogin
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Usuarios";
+                string query = @"
+            SELECT 
+                u.id_usuario,
+                u.id_rol,
+                r.nombre AS rol,
+                u.activo,
+                u.nombre,
+                u.apellido,
+                u.direccion,
+                u.dni,
+                u.correo,
+                u.telefono,
+                u.sexo,
+                u.usuario,
+                u.contraseña
+            FROM Usuarios u
+            INNER JOIN Rol r ON u.id_rol = r.id_rol;";
+
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
+
                 dataGridView1.DataSource = dt;
+                dataGridView1.Columns["id_rol"].Visible = false; // lo ocultás visualmente
             }
         }
 

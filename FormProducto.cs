@@ -27,7 +27,7 @@ namespace formLogin
         {
             InitializeComponent();
             CargarDatos();
-      //      this.Load += FormProducto_Load;
+            //      this.Load += FormProducto_Load;
 
             _FormAnterior = formAnterior;
         }
@@ -41,27 +41,37 @@ namespace formLogin
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
+
+
+                DataGridViewButtonColumn btnColumna = new DataGridViewButtonColumn();
+                btnColumna.HeaderText = "Acción";
+                btnColumna.Name = "BEditar";
+                btnColumna.Text = "Editar";
+                btnColumna.UseColumnTextForButtonValue = true;
+
+                // Agregarla al DataGridView
+                dataGridView1.Columns.Add(btnColumna);
             }
         }
 
-   //private void FormProducto_Load(object sender, EventArgs e)
-   //     {
-   //         using (SqlConnection con = new SqlConnection(connectionString))
-   //         {
-   //             con.Open();
-   //             SqlCommand cmd = new SqlCommand("SELECT id_categoria, descripcion FROM Categoria", con);
-   //             SqlDataAdapter da = new SqlDataAdapter(cmd);
-   //             DataTable dt = new DataTable();
-   //             da.Fill(dt);
+        //private void FormProducto_Load(object sender, EventArgs e)
+        //     {
+        //         using (SqlConnection con = new SqlConnection(connectionString))
+        //         {
+        //             con.Open();
+        //             SqlCommand cmd = new SqlCommand("SELECT id_categoria, descripcion FROM Categoria", con);
+        //             SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //             DataTable dt = new DataTable();
+        //             da.Fill(dt);
 
-   //             comboBox1.DataSource = dt;
-   //             comboBox1.DisplayMember = "descripcion";   // Camisetas, Pantalones, Zapatillas
-   //             comboBox1.ValueMember = "id_categoria";     // 1, 2, 3
-   //             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-   //         }
+        //             comboBox1.DataSource = dt;
+        //             comboBox1.DisplayMember = "descripcion";   // Camisetas, Pantalones, Zapatillas
+        //             comboBox1.ValueMember = "id_categoria";     // 1, 2, 3
+        //             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+        //         }
 
-   //     }
-      
+        //     }
+
         private void BVolver_Click(object sender, EventArgs e)
         {
             _FormAnterior.Show();
@@ -162,6 +172,22 @@ namespace formLogin
                 }
             }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Verifica que la columna clickeada sea la del botón
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "BEditar" && e.RowIndex >= 0)
+            {
+                // Ejemplo: obtener el valor de una celda de esa fila (por ejemplo un ID)
+                //  int idSeleccionado = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
+
+                // Abrir el nuevo formulario y pasarle el dato
+
+
+            }
+        }
+
+       
     }
 }
 

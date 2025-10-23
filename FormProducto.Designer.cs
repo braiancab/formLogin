@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            BAgregar = new Button();
             LProductos = new Label();
             LVolver = new Label();
             BVolver = new Button();
             dataGridView1 = new DataGridView();
-            BAgregar = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -49,6 +49,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(906, 100);
             panel1.TabIndex = 0;
+            // 
+            // BAgregar
+            // 
+            BAgregar.Location = new Point(755, 16);
+            BAgregar.Name = "BAgregar";
+            BAgregar.Size = new Size(138, 57);
+            BAgregar.TabIndex = 3;
+            BAgregar.Text = "Agregar Producto";
+            BAgregar.UseVisualStyleBackColor = true;
+            BAgregar.Click += BAgregar_Click_1;
             // 
             // LProductos
             // 
@@ -87,16 +97,8 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(906, 292);
             dataGridView1.TabIndex = 2;
-            // 
-            // BAgregar
-            // 
-            BAgregar.Location = new Point(755, 16);
-            BAgregar.Name = "BAgregar";
-            BAgregar.Size = new Size(138, 57);
-            BAgregar.TabIndex = 3;
-            BAgregar.Text = "Agregar Producto";
-            BAgregar.UseVisualStyleBackColor = true;
-            BAgregar.Click += BAgregar_Click_1;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+        
             // 
             // FormProducto
             // 

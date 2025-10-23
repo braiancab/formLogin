@@ -35,14 +35,15 @@
             panel2 = new Panel();
             comboBox1 = new ComboBox();
             LCategoria = new Label();
-            textBox2 = new TextBox();
+            TStock = new TextBox();
             LStock = new Label();
-            textBox1 = new TextBox();
+            TPrecio = new TextBox();
             LPrecio = new Label();
             TDescripcion = new TextBox();
             TNombre = new TextBox();
             LNombre = new Label();
             LDescripcion = new Label();
+            BAgregar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -92,9 +93,9 @@
             panel2.BackColor = SystemColors.ActiveCaption;
             panel2.Controls.Add(comboBox1);
             panel2.Controls.Add(LCategoria);
-            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(TStock);
             panel2.Controls.Add(LStock);
-            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(TPrecio);
             panel2.Controls.Add(LPrecio);
             panel2.Controls.Add(TDescripcion);
             panel2.Controls.Add(TNombre);
@@ -122,12 +123,12 @@
             LCategoria.TabIndex = 8;
             LCategoria.Text = "Categoria: ";
             // 
-            // textBox2
+            // TStock
             // 
-            textBox2.Location = new Point(107, 136);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 7;
+            TStock.Location = new Point(107, 136);
+            TStock.Name = "TStock";
+            TStock.Size = new Size(100, 23);
+            TStock.TabIndex = 7;
             // 
             // LStock
             // 
@@ -138,12 +139,12 @@
             LStock.TabIndex = 6;
             LStock.Text = "Stock:";
             // 
-            // textBox1
+            // TPrecio
             // 
-            textBox1.Location = new Point(107, 100);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 5;
+            TPrecio.Location = new Point(107, 100);
+            TPrecio.Name = "TPrecio";
+            TPrecio.Size = new Size(100, 23);
+            TPrecio.TabIndex = 5;
             // 
             // LPrecio
             // 
@@ -186,12 +187,23 @@
             LDescripcion.TabIndex = 0;
             LDescripcion.Text = "Descripcion:";
             // 
+            // BAgregar
+            // 
+            BAgregar.Location = new Point(449, 356);
+            BAgregar.Name = "BAgregar";
+            BAgregar.Size = new Size(75, 23);
+            BAgregar.TabIndex = 2;
+            BAgregar.Text = "Agregar";
+            BAgregar.UseVisualStyleBackColor = true;
+            BAgregar.Click += BAgregar_Click;
+            // 
             // FormAgregarProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(926, 562);
+            Controls.Add(BAgregar);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FormAgregarProducto";
@@ -215,10 +227,11 @@
         private TextBox TNombre;
         private TextBox TDescripcion;
         private Label LCategoria;
-        private TextBox textBox2;
+        private TextBox TStock;
         private Label LStock;
-        private TextBox textBox1;
+        private TextBox TPrecio;
         private Label LPrecio;
         private ComboBox comboBox1;
+        private Button BAgregar;
     }
 }

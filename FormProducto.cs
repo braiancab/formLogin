@@ -150,9 +150,17 @@ namespace formLogin
 
         private void BAgregar_Click_1(object sender, EventArgs e)
         {
-            FormAgregarProducto f = new FormAgregarProducto(this);
-            f.Show();
-            this.Hide();
+            using (FormAgregarProducto f = new FormAgregarProducto(this))
+            {
+                // Mostrar el formulario como diálogo modal
+                var resultado = f.ShowDialog();
+
+                // Si se guardó correctamente (el Form2 devuelve DialogResult.OK)
+                if (resultado == DialogResult.OK)
+                {
+                    CargarDatos(); // Recargar los datos en el DataGridView
+                }
+            }
         }
     }
 }

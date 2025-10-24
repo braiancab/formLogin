@@ -58,11 +58,33 @@ namespace formLogin
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Cliente";
+                string query = @"
+                SELECT 
+                c.id_cliente,
+                c.activo,
+                CASE 
+                 WHEN c.activo = 1 THEN 'Activo'
+                 ELSE 'Inactivo'
+                 END AS estado,
+                c.nombre,
+                c.direccion,
+                c.cuit,
+                c.telefono,
+                c.tipo
+
+                FROM Cliente c";
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
+                dataGridView1.Columns["id_cliente"].HeaderText = "Identificacion";              
+                dataGridView1.Columns["activo"].Visible = false;
+                dataGridView1.Columns["estado"].HeaderText = "Estado";
+                dataGridView1.Columns["nombre"].HeaderText = "Nombre/Razon social";
+                dataGridView1.Columns["direccion"].HeaderText = "Dirección";
+                dataGridView1.Columns["cuit"].HeaderText = "DNI/CUIT";
+                dataGridView1.Columns["telefono"].HeaderText = "Teléfono";
+                dataGridView1.Columns["tipo"].HeaderText = "Tipo";
             }
         }
 

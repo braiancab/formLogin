@@ -43,8 +43,10 @@ namespace formLogin
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-               //ataGridView1.DataSource = dt;
+               
             }
+
+
         }
 
         private void BAgregar_Click(object sender, EventArgs e)
@@ -53,13 +55,15 @@ namespace formLogin
                 return;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Productos (nombre, descripcion, precio, stock, id_categoria) VALUES (@nombre, @descripcion, @precio, @stock, @id_categoria)";
+                string query = "INSERT INTO Productos (nombre, descripcion, precio, stock, color, talle, categoria) VALUES (@nombre, @descripcion, @precio, @stock, @color, @talle, @categoria)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@nombre", TNombre.Text);
                 cmd.Parameters.AddWithValue("@descripcion", TDescripcion.Text);
-                cmd.Parameters.AddWithValue("@id_categoria", comboBox1.SelectedValue);
+                cmd.Parameters.AddWithValue("@categoria", comboBox1.SelectedValue);
                 cmd.Parameters.AddWithValue("@precio", TPrecio.Text);
                 cmd.Parameters.AddWithValue("@stock", TStock.Text);
+                cmd.Parameters.AddWithValue("@talle", TTalle.Text);
+                cmd.Parameters.AddWithValue("@color", comboBox2.SelectedItem.ToString());   
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -134,6 +138,16 @@ namespace formLogin
                      comboBox1.ValueMember = "id_categoria";     // 1, 2, 3
                      comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             }
+
+
+            comboBox2.Items.Insert(0, "Rojo");
+            comboBox2.Items.Insert(1, "Azul");
+            comboBox2.Items.Insert(2, "Amarillo");
+            comboBox2.Items.Insert(3, "Blanco");
+            comboBox2.Items.Insert(4, "Negro");
+            comboBox2.Items.Insert(5, "Morado");
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+
 
         }
 

@@ -44,6 +44,10 @@
             LNombre = new Label();
             LDescripcion = new Label();
             BAgregar = new Button();
+            LTalle = new Label();
+            LColor = new Label();
+            TTalle = new TextBox();
+            comboBox2 = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -91,6 +95,10 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(comboBox2);
+            panel2.Controls.Add(TTalle);
+            panel2.Controls.Add(LColor);
+            panel2.Controls.Add(LTalle);
             panel2.Controls.Add(comboBox1);
             panel2.Controls.Add(LCategoria);
             panel2.Controls.Add(TStock);
@@ -109,7 +117,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(107, 169);
+            comboBox1.Location = new Point(107, 137);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 9;
@@ -117,7 +125,7 @@
             // LCategoria
             // 
             LCategoria.AutoSize = true;
-            LCategoria.Location = new Point(22, 172);
+            LCategoria.Location = new Point(22, 140);
             LCategoria.Name = "LCategoria";
             LCategoria.Size = new Size(64, 15);
             LCategoria.TabIndex = 8;
@@ -125,7 +133,7 @@
             // 
             // TStock
             // 
-            TStock.Location = new Point(107, 136);
+            TStock.Location = new Point(417, 63);
             TStock.Name = "TStock";
             TStock.Size = new Size(100, 23);
             TStock.TabIndex = 7;
@@ -133,7 +141,7 @@
             // LStock
             // 
             LStock.AutoSize = true;
-            LStock.Location = new Point(47, 139);
+            LStock.Location = new Point(357, 66);
             LStock.Name = "LStock";
             LStock.Size = new Size(39, 15);
             LStock.TabIndex = 6;
@@ -141,7 +149,7 @@
             // 
             // TPrecio
             // 
-            TPrecio.Location = new Point(107, 100);
+            TPrecio.Location = new Point(107, 63);
             TPrecio.Name = "TPrecio";
             TPrecio.Size = new Size(100, 23);
             TPrecio.TabIndex = 5;
@@ -149,7 +157,7 @@
             // LPrecio
             // 
             LPrecio.AutoSize = true;
-            LPrecio.Location = new Point(43, 103);
+            LPrecio.Location = new Point(43, 66);
             LPrecio.Name = "LPrecio";
             LPrecio.Size = new Size(43, 15);
             LPrecio.TabIndex = 4;
@@ -157,7 +165,7 @@
             // 
             // TDescripcion
             // 
-            TDescripcion.Location = new Point(107, 64);
+            TDescripcion.Location = new Point(417, 25);
             TDescripcion.Name = "TDescripcion";
             TDescripcion.Size = new Size(180, 23);
             TDescripcion.TabIndex = 3;
@@ -181,7 +189,7 @@
             // LDescripcion
             // 
             LDescripcion.AutoSize = true;
-            LDescripcion.Location = new Point(14, 67);
+            LDescripcion.Location = new Point(324, 28);
             LDescripcion.Name = "LDescripcion";
             LDescripcion.Size = new Size(72, 15);
             LDescripcion.TabIndex = 0;
@@ -196,6 +204,39 @@
             BAgregar.Text = "Agregar";
             BAgregar.UseVisualStyleBackColor = true;
             BAgregar.Click += BAgregar_Click;
+            // 
+            // LTalle
+            // 
+            LTalle.AutoSize = true;
+            LTalle.Location = new Point(53, 101);
+            LTalle.Name = "LTalle";
+            LTalle.Size = new Size(33, 15);
+            LTalle.TabIndex = 10;
+            LTalle.Text = "Talle:";
+            // 
+            // LColor
+            // 
+            LColor.AutoSize = true;
+            LColor.Location = new Point(357, 101);
+            LColor.Name = "LColor";
+            LColor.Size = new Size(39, 15);
+            LColor.TabIndex = 11;
+            LColor.Text = "Color:";
+            // 
+            // TTalle
+            // 
+            TTalle.Location = new Point(107, 98);
+            TTalle.Name = "TTalle";
+            TTalle.Size = new Size(100, 23);
+            TTalle.TabIndex = 12;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(417, 98);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(121, 23);
+            comboBox2.TabIndex = 13;
             // 
             // FormAgregarProducto
             // 
@@ -233,5 +274,9 @@
         private Label LPrecio;
         private ComboBox comboBox1;
         private Button BAgregar;
+        private TextBox TTalle;
+        private Label LColor;
+        private Label LTalle;
+        private ComboBox comboBox2;
     }
 }

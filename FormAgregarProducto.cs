@@ -16,6 +16,8 @@ namespace formLogin
 
         private Form _FormAnterior;
 
+        public bool EsEdicion { get; set; } = false;
+        public int idSelec { get; set; }
         //Conexión con la base de datos
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=BD_TALLER;Trusted_Connection=True;TrustServerCertificate=True;";
         int idSeleccionado = 0;     //Identifica el elemento de datagridview 
@@ -25,30 +27,38 @@ namespace formLogin
         public FormAgregarProducto(Form formAnterior)
         {
             InitializeComponent();
+            EsEdicion = false; // modo agregar
             CargarDatos();
             this.Load += FormProducto_Load;
             _FormAnterior = formAnterior;
 
+          
 
-           
         }
 
 
         public FormAgregarProducto(DataGridViewRow fila)
         {
             InitializeComponent();
+            CargarDatos();
+            this.Load += FormProducto_Load;
+
+            EsEdicion = true; // modo edición
             // Cargar los datos de la fila en los TextBox
             idSeleccionado = Convert.ToInt32(fila.Cells["id_producto"].Value);
             TNombre.Text = fila.Cells["nombre"].Value.ToString();
             TPrecio.Text = fila.Cells["precio"].Value.ToString();
             TStock.Text = fila.Cells["stock"].Value.ToString();
+            TDescripcion.Text = fila.Cells["descripcion"].Value.ToString();
+            TTalle.Text = fila.Cells["talle"].Value.ToString();
+            
             // agrega los demás campos según tu tabla
 
         }
 
         private void BSalir_Click(object sender, EventArgs e)
         {
-            _FormAnterior.Show();
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
         private void CargarDatos()
@@ -67,31 +77,44 @@ namespace formLogin
 
         private void BAgregar_Click(object sender, EventArgs e)
        {
-            if (!ValidarCampos())
-                return;
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string query = "INSERT INTO Productos (nombre, descripcion, precio, stock, color, talle, categoria) VALUES (@nombre, @descripcion, @precio, @stock, @color, @talle, @categoria)";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nombre", TNombre.Text);
-                cmd.Parameters.AddWithValue("@descripcion", TDescripcion.Text);
-                cmd.Parameters.AddWithValue("@categoria", comboBox1.SelectedValue);
-                cmd.Parameters.AddWithValue("@precio", TPrecio.Text);
-                cmd.Parameters.AddWithValue("@stock", TStock.Text);
-                cmd.Parameters.AddWithValue("@talle", TTalle.Text);
-                cmd.Parameters.AddWithValue("@color", comboBox2.SelectedItem.ToString());   
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
+           
+           
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                if (EsEdicion)
+                {
 
-           }
-            // Aquí guardas el producto en la base de datos o lista
-            CargarDatos();
-            // Indica que todo salió bien y cierra el formulario
-            this.DialogResult = DialogResult.OK;
-            this.Close();       
+                }
+                else
+                {
 
-           LimpiarCampos();
+                    string query = "INSERT INTO Productos (nombre, descripcion, precio, stock, color, talle, categoria) VALUES (@nombre, @descripcion, @precio, @stock, @color, @talle, @categoria)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@nombre", TNombre.Text);
+                    cmd.Parameters.AddWithValue("@descripcion", TDescripcion.Text);
+                    cmd.Parameters.AddWithValue("@categoria", comboBox1.SelectedValue);
+                    cmd.Parameters.AddWithValue("@precio", TPrecio.Text);
+                    cmd.Parameters.AddWithValue("@stock", TStock.Text);
+                    cmd.Parameters.AddWithValue("@talle", TTalle.Text);
+                    cmd.Parameters.AddWithValue("@color", comboBox2.SelectedItem.ToString());
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    // Aquí guardas el producto en la base de datos o lista
+                    CargarDatos();
+                    // Indica que todo salió bien y cierra el formulario
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+
+                    LimpiarCampos();
+                }
+
+
+
+
+                }
+          
        }
         private bool ValidarCampos()
         {

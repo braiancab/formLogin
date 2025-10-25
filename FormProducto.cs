@@ -178,11 +178,17 @@ namespace formLogin
             // Verifica que la columna clickeada sea la del botón
             if (dataGridView1.Columns[e.ColumnIndex].Name == "BEditar" && e.RowIndex >= 0)
             {
-                // Ejemplo: obtener el valor de una celda de esa fila (por ejemplo un ID)
-                //  int idSeleccionado = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
+                using (FormAgregarProducto f = new FormAgregarProducto(this))
+                {
+                    // Mostrar el formulario como diálogo modal
+                    var resultado = f.ShowDialog();
 
-                // Abrir el nuevo formulario y pasarle el dato
-
+                    // Si se guardó correctamente (el Form2 devuelve DialogResult.OK)
+                    if (resultado == DialogResult.OK)
+                    {
+                        CargarDatos(); // Recargar los datos en el DataGridView
+                    }
+                }
 
             }
         }

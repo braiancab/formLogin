@@ -77,11 +77,13 @@ namespace formLogin
 
         private void BAgregar_Click(object sender, EventArgs e)
        {
+            if (!ValidarCampos()) return;
 
-           
-           
+
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+
+
                 if (EsEdicion)
                 {
                     string query = "UPDATE Productos SET  nombre=@nombre, descripcion=@descripcion, precio=@precio, stock=@stock, color=@color, talle=@talle, categoria=@categoria WHERE id_producto=@id_producto";
@@ -143,7 +145,8 @@ namespace formLogin
             if (string.IsNullOrWhiteSpace(TNombre.Text) ||
                 string.IsNullOrWhiteSpace(TDescripcion.Text) ||
                 string.IsNullOrWhiteSpace(TStock.Text) ||
-                string.IsNullOrWhiteSpace(TPrecio.Text)
+                string.IsNullOrWhiteSpace(TPrecio.Text) ||
+                string.IsNullOrWhiteSpace(TTalle.Text) 
 
                 )
             {
@@ -157,7 +160,11 @@ namespace formLogin
 
 
             }
-
+            if (comboBox2.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar una categoria en el ComboBox.");
+                return false;
+            }
 
 
 

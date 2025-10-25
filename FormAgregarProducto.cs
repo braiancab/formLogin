@@ -84,7 +84,27 @@ namespace formLogin
                 {
                 if (EsEdicion)
                 {
+                    string query = "UPDATE Productos SET  nombre=@nombre, descripcion=@descripcion, precio=@precio, stock=@stock, color=@color, talle=@talle, categoria=@categoria WHERE id_producto=@id_producto";
+                    SqlCommand cmd = new SqlCommand(query, conn);
 
+                     cmd.Parameters.AddWithValue("@nombre", TNombre.Text);
+                    cmd.Parameters.AddWithValue("@descripcion", TDescripcion.Text);
+                    cmd.Parameters.AddWithValue("@categoria", comboBox1.SelectedValue);
+                    cmd.Parameters.AddWithValue("@precio", TPrecio.Text);
+                    cmd.Parameters.AddWithValue("@stock", TStock.Text);
+                    cmd.Parameters.AddWithValue("@talle", TTalle.Text);
+                    cmd.Parameters.AddWithValue("@color", comboBox2.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@id_producto", idSeleccionado);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    // Aquí guardas el producto en la base de datos o lista
+                    CargarDatos();
+                    // Indica que todo salió bien y cierra el formulario
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+
+                    LimpiarCampos();
                 }
                 else
                 {

@@ -35,7 +35,9 @@ namespace formLogin
 
 
         public FormAgregarProducto(DataGridViewRow fila)
-        { // Cargar los datos de la fila en los TextBox
+        {
+            InitializeComponent();
+            // Cargar los datos de la fila en los TextBox
             idSeleccionado = Convert.ToInt32(fila.Cells["id_producto"].Value);
             TNombre.Text = fila.Cells["nombre"].Value.ToString();
             TPrecio.Text = fila.Cells["precio"].Value.ToString();

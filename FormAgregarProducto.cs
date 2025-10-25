@@ -28,6 +28,20 @@ namespace formLogin
             CargarDatos();
             this.Load += FormProducto_Load;
             _FormAnterior = formAnterior;
+
+
+           
+        }
+
+
+        public FormAgregarProducto(DataGridViewRow fila)
+        { // Cargar los datos de la fila en los TextBox
+            idSeleccionado = Convert.ToInt32(fila.Cells["id_producto"].Value);
+            TNombre.Text = fila.Cells["nombre"].Value.ToString();
+            TPrecio.Text = fila.Cells["precio"].Value.ToString();
+            TStock.Text = fila.Cells["stock"].Value.ToString();
+            // agrega los demás campos según tu tabla
+
         }
 
         private void BSalir_Click(object sender, EventArgs e)

@@ -178,7 +178,9 @@ namespace formLogin
             // Verifica que la columna clickeada sea la del botón
             if (dataGridView1.Columns[e.ColumnIndex].Name == "BEditar" && e.RowIndex >= 0)
             {
-                using (FormAgregarProducto f = new FormAgregarProducto(this))
+                DataGridViewRow filaSeleccionada = dataGridView1.Rows[e.RowIndex];
+
+                using (FormAgregarProducto f = new FormAgregarProducto(filaSeleccionada))
                 {
                     // Mostrar el formulario como diálogo modal
                     var resultado = f.ShowDialog();

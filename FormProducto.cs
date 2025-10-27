@@ -43,7 +43,9 @@ namespace formLogin
                 dataGridView1.DataSource = dt;
 
 
-                DataGridViewButtonColumn btnColumna = new DataGridViewButtonColumn();
+                if (!dataGridView1.Columns.Contains("BEditar")) 
+                {
+                    DataGridViewButtonColumn btnColumna = new DataGridViewButtonColumn();
                 btnColumna.HeaderText = "Acción";
                 btnColumna.Name = "BEditar";
                 btnColumna.Text = "Editar";
@@ -51,6 +53,7 @@ namespace formLogin
 
                 // Agregarla al DataGridView
                 dataGridView1.Columns.Add(btnColumna);
+                }
             }
         }
 

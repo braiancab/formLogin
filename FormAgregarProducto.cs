@@ -162,7 +162,7 @@ namespace formLogin
             }
             if (comboBox2.SelectedIndex == -1)
             {
-                MessageBox.Show("Debe seleccionar una categoria en el ComboBox.");
+                MessageBox.Show("Debe seleccionar un color en el ComboBox.");
                 return false;
             }
 

@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label2 = new Label();
             LClientes = new Label();
             LProductos = new Label();
+            LRolUser = new Label();
+            label1 = new Label();
             LReportes = new Label();
             LCarrito = new Label();
             LUsuarios = new Label();
@@ -43,9 +46,10 @@
             BProductos = new Button();
             BSalir = new Button();
             BCliente = new Button();
-            label2 = new Label();
-            LRolUser = new Label();
-            label1 = new Label();
+            LTimer = new Label();
+            LFecha = new Label();
+            LNombreUser = new Label();
+            LDniUser = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,6 +78,16 @@
             panel1.Size = new Size(1328, 100);
             panel1.TabIndex = 0;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(835, 12);
+            label2.Name = "label2";
+            label2.Size = new Size(55, 21);
+            label2.TabIndex = 14;
+            label2.Text = "Perfil:";
+            // 
             // LClientes
             // 
             LClientes.AutoSize = true;
@@ -91,6 +105,24 @@
             LProductos.Size = new Size(61, 15);
             LProductos.TabIndex = 12;
             LProductos.Text = "Productos";
+            // 
+            // LRolUser
+            // 
+            LRolUser.AutoSize = true;
+            LRolUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LRolUser.Location = new Point(896, 12);
+            LRolUser.Name = "LRolUser";
+            LRolUser.Size = new Size(67, 21);
+            LRolUser.TabIndex = 1;
+            LRolUser.Text = "usuario";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(852, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 15);
+            label1.TabIndex = 1;
             // 
             // LReportes
             // 
@@ -207,33 +239,42 @@
             BCliente.UseVisualStyleBackColor = true;
             BCliente.Click += BCliente_Click;
             // 
-            // label2
+            // LTimer
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(835, 12);
-            label2.Name = "label2";
-            label2.Size = new Size(55, 21);
-            label2.TabIndex = 14;
-            label2.Text = "Perfil:";
+            LTimer.AutoSize = true;
+            LTimer.Font = new Font("Sitka Heading", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LTimer.Location = new Point(372, 324);
+            LTimer.Name = "LTimer";
+            LTimer.Size = new Size(157, 69);
+            LTimer.TabIndex = 1;
+            LTimer.Text = "label3";
             // 
-            // LRolUser
+            // LFecha
             // 
-            LRolUser.AutoSize = true;
-            LRolUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LRolUser.Location = new Point(896, 12);
-            LRolUser.Name = "LRolUser";
-            LRolUser.Size = new Size(67, 21);
-            LRolUser.TabIndex = 1;
-            LRolUser.Text = "usuario";
+            LFecha.AutoSize = true;
+            LFecha.Location = new Point(389, 421);
+            LFecha.Name = "LFecha";
+            LFecha.Size = new Size(38, 15);
+            LFecha.TabIndex = 2;
+            LFecha.Text = "label3";
             // 
-            // label1
+            // LNombreUser
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(852, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(0, 15);
-            label1.TabIndex = 1;
+            LNombreUser.AutoSize = true;
+            LNombreUser.Location = new Point(686, 261);
+            LNombreUser.Name = "LNombreUser";
+            LNombreUser.Size = new Size(38, 15);
+            LNombreUser.TabIndex = 3;
+            LNombreUser.Text = "label3";
+            // 
+            // LDniUser
+            // 
+            LDniUser.AutoSize = true;
+            LDniUser.Location = new Point(690, 292);
+            LDniUser.Name = "LDniUser";
+            LDniUser.Size = new Size(38, 15);
+            LDniUser.TabIndex = 4;
+            LDniUser.Text = "label3";
             // 
             // FormMenu
             // 
@@ -241,6 +282,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(1352, 729);
+            Controls.Add(LDniUser);
+            Controls.Add(LNombreUser);
+            Controls.Add(LFecha);
+            Controls.Add(LTimer);
             Controls.Add(panel1);
             Name = "FormMenu";
             Text = "FormMenu";
@@ -249,6 +294,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -271,5 +317,9 @@
         private Label label1;
         private Label LRolUser;
         private Label label2;
+        private Label LTimer;
+        private Label LFecha;
+        private Label LNombreUser;
+        private Label LDniUser;
     }
 }

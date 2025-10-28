@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static formLogin.Form1;
+using Timer = System.Windows.Forms.Timer;
 
 namespace formLogin
 {
@@ -14,19 +16,29 @@ namespace formLogin
     {
         private Form _FormAnterior;
         private string rol;
-        public FormMenu(string rolUsuario, Form formAnterior)
+        private Usuario _usuario;
+
+        public FormMenu(Usuario usuario, Form formAnterior)
         {
             InitializeComponent();
-            rol = rolUsuario;
+            _usuario = usuario;
             _FormAnterior = formAnterior;
         }
 
         private void FormMenu_Load(object sender, EventArgs e)
         {
 
+            Timer timer = new Timer();
+            timer.Tick += new EventHandler(hora);
+            timer.Interval = 1000; // 1 segundo
+            timer.Start();
+            LFecha.Text = DateTime.Now.ToLongDateString();
 
 
-            if (rol == "Admin")
+            LNombreUser.Text = _usuario.Nombre + " " + _usuario.Apellido;   
+            LDniUser.Text = _usuario.Dni;
+            LRolUser.Text = _usuario.Rol;   
+            if (_usuario.Rol == "Admin")
             {
                 //Botones por rol
                 BBackUp.Enabled = true;
@@ -44,9 +56,9 @@ namespace formLogin
                 LUsuarios.Enabled = true;
                 LProductos.Enabled = false;
                 LReportes.Enabled = true;
-                LRolUser.Text = rol;
+              
             }
-            else if (rol == "Gerente")
+            else if (_usuario.Rol == "Vendedor")
             {
                 //Botones por rol
                 BBackUp.Enabled = false;
@@ -64,9 +76,9 @@ namespace formLogin
                 LUsuarios.Enabled = false;
                 LProductos.Enabled = true;
                 LReportes.Enabled = true;
-                LRolUser.Text = rol;
+           
             }
-            else if (rol == "Vendedor")
+            else if (_usuario.Rol == "Gerente")
             {
                 //Botones por rol
                 BBackUp.Enabled = false;
@@ -84,12 +96,18 @@ namespace formLogin
                 LUsuarios.Enabled = false;
                 LProductos.Enabled = false;
                 LReportes.Enabled = true;
-                LRolUser.Text = rol;
+              
             }
 
-            //label1.Text = $"Rol actual: {rol.ToUpper()}";
-            //Cuando tenga poner el label de el rol
+         
         }
+
+        public void hora(object sender, EventArgs e)
+        {
+           LTimer.Text= DateTime.Now.ToString("HH : mm : ss");
+        }
+
+
 
         private void BSalir_Click(object sender, EventArgs e)
         {

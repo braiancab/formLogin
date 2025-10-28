@@ -1,6 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
 using System.DirectoryServices.ActiveDirectory;
+using System.Net;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace formLogin
 {
@@ -20,7 +23,16 @@ namespace formLogin
 
         }
 
-
+        public class Usuario
+        {
+            public int Id { get; set; }
+            public string Nombre { get; set; }
+            public string Apellido { get; set; }
+            public string Dni { get; set; }
+            public string Correo { get; set; }
+            public string Rol { get; set; }
+            public string Username { get; set; }
+        }
 
         private void BIngresar_Click(object sender, EventArgs e)
         {
@@ -44,68 +56,47 @@ namespace formLogin
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                try
+                string query = @"SELECT u.id_usuario, u.Nombre, u.Apellido, u.Dni, 
+                        u.Correo, u.Usuario, r.nombre as id_rol
+                 FROM Usuarios u
+                 INNER JOIN Rol r ON u.id_rol = r.id_rol
+                 WHERE u.Usuario = @usuario AND u.Contraseña = @contraseña AND u.activo = 1";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+                cmd.Parameters.AddWithValue("@contraseña", contraseña);
+
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
                 {
-                    conn.Open();
-                    string query = "SELECT id_rol FROM Usuarios WHERE usuario = @usuario AND contraseña = @contraseña AND activo = 1";
-
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@usuario", usuario);
-                    cmd.Parameters.AddWithValue("@contraseña", contraseña);
-                 
-                    object result = cmd.ExecuteScalar();
-                    
-
-                    if (result != null ) // Si encontró un usuario válido
+                    // Creamos el objeto usuario con los datos de la BD
+                    Usuario user = new Usuario()
                     {
-                        int idRol = Convert.ToInt32(result);
+                        Id = Convert.ToInt32(dr["id_usuario"]),
+                        Nombre = dr["Nombre"].ToString(),
+                        Apellido = dr["Apellido"].ToString(),
+                        Dni = dr["Dni"].ToString(),
+                        Correo = dr["Correo"].ToString(),
+                        Rol = dr["id_rol"].ToString(),
+                        Username = dr["Usuario"].ToString()
+                    };
 
-                      
-
-
-
-
-                        switch (idRol)
-                        {
-                            case 0: // Gerente
-                                FormMenu fg = new FormMenu("Gerente", this);
-                                fg.Show();
-                                this.Hide();
-
-                                break;
-
-                            case 1: // Vendedor
-                                FormMenu fv = new FormMenu("Vendedor", this);
-                                fv.Show();
-                                this.Hide();
-                                break;
-
-                            case 2: // Admin
-
-                                FormMenu fa = new FormMenu("Admin", this);
-                                fa.Show();
-                                this.Hide();
-                                break;
-
-                            default:
-                                MessageBox.Show("⚠ Rol no reconocido en el sistema.");
-                                break;
-                        }
-
-                        this.Hide(); // Ocultamos el login
-                    }
-                    else
-                    {
-                        MessageBox.Show(" Acceso no permitido");
-                    }
+                    // Abrimos el menú
+                    FormMenu menu = new FormMenu(user, this);
+                    menu.Show();
+                    this.Hide();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                conn.Close();
             }
-
         }
+
+        
 
 
         // Ver como hacer para presionar enter y pase a otro textbox

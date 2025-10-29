@@ -94,25 +94,25 @@ namespace formLogin
                 return;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Cliente (activo,nomYape,direccion,dni,telefono,sexo) VALUES (@activo,@nomYape,@direccion,@dni,@telefono,@Sexo)";
+                string query = "INSERT INTO Cliente (activo,nombre,direccion,cuit,telefono,tipo) VALUES (@activo,@nombre,@direccion,@cuit,@telefono,@tipo)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@activo", 1);
-                cmd.Parameters.AddWithValue("@nomYape", TNRazonSocial.Text);
+                cmd.Parameters.AddWithValue("@nombre", TNRazonSocial.Text);
                 cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);
-                cmd.Parameters.AddWithValue("@dni", TDni.Text);
+                cmd.Parameters.AddWithValue("@cuit", TDni.Text);
                 cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
 
-                string sexo = "";
+                string tipo = "";
 
                 if (RBPersona.Checked)
                 {
-                    sexo = "Persona";
+                    tipo = "Persona";
                 }
                 else if (RBEmpresa.Checked)
                 {
-                    sexo = "Empresa";
+                    tipo = "Empresa";
                 }
-                cmd.Parameters.AddWithValue("@Sexo", sexo);
+                cmd.Parameters.AddWithValue("@tipo", tipo);
 
 
                 conn.Open();
@@ -145,10 +145,10 @@ namespace formLogin
                 conn.Open();
 
                 // Primero verificamos si el DNI ya existe
-                string checkQuery = "SELECT COUNT(*) FROM Cliente WHERE dni = @dni AND id_cliente <> @id_cliente";
+                string checkQuery = "SELECT COUNT(*) FROM Cliente WHERE cuit = @cuit AND id_cliente <> @id_cliente";
                 using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                 {
-                    checkCmd.Parameters.AddWithValue("@dni", TDni.Text.Trim());
+                    checkCmd.Parameters.AddWithValue("@cuit", TDni.Text.Trim());
                     checkCmd.Parameters.AddWithValue("@id_cliente", idSeleccionado);
 
                     int count = (int)checkCmd.ExecuteScalar();
@@ -180,7 +180,7 @@ namespace formLogin
             bool seleccionado = panel2.Controls.OfType<System.Windows.Forms.RadioButton>().Any(r => r.Checked);
             if (!seleccionado)
             {
-                MessageBox.Show("Debe seleccionar sexo.");
+                MessageBox.Show("Debe seleccionar tipo.");
                 return false;
             }
 
@@ -196,12 +196,12 @@ namespace formLogin
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "UPDATE Cliente SET nomYape=@nomYape,direccion=@direccion,dni=@dni,telefono=@telefono,sexo=@sexo WHERE id_cliente=@id_cliente";
+                string query = "UPDATE Cliente SET nombre=@nombre,direccion=@direccion,cuit=@cuit,telefono=@telefono,tipo=@tipo WHERE id_cliente=@id_cliente";
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@nomYape", TNRazonSocial.Text);
+                cmd.Parameters.AddWithValue("@nombre", TNRazonSocial.Text);
                 cmd.Parameters.AddWithValue("@direccion", TDireccion.Text);
-                cmd.Parameters.AddWithValue("@dni", TDni.Text);
+                cmd.Parameters.AddWithValue("@cuit", TDni.Text);
                 cmd.Parameters.AddWithValue("@telefono", TTelefono.Text);
                 string Tipo = "";
 
@@ -214,7 +214,7 @@ namespace formLogin
                     Tipo = "Empresa";
                 }
 
-                cmd.Parameters.AddWithValue("@Sexo", Tipo);
+                cmd.Parameters.AddWithValue("@tipo", Tipo);
                 cmd.Parameters.AddWithValue("@id_cliente", idSeleccionado);
 
                 conn.Open();
@@ -238,15 +238,15 @@ namespace formLogin
                 DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
                 idSeleccionado = Convert.ToInt32(fila.Cells["id_cliente"].Value);
 
-                TNRazonSocial.Text = fila.Cells["nomYape"].Value.ToString();
-                TDni.Text = fila.Cells["dni"].Value.ToString();
+                TNRazonSocial.Text = fila.Cells["nombre"].Value.ToString();
+                TDni.Text = fila.Cells["cuit"].Value.ToString();
                 TDireccion.Text = fila.Cells["direccion"].Value.ToString();
                 TTelefono.Text = fila.Cells["telefono"].Value.ToString();
                 int activo = Convert.ToInt32(fila.Cells["activo"].Value);
 
-                string sexo = fila.Cells["sexo"].Value.ToString();
-                RBPersona.Checked = (sexo == "MASCULINO");
-                RBEmpresa.Checked = (sexo == "FEMENINO");
+                string tipo = fila.Cells["tipo"].Value.ToString();
+                RBPersona.Checked = (tipo == "PERSONA");
+                RBEmpresa.Checked = (tipo == "EMPRESA");
 
 
                 if (activo == 0)
@@ -316,10 +316,10 @@ namespace formLogin
 
                 // Filtros dinámicos
                 if (!string.IsNullOrWhiteSpace(TFiltroNombre.Text))
-                    query += " AND nomYape LIKE @nombre";
+                    query += " AND nombre LIKE @nombre";
 
                 if (!string.IsNullOrWhiteSpace(TFiltroDni.Text))
-                    query += " AND dni LIKE @dni";
+                    query += " AND cuit LIKE @cuit";
 
                 if (RBActivo.Checked)  // si seleccionaste activo
                     query += " AND activo = 1";
@@ -333,7 +333,7 @@ namespace formLogin
                     cmd.Parameters.AddWithValue("@nombre", "%" + TFiltroNombre.Text + "%");
 
                 if (!string.IsNullOrWhiteSpace(TFiltroDni.Text))
-                    cmd.Parameters.AddWithValue("@dni", "%" + TFiltroDni.Text + "%");
+                    cmd.Parameters.AddWithValue("@cuit", "%" + TFiltroDni.Text + "%");
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

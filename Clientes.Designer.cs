@@ -73,7 +73,7 @@
             panel1.Controls.Add(BSalir);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(906, 100);
+            panel1.Size = new Size(1346, 100);
             panel1.TabIndex = 0;
             // 
             // LCliente
@@ -81,7 +81,7 @@
             LCliente.AutoSize = true;
             LCliente.BackColor = SystemColors.ActiveCaption;
             LCliente.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LCliente.Location = new Point(392, 26);
+            LCliente.Location = new Point(559, 26);
             LCliente.Name = "LCliente";
             LCliente.Size = new Size(144, 37);
             LCliente.TabIndex = 2;
@@ -126,7 +126,7 @@
             panel2.Controls.Add(LCUIT);
             panel2.Controls.Add(TNRazonSocial);
             panel2.Controls.Add(LNYApellido);
-            panel2.Location = new Point(145, 118);
+            panel2.Location = new Point(373, 118);
             panel2.Name = "panel2";
             panel2.Size = new Size(655, 232);
             panel2.TabIndex = 1;
@@ -291,16 +291,17 @@
             // 
             // dataGridView1
             // 
-            dataGridView1.Location = new Point(8, 444);
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.Location = new Point(240, 444);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(906, 150);
+            dataGridView1.Size = new Size(906, 276);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // LNombre
             // 
             LNombre.AutoSize = true;
-            LNombre.Location = new Point(11, 425);
+            LNombre.Location = new Point(243, 421);
             LNombre.Name = "LNombre";
             LNombre.Size = new Size(54, 15);
             LNombre.TabIndex = 2;
@@ -308,7 +309,7 @@
             // 
             // TFiltroNombre
             // 
-            TFiltroNombre.Location = new Point(71, 419);
+            TFiltroNombre.Location = new Point(303, 415);
             TFiltroNombre.Name = "TFiltroNombre";
             TFiltroNombre.Size = new Size(132, 23);
             TFiltroNombre.TabIndex = 3;
@@ -316,7 +317,7 @@
             // LDoc
             // 
             LDoc.AutoSize = true;
-            LDoc.Location = new Point(209, 425);
+            LDoc.Location = new Point(441, 421);
             LDoc.Name = "LDoc";
             LDoc.Size = new Size(30, 15);
             LDoc.TabIndex = 4;
@@ -324,7 +325,7 @@
             // 
             // TFiltroDni
             // 
-            TFiltroDni.Location = new Point(245, 419);
+            TFiltroDni.Location = new Point(477, 415);
             TFiltroDni.Name = "TFiltroDni";
             TFiltroDni.Size = new Size(132, 23);
             TFiltroDni.TabIndex = 5;
@@ -332,7 +333,7 @@
             // RBInactivo
             // 
             RBInactivo.AutoSize = true;
-            RBInactivo.Location = new Point(560, 421);
+            RBInactivo.Location = new Point(792, 417);
             RBInactivo.Name = "RBInactivo";
             RBInactivo.Size = new Size(67, 19);
             RBInactivo.TabIndex = 6;
@@ -343,7 +344,7 @@
             // RBActivo
             // 
             RBActivo.AutoSize = true;
-            RBActivo.Location = new Point(633, 421);
+            RBActivo.Location = new Point(865, 417);
             RBActivo.Name = "RBActivo";
             RBActivo.Size = new Size(59, 19);
             RBActivo.TabIndex = 7;
@@ -354,7 +355,7 @@
             // RBTodos
             // 
             RBTodos.AutoSize = true;
-            RBTodos.Location = new Point(698, 421);
+            RBTodos.Location = new Point(930, 417);
             RBTodos.Name = "RBTodos";
             RBTodos.Size = new Size(56, 19);
             RBTodos.TabIndex = 8;
@@ -364,7 +365,7 @@
             // 
             // BFiltrar
             // 
-            BFiltrar.Location = new Point(839, 419);
+            BFiltrar.Location = new Point(1071, 415);
             BFiltrar.Name = "BFiltrar";
             BFiltrar.Size = new Size(75, 23);
             BFiltrar.TabIndex = 9;
@@ -377,7 +378,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(926, 606);
+            ClientSize = new Size(1352, 729);
             Controls.Add(BFiltrar);
             Controls.Add(RBTodos);
             Controls.Add(RBActivo);
@@ -391,6 +392,7 @@
             Controls.Add(panel1);
             Name = "Clientes";
             Text = "Clientes";
+            WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

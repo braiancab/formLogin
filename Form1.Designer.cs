@@ -143,7 +143,9 @@
             ClientSize = new Size(612, 276);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

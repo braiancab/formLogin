@@ -33,6 +33,10 @@
             LVolver = new Label();
             BSalir = new Button();
             panel2 = new Panel();
+            comboBox2 = new ComboBox();
+            TTalle = new TextBox();
+            LColor = new Label();
+            LTalle = new Label();
             comboBox1 = new ComboBox();
             LCategoria = new Label();
             TStock = new TextBox();
@@ -44,10 +48,6 @@
             LNombre = new Label();
             LDescripcion = new Label();
             BAgregar = new Button();
-            LTalle = new Label();
-            LColor = new Label();
-            TTalle = new TextBox();
-            comboBox2 = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -113,6 +113,39 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(655, 232);
             panel2.TabIndex = 1;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(417, 98);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(121, 23);
+            comboBox2.TabIndex = 13;
+            // 
+            // TTalle
+            // 
+            TTalle.Location = new Point(107, 98);
+            TTalle.Name = "TTalle";
+            TTalle.Size = new Size(100, 23);
+            TTalle.TabIndex = 12;
+            // 
+            // LColor
+            // 
+            LColor.AutoSize = true;
+            LColor.Location = new Point(357, 101);
+            LColor.Name = "LColor";
+            LColor.Size = new Size(39, 15);
+            LColor.TabIndex = 11;
+            LColor.Text = "Color:";
+            // 
+            // LTalle
+            // 
+            LTalle.AutoSize = true;
+            LTalle.Location = new Point(53, 101);
+            LTalle.Name = "LTalle";
+            LTalle.Size = new Size(33, 15);
+            LTalle.TabIndex = 10;
+            LTalle.Text = "Talle:";
             // 
             // comboBox1
             // 
@@ -205,39 +238,6 @@
             BAgregar.UseVisualStyleBackColor = true;
             BAgregar.Click += BAgregar_Click;
             // 
-            // LTalle
-            // 
-            LTalle.AutoSize = true;
-            LTalle.Location = new Point(53, 101);
-            LTalle.Name = "LTalle";
-            LTalle.Size = new Size(33, 15);
-            LTalle.TabIndex = 10;
-            LTalle.Text = "Talle:";
-            // 
-            // LColor
-            // 
-            LColor.AutoSize = true;
-            LColor.Location = new Point(357, 101);
-            LColor.Name = "LColor";
-            LColor.Size = new Size(39, 15);
-            LColor.TabIndex = 11;
-            LColor.Text = "Color:";
-            // 
-            // TTalle
-            // 
-            TTalle.Location = new Point(107, 98);
-            TTalle.Name = "TTalle";
-            TTalle.Size = new Size(100, 23);
-            TTalle.TabIndex = 12;
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(417, 98);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 13;
-            // 
             // FormAgregarProducto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -247,7 +247,9 @@
             Controls.Add(BAgregar);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "FormAgregarProducto";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormAgregarProducto";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

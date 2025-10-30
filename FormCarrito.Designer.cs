@@ -33,6 +33,7 @@
             LVolver = new Label();
             BSalir = new Button();
             panel2 = new Panel();
+            BNuevoCliente = new Button();
             LPrecioTotal = new Label();
             LTotal = new Label();
             comboBox1 = new ComboBox();
@@ -53,7 +54,6 @@
             LVendedor = new Label();
             BGuardar = new Button();
             BCancelar = new Button();
-            BNuevoCliente = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -67,16 +67,16 @@
             panel1.Controls.Add(BSalir);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(906, 100);
+            panel1.Size = new Size(1328, 100);
             panel1.TabIndex = 0;
             // 
             // LVentas
             // 
             LVentas.AutoSize = true;
-            LVentas.Font = new Font("Arial Narrow", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LVentas.Location = new Point(392, 26);
+            LVentas.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LVentas.Location = new Point(559, 26);
             LVentas.Name = "LVentas";
-            LVentas.Size = new Size(105, 37);
+            LVentas.Size = new Size(123, 37);
             LVentas.TabIndex = 1;
             LVentas.Text = "Ventas";
             // 
@@ -121,10 +121,21 @@
             panel2.Controls.Add(comboBox2);
             panel2.Controls.Add(LCliente);
             panel2.Controls.Add(LVendedor);
-            panel2.Location = new Point(145, 118);
+            panel2.Location = new Point(303, 118);
             panel2.Name = "panel2";
             panel2.Size = new Size(655, 232);
             panel2.TabIndex = 1;
+            // 
+            // BNuevoCliente
+            // 
+            BNuevoCliente.BackColor = Color.MintCream;
+            BNuevoCliente.Image = Properties.Resources.nueva_cuenta__1_;
+            BNuevoCliente.Location = new Point(541, 9);
+            BNuevoCliente.Name = "BNuevoCliente";
+            BNuevoCliente.Size = new Size(75, 23);
+            BNuevoCliente.TabIndex = 19;
+            BNuevoCliente.UseVisualStyleBackColor = false;
+            BNuevoCliente.Click += BNuevoCliente_Click;
             // 
             // LPrecioTotal
             // 
@@ -277,7 +288,7 @@
             // 
             // BGuardar
             // 
-            BGuardar.Location = new Point(633, 369);
+            BGuardar.Location = new Point(791, 369);
             BGuardar.Name = "BGuardar";
             BGuardar.Size = new Size(75, 23);
             BGuardar.TabIndex = 2;
@@ -286,36 +297,26 @@
             // 
             // BCancelar
             // 
-            BCancelar.Location = new Point(725, 369);
+            BCancelar.Location = new Point(883, 369);
             BCancelar.Name = "BCancelar";
             BCancelar.Size = new Size(75, 23);
             BCancelar.TabIndex = 3;
             BCancelar.Text = "Cancelar";
             BCancelar.UseVisualStyleBackColor = true;
             // 
-            // BNuevoCliente
-            // 
-            BNuevoCliente.BackColor = Color.MintCream;
-            BNuevoCliente.Image = Properties.Resources.nueva_cuenta__1_;
-            BNuevoCliente.Location = new Point(541, 9);
-            BNuevoCliente.Name = "BNuevoCliente";
-            BNuevoCliente.Size = new Size(75, 23);
-            BNuevoCliente.TabIndex = 19;
-            BNuevoCliente.UseVisualStyleBackColor = false;
-            BNuevoCliente.Click += BNuevoCliente_Click;
-            // 
             // FormCarrito
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(926, 606);
+            ClientSize = new Size(1352, 729);
             Controls.Add(BCancelar);
             Controls.Add(BGuardar);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FormCarrito";
             Text = "FormCarrito";
+            WindowState = FormWindowState.Maximized;
             Load += FormCarrito_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

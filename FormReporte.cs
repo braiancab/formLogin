@@ -68,5 +68,7 @@ namespace formLogin
             string nombre = TNombre.Text.Trim(); // el TextBox donde ingresás el nombre
             BuscarUsuarioVendedor(nombre);
         }
+
+        
     }
 }

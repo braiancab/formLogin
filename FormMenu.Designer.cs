@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            label2 = new Label();
-            LRolUser = new Label();
-            label1 = new Label();
             LClientes = new Label();
             LProductos = new Label();
             LReportes = new Label();
@@ -46,14 +43,20 @@
             BProductos = new Button();
             BSalir = new Button();
             BCliente = new Button();
+            label2 = new Label();
+            LRolUser = new Label();
+            label1 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(LClientes);
             panel1.Controls.Add(LProductos);
+            panel1.Controls.Add(LRolUser);
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(LReportes);
             panel1.Controls.Add(LCarrito);
             panel1.Controls.Add(LUsuarios);
@@ -68,36 +71,8 @@
             panel1.Controls.Add(BCliente);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(906, 100);
+            panel1.Size = new Size(1328, 100);
             panel1.TabIndex = 0;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(786, 124);
-            label2.Name = "label2";
-            label2.Size = new Size(55, 21);
-            label2.TabIndex = 14;
-            label2.Text = "Perfil:";
-            // 
-            // LRolUser
-            // 
-            LRolUser.AutoSize = true;
-            LRolUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LRolUser.Location = new Point(839, 124);
-            LRolUser.Name = "LRolUser";
-            LRolUser.Size = new Size(67, 21);
-            LRolUser.TabIndex = 1;
-            LRolUser.Text = "usuario";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(803, 130);
-            label1.Name = "label1";
-            label1.Size = new Size(0, 15);
-            label1.TabIndex = 1;
             // 
             // LClientes
             // 
@@ -156,7 +131,7 @@
             // LSalir
             // 
             LSalir.AutoSize = true;
-            LSalir.Location = new Point(843, 85);
+            LSalir.Location = new Point(1274, 85);
             LSalir.Name = "LSalir";
             LSalir.Size = new Size(29, 15);
             LSalir.TabIndex = 7;
@@ -215,7 +190,7 @@
             // BSalir
             // 
             BSalir.Image = Properties.Resources.cerrar_sesion__1_;
-            BSalir.Location = new Point(814, 12);
+            BSalir.Location = new Point(1245, 12);
             BSalir.Name = "BSalir";
             BSalir.Size = new Size(80, 70);
             BSalir.TabIndex = 1;
@@ -232,23 +207,48 @@
             BCliente.UseVisualStyleBackColor = true;
             BCliente.Click += BCliente_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(835, 12);
+            label2.Name = "label2";
+            label2.Size = new Size(55, 21);
+            label2.TabIndex = 14;
+            label2.Text = "Perfil:";
+            // 
+            // LRolUser
+            // 
+            LRolUser.AutoSize = true;
+            LRolUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LRolUser.Location = new Point(896, 12);
+            LRolUser.Name = "LRolUser";
+            LRolUser.Size = new Size(67, 21);
+            LRolUser.TabIndex = 1;
+            LRolUser.Text = "usuario";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(852, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 15);
+            label1.TabIndex = 1;
+            // 
             // FormMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(926, 606);
-            Controls.Add(label2);
+            ClientSize = new Size(1352, 729);
             Controls.Add(panel1);
-            Controls.Add(LRolUser);
-            Controls.Add(label1);
             Name = "FormMenu";
             Text = "FormMenu";
+            WindowState = FormWindowState.Maximized;
             Load += FormMenu_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

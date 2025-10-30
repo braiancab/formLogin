@@ -51,7 +51,7 @@
             panel1.Controls.Add(BSalir);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(906, 100);
+            panel1.Size = new Size(1328, 100);
             panel1.TabIndex = 0;
             // 
             // LVoler
@@ -67,7 +67,7 @@
             // 
             LBackup.AutoSize = true;
             LBackup.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LBackup.Location = new Point(392, 26);
+            LBackup.Location = new Point(559, 26);
             LBackup.Name = "LBackup";
             LBackup.Size = new Size(143, 37);
             LBackup.TabIndex = 0;
@@ -116,7 +116,7 @@
             groupBox1.Controls.Add(LBasededatos);
             groupBox1.Controls.Add(LRuta);
             groupBox1.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox1.Location = new Point(145, 118);
+            groupBox1.Location = new Point(317, 118);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(655, 232);
             groupBox1.TabIndex = 3;
@@ -162,11 +162,12 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(926, 606);
+            ClientSize = new Size(1352, 729);
             Controls.Add(groupBox1);
             Controls.Add(panel1);
             Name = "FormBackUp";
             Text = "FormBackUp";
+            WindowState = FormWindowState.Maximized;
             Load += FormBackUp_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

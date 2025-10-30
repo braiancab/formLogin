@@ -83,7 +83,7 @@
             panel1.Controls.Add(LUser);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(906, 100);
+            panel1.Size = new Size(1328, 100);
             panel1.TabIndex = 0;
             // 
             // LVolver
@@ -111,7 +111,7 @@
             // 
             LUser.AutoSize = true;
             LUser.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LUser.Location = new Point(392, 26);
+            LUser.Location = new Point(559, 26);
             LUser.Name = "LUser";
             LUser.Size = new Size(154, 37);
             LUser.TabIndex = 0;
@@ -296,7 +296,7 @@
             // 
             // BAgregar
             // 
-            BAgregar.Location = new Point(463, 357);
+            BAgregar.Location = new Point(642, 357);
             BAgregar.Name = "BAgregar";
             BAgregar.Size = new Size(75, 23);
             BAgregar.TabIndex = 24;
@@ -307,7 +307,7 @@
             // 
             // BEliminar
             // 
-            BEliminar.Location = new Point(550, 356);
+            BEliminar.Location = new Point(729, 356);
             BEliminar.Name = "BEliminar";
             BEliminar.Size = new Size(75, 23);
             BEliminar.TabIndex = 25;
@@ -319,15 +319,15 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(8, 444);
+            dataGridView1.Location = new Point(128, 442);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(906, 150);
+            dataGridView1.Size = new Size(1099, 275);
             dataGridView1.TabIndex = 26;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // BActualizar
             // 
-            BActualizar.Location = new Point(376, 357);
+            BActualizar.Location = new Point(555, 357);
             BActualizar.Name = "BActualizar";
             BActualizar.Size = new Size(75, 24);
             BActualizar.TabIndex = 27;
@@ -362,7 +362,7 @@
             groupBox1.Controls.Add(LContraseña);
             groupBox1.Controls.Add(TContraseña);
             groupBox1.Controls.Add(TUsuario);
-            groupBox1.Location = new Point(145, 118);
+            groupBox1.Location = new Point(324, 118);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(655, 232);
             groupBox1.TabIndex = 28;
@@ -392,14 +392,14 @@
             // 
             // TFiltroNombre
             // 
-            TFiltroNombre.Location = new Point(71, 419);
+            TFiltroNombre.Location = new Point(262, 417);
             TFiltroNombre.Name = "TFiltroNombre";
             TFiltroNombre.Size = new Size(132, 23);
             TFiltroNombre.TabIndex = 29;
             // 
             // TFiltroApellido
             // 
-            TFiltroApellido.Location = new Point(266, 419);
+            TFiltroApellido.Location = new Point(457, 417);
             TFiltroApellido.Name = "TFiltroApellido";
             TFiltroApellido.Size = new Size(132, 23);
             TFiltroApellido.TabIndex = 30;
@@ -407,7 +407,7 @@
             // RBActivo
             // 
             RBActivo.AutoSize = true;
-            RBActivo.Location = new Point(665, 423);
+            RBActivo.Location = new Point(856, 421);
             RBActivo.Name = "RBActivo";
             RBActivo.Size = new Size(59, 19);
             RBActivo.TabIndex = 31;
@@ -418,7 +418,7 @@
             // LFiltroNombre
             // 
             LFiltroNombre.AutoSize = true;
-            LFiltroNombre.Location = new Point(11, 425);
+            LFiltroNombre.Location = new Point(202, 423);
             LFiltroNombre.Name = "LFiltroNombre";
             LFiltroNombre.Size = new Size(54, 15);
             LFiltroNombre.TabIndex = 32;
@@ -427,7 +427,7 @@
             // LFiltroApellido
             // 
             LFiltroApellido.AutoSize = true;
-            LFiltroApellido.Location = new Point(206, 425);
+            LFiltroApellido.Location = new Point(397, 423);
             LFiltroApellido.Name = "LFiltroApellido";
             LFiltroApellido.Size = new Size(54, 15);
             LFiltroApellido.TabIndex = 33;
@@ -436,7 +436,7 @@
             // LFiltroDni
             // 
             LFiltroDni.AutoSize = true;
-            LFiltroDni.Location = new Point(401, 425);
+            LFiltroDni.Location = new Point(592, 423);
             LFiltroDni.Name = "LFiltroDni";
             LFiltroDni.Size = new Size(30, 15);
             LFiltroDni.TabIndex = 34;
@@ -444,14 +444,14 @@
             // 
             // TFiltroDni
             // 
-            TFiltroDni.Location = new Point(437, 419);
+            TFiltroDni.Location = new Point(628, 417);
             TFiltroDni.Name = "TFiltroDni";
             TFiltroDni.Size = new Size(132, 23);
             TFiltroDni.TabIndex = 35;
             // 
             // BFiltrar
             // 
-            BFiltrar.Location = new Point(839, 419);
+            BFiltrar.Location = new Point(1030, 417);
             BFiltrar.Name = "BFiltrar";
             BFiltrar.Size = new Size(75, 23);
             BFiltrar.TabIndex = 36;
@@ -462,7 +462,7 @@
             // RBInactivo
             // 
             RBInactivo.AutoSize = true;
-            RBInactivo.Location = new Point(592, 423);
+            RBInactivo.Location = new Point(783, 421);
             RBInactivo.Name = "RBInactivo";
             RBInactivo.Size = new Size(67, 19);
             RBInactivo.TabIndex = 37;
@@ -473,7 +473,7 @@
             // RBTodos
             // 
             RBTodos.AutoSize = true;
-            RBTodos.Location = new Point(738, 423);
+            RBTodos.Location = new Point(929, 421);
             RBTodos.Name = "RBTodos";
             RBTodos.Size = new Size(56, 19);
             RBTodos.TabIndex = 38;
@@ -486,7 +486,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(926, 606);
+            ClientSize = new Size(1352, 729);
             Controls.Add(RBTodos);
             Controls.Add(RBInactivo);
             Controls.Add(BFiltrar);
@@ -506,6 +506,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FormUsuarios";
             Text = "Usuarios";
+            WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

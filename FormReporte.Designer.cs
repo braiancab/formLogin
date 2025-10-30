@@ -60,7 +60,7 @@
             panel1.Controls.Add(BSalir);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(906, 100);
+            panel1.Size = new Size(1328, 100);
             panel1.TabIndex = 0;
             // 
             // LVolver
@@ -74,9 +74,10 @@
             // 
             // LReporte
             // 
+            LReporte.Anchor = AnchorStyles.Top;
             LReporte.AutoSize = true;
             LReporte.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LReporte.Location = new Point(392, 26);
+            LReporte.Location = new Point(598, 25);
             LReporte.Name = "LReporte";
             LReporte.Size = new Size(155, 37);
             LReporte.TabIndex = 1;
@@ -95,6 +96,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top;
             groupBox1.BackColor = SystemColors.ActiveCaption;
             groupBox1.Controls.Add(BGenerar);
             groupBox1.Controls.Add(RBRecaudacion);
@@ -110,7 +112,7 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(LTextoReporte);
-            groupBox1.Location = new Point(136, 128);
+            groupBox1.Location = new Point(364, 130);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(655, 370);
             groupBox1.TabIndex = 1;
@@ -249,11 +251,12 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(926, 606);
+            ClientSize = new Size(1352, 729);
             Controls.Add(groupBox1);
             Controls.Add(panel1);
             Name = "FormReporte";
             Text = "FormReporte";
+            WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             groupBox1.ResumeLayout(false);

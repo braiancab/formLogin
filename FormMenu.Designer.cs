@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            label2 = new Label();
             LClientes = new Label();
             LProductos = new Label();
-            LRolUser = new Label();
+            LNombreUser = new Label();
             label1 = new Label();
             LReportes = new Label();
+            LRolUser = new Label();
             LCarrito = new Label();
             LUsuarios = new Label();
             LBackup = new Label();
@@ -48,20 +48,18 @@
             BCliente = new Button();
             LTimer = new Label();
             LFecha = new Label();
-            LNombreUser = new Label();
-            LDniUser = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
-            panel1.Controls.Add(label2);
             panel1.Controls.Add(LClientes);
             panel1.Controls.Add(LProductos);
-            panel1.Controls.Add(LRolUser);
+            panel1.Controls.Add(LNombreUser);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(LReportes);
+            panel1.Controls.Add(LRolUser);
             panel1.Controls.Add(LCarrito);
             panel1.Controls.Add(LUsuarios);
             panel1.Controls.Add(LBackup);
@@ -77,16 +75,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1328, 100);
             panel1.TabIndex = 0;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(835, 12);
-            label2.Name = "label2";
-            label2.Size = new Size(55, 21);
-            label2.TabIndex = 14;
-            label2.Text = "Perfil:";
             // 
             // LClientes
             // 
@@ -106,15 +94,15 @@
             LProductos.TabIndex = 12;
             LProductos.Text = "Productos";
             // 
-            // LRolUser
+            // LNombreUser
             // 
-            LRolUser.AutoSize = true;
-            LRolUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LRolUser.Location = new Point(896, 12);
-            LRolUser.Name = "LRolUser";
-            LRolUser.Size = new Size(67, 21);
-            LRolUser.TabIndex = 1;
-            LRolUser.Text = "usuario";
+            LNombreUser.AutoSize = true;
+            LNombreUser.Font = new Font("Georgia", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LNombreUser.Location = new Point(799, 55);
+            LNombreUser.Name = "LNombreUser";
+            LNombreUser.Size = new Size(47, 18);
+            LNombreUser.TabIndex = 3;
+            LNombreUser.Text = "label3";
             // 
             // label1
             // 
@@ -132,6 +120,16 @@
             LReportes.Size = new Size(53, 15);
             LReportes.TabIndex = 11;
             LReportes.Text = "Reportes";
+            // 
+            // LRolUser
+            // 
+            LRolUser.AutoSize = true;
+            LRolUser.Font = new Font("Sitka Heading", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LRolUser.Location = new Point(799, 12);
+            LRolUser.Name = "LRolUser";
+            LRolUser.Size = new Size(76, 28);
+            LRolUser.TabIndex = 1;
+            LRolUser.Text = "usuario";
             // 
             // LCarrito
             // 
@@ -241,40 +239,26 @@
             // 
             // LTimer
             // 
+            LTimer.Anchor = AnchorStyles.Top;
             LTimer.AutoSize = true;
-            LTimer.Font = new Font("Sitka Heading", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTimer.Location = new Point(372, 324);
+            LTimer.Font = new Font("Sitka Heading", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LTimer.ForeColor = SystemColors.Highlight;
+            LTimer.Location = new Point(504, 129);
             LTimer.Name = "LTimer";
-            LTimer.Size = new Size(157, 69);
+            LTimer.Size = new Size(209, 92);
             LTimer.TabIndex = 1;
             LTimer.Text = "label3";
             // 
             // LFecha
             // 
+            LFecha.Anchor = AnchorStyles.Top;
             LFecha.AutoSize = true;
-            LFecha.Location = new Point(389, 421);
+            LFecha.Font = new Font("Sitka Heading", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LFecha.Location = new Point(521, 221);
             LFecha.Name = "LFecha";
-            LFecha.Size = new Size(38, 15);
+            LFecha.Size = new Size(54, 23);
             LFecha.TabIndex = 2;
             LFecha.Text = "label3";
-            // 
-            // LNombreUser
-            // 
-            LNombreUser.AutoSize = true;
-            LNombreUser.Location = new Point(686, 261);
-            LNombreUser.Name = "LNombreUser";
-            LNombreUser.Size = new Size(38, 15);
-            LNombreUser.TabIndex = 3;
-            LNombreUser.Text = "label3";
-            // 
-            // LDniUser
-            // 
-            LDniUser.AutoSize = true;
-            LDniUser.Location = new Point(690, 292);
-            LDniUser.Name = "LDniUser";
-            LDniUser.Size = new Size(38, 15);
-            LDniUser.TabIndex = 4;
-            LDniUser.Text = "label3";
             // 
             // FormMenu
             // 
@@ -282,8 +266,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(1352, 729);
-            Controls.Add(LDniUser);
-            Controls.Add(LNombreUser);
             Controls.Add(LFecha);
             Controls.Add(LTimer);
             Controls.Add(panel1);
@@ -316,10 +298,8 @@
         private Label LSalir;
         private Label label1;
         private Label LRolUser;
-        private Label label2;
         private Label LTimer;
         private Label LFecha;
         private Label LNombreUser;
-        private Label LDniUser;
     }
 }

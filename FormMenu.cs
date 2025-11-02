@@ -35,9 +35,9 @@ namespace formLogin
             LFecha.Text = DateTime.Now.ToLongDateString();
 
 
-            LNombreUser.Text = _usuario.Nombre + " " + _usuario.Apellido;   
-            LDniUser.Text = _usuario.Dni;
-            LRolUser.Text = _usuario.Rol;   
+            LNombreUser.Text = _usuario.Nombre + " " + _usuario.Apellido+ " " + _usuario.Dni;
+          
+            LRolUser.Text = _usuario.Rol;
             if (_usuario.Rol == "Admin")
             {
                 //Botones por rol
@@ -56,7 +56,7 @@ namespace formLogin
                 LUsuarios.Enabled = true;
                 LProductos.Enabled = false;
                 LReportes.Enabled = true;
-              
+
             }
             else if (_usuario.Rol == "Vendedor")
             {
@@ -76,7 +76,7 @@ namespace formLogin
                 LUsuarios.Enabled = false;
                 LProductos.Enabled = true;
                 LReportes.Enabled = true;
-           
+
             }
             else if (_usuario.Rol == "Gerente")
             {
@@ -96,15 +96,15 @@ namespace formLogin
                 LUsuarios.Enabled = false;
                 LProductos.Enabled = false;
                 LReportes.Enabled = true;
-              
+
             }
 
-         
+
         }
 
         public void hora(object sender, EventArgs e)
         {
-           LTimer.Text= DateTime.Now.ToString("HH : mm : ss");
+            LTimer.Text = DateTime.Now.ToString("HH : mm : ss");
         }
 
 
@@ -158,6 +158,6 @@ namespace formLogin
             this.Hide();
         }
 
-        
+     
     }
 }

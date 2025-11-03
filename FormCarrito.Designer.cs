@@ -33,16 +33,28 @@
             LVolver = new Label();
             BSalir = new Button();
             panel2 = new Panel();
-            comboBox1 = new ComboBox();
+            LFecha = new Label();
             LNombreVendedor = new Label();
             BNuevoCliente = new Button();
             comboBox2 = new ComboBox();
             LCliente = new Label();
             LVendedor = new Label();
+            comboBox1 = new ComboBox();
             BGuardar = new Button();
             BCancelar = new Button();
+            panel3 = new Panel();
+            TTalle = new TextBox();
+            LTalle = new Label();
+            TPrecio = new TextBox();
+            LPrecio = new Label();
+            TStock = new TextBox();
+            LStock = new Label();
+            TCantidad = new TextBox();
+            label2 = new Label();
+            label1 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -88,23 +100,25 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(LFecha);
             panel2.Controls.Add(LNombreVendedor);
             panel2.Controls.Add(BNuevoCliente);
             panel2.Controls.Add(comboBox2);
             panel2.Controls.Add(LCliente);
             panel2.Controls.Add(LVendedor);
-            panel2.Location = new Point(303, 118);
+            panel2.Location = new Point(337, 118);
             panel2.Name = "panel2";
             panel2.Size = new Size(595, 104);
             panel2.TabIndex = 1;
             // 
-            // comboBox1
+            // LFecha
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(456, 392);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 21;
+            LFecha.AutoSize = true;
+            LFecha.Location = new Point(353, 12);
+            LFecha.Name = "LFecha";
+            LFecha.Size = new Size(38, 15);
+            LFecha.TabIndex = 21;
+            LFecha.Text = "Fecha";
             // 
             // LNombreVendedor
             // 
@@ -129,7 +143,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(134, 54);
+            comboBox2.Location = new Point(147, 54);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(330, 23);
             comboBox2.TabIndex = 3;
@@ -152,6 +166,15 @@
             LVendedor.TabIndex = 0;
             LVendedor.Text = "Vendedor: ";
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(147, 29);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(362, 23);
+            comboBox1.TabIndex = 21;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
             // BGuardar
             // 
             BGuardar.Location = new Point(791, 461);
@@ -170,25 +193,118 @@
             BCancelar.Text = "Cancelar";
             BCancelar.UseVisualStyleBackColor = true;
             // 
+            // panel3
+            // 
+            panel3.BackColor = SystemColors.ActiveCaption;
+            panel3.Controls.Add(TTalle);
+            panel3.Controls.Add(LTalle);
+            panel3.Controls.Add(TPrecio);
+            panel3.Controls.Add(LPrecio);
+            panel3.Controls.Add(TStock);
+            panel3.Controls.Add(LStock);
+            panel3.Controls.Add(TCantidad);
+            panel3.Controls.Add(label2);
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(comboBox1);
+            panel3.Location = new Point(337, 228);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(595, 227);
+            panel3.TabIndex = 22;
+            // 
+            // TTalle
+            // 
+            TTalle.Location = new Point(409, 74);
+            TTalle.Name = "TTalle";
+            TTalle.Size = new Size(100, 23);
+            TTalle.TabIndex = 31;
+            // 
+            // LTalle
+            // 
+            LTalle.AutoSize = true;
+            LTalle.Location = new Point(367, 77);
+            LTalle.Name = "LTalle";
+            LTalle.Size = new Size(36, 15);
+            LTalle.TabIndex = 30;
+            LTalle.Text = "Talle: ";
+            // 
+            // TPrecio
+            // 
+            TPrecio.Location = new Point(240, 74);
+            TPrecio.Name = "TPrecio";
+            TPrecio.Size = new Size(100, 23);
+            TPrecio.TabIndex = 29;
+            // 
+            // LPrecio
+            // 
+            LPrecio.AutoSize = true;
+            LPrecio.Location = new Point(188, 77);
+            LPrecio.Name = "LPrecio";
+            LPrecio.Size = new Size(46, 15);
+            LPrecio.TabIndex = 28;
+            LPrecio.Text = "Precio: ";
+            // 
+            // TStock
+            // 
+            TStock.Location = new Point(61, 74);
+            TStock.Name = "TStock";
+            TStock.Size = new Size(100, 23);
+            TStock.TabIndex = 27;
+            // 
+            // LStock
+            // 
+            LStock.AutoSize = true;
+            LStock.Location = new Point(13, 77);
+            LStock.Name = "LStock";
+            LStock.Size = new Size(42, 15);
+            LStock.TabIndex = 26;
+            LStock.Text = "Stock: ";
+            // 
+            // TCantidad
+            // 
+            TCantidad.Location = new Point(13, 191);
+            TCantidad.Name = "TCantidad";
+            TCantidad.Size = new Size(100, 23);
+            TCantidad.TabIndex = 25;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(13, 173);
+            label2.Name = "label2";
+            label2.Size = new Size(61, 15);
+            label2.TabIndex = 24;
+            label2.Text = "Cantidad: ";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(13, 32);
+            label1.Name = "label1";
+            label1.Size = new Size(121, 15);
+            label1.TabIndex = 23;
+            label1.Text = "Seleccione producto: ";
+            // 
             // FormCarrito
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(1352, 729);
-            Controls.Add(comboBox1);
+            Controls.Add(panel3);
             Controls.Add(BCancelar);
             Controls.Add(BGuardar);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FormCarrito";
-            Text = "FormCarrito";
+            Text = "ma";
             WindowState = FormWindowState.Maximized;
             Load += FormCarrito_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -207,5 +323,16 @@
         private Button BNuevoCliente;
         private Label LNombreVendedor;
         private ComboBox comboBox1;
+        private Label LFecha;
+        private Panel panel3;
+        private Label label1;
+        private Label label2;
+        private TextBox TCantidad;
+        private TextBox TStock;
+        private Label LStock;
+        private TextBox TPrecio;
+        private Label LPrecio;
+        private TextBox TTalle;
+        private Label LTalle;
     }
 }

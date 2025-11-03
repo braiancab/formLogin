@@ -40,7 +40,7 @@
             LCliente = new Label();
             LVendedor = new Label();
             comboBox1 = new ComboBox();
-            BGuardar = new Button();
+            BFinalizar = new Button();
             BCancelar = new Button();
             panel3 = new Panel();
             LTotal = new Label();
@@ -59,9 +59,11 @@
             label1 = new Label();
             panel4 = new Panel();
             dataGridView1 = new DataGridView();
+            TTotalVenta = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
+            panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -183,23 +185,25 @@
             comboBox1.TabIndex = 21;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // BGuardar
+            // BFinalizar
             // 
-            BGuardar.Location = new Point(765, 542);
-            BGuardar.Name = "BGuardar";
-            BGuardar.Size = new Size(75, 23);
-            BGuardar.TabIndex = 2;
-            BGuardar.Text = "Guardar";
-            BGuardar.UseVisualStyleBackColor = true;
+            BFinalizar.Location = new Point(414, 26);
+            BFinalizar.Name = "BFinalizar";
+            BFinalizar.Size = new Size(75, 23);
+            BFinalizar.TabIndex = 2;
+            BFinalizar.Text = "Finalizar";
+            BFinalizar.UseVisualStyleBackColor = true;
+            BFinalizar.Click += BFinalizar_Click;
             // 
             // BCancelar
             // 
-            BCancelar.Location = new Point(857, 542);
+            BCancelar.Location = new Point(506, 26);
             BCancelar.Name = "BCancelar";
             BCancelar.Size = new Size(75, 23);
             BCancelar.TabIndex = 3;
             BCancelar.Text = "Cancelar";
             BCancelar.UseVisualStyleBackColor = true;
+            BCancelar.Click += BCancelar_Click;
             // 
             // panel3
             // 
@@ -252,7 +256,7 @@
             // 
             // TTalle
             // 
-            TTalle.Location = new Point(481, 74);
+            TTalle.Location = new Point(377, 90);
             TTalle.Name = "TTalle";
             TTalle.Size = new Size(100, 23);
             TTalle.TabIndex = 31;
@@ -263,6 +267,7 @@
             TDescuento.Name = "TDescuento";
             TDescuento.Size = new Size(100, 23);
             TDescuento.TabIndex = 27;
+            TDescuento.TextChanged += TDescuento_TextChanged;
             // 
             // LDescuento
             // 
@@ -276,7 +281,7 @@
             // LTalle
             // 
             LTalle.AutoSize = true;
-            LTalle.Location = new Point(439, 77);
+            LTalle.Location = new Point(377, 72);
             LTalle.Name = "LTalle";
             LTalle.Size = new Size(36, 15);
             LTalle.TabIndex = 30;
@@ -284,7 +289,7 @@
             // 
             // TPrecio
             // 
-            TPrecio.Location = new Point(276, 74);
+            TPrecio.Location = new Point(222, 90);
             TPrecio.Name = "TPrecio";
             TPrecio.Size = new Size(100, 23);
             TPrecio.TabIndex = 29;
@@ -295,6 +300,7 @@
             TCantidad.Name = "TCantidad";
             TCantidad.Size = new Size(100, 23);
             TCantidad.TabIndex = 25;
+            TCantidad.TextChanged += TCantidad_TextChanged;
             // 
             // label2
             // 
@@ -308,7 +314,7 @@
             // LPrecio
             // 
             LPrecio.AutoSize = true;
-            LPrecio.Location = new Point(224, 77);
+            LPrecio.Location = new Point(222, 72);
             LPrecio.Name = "LPrecio";
             LPrecio.Size = new Size(46, 15);
             LPrecio.TabIndex = 28;
@@ -316,7 +322,7 @@
             // 
             // TStock
             // 
-            TStock.Location = new Point(61, 74);
+            TStock.Location = new Point(61, 90);
             TStock.Name = "TStock";
             TStock.Size = new Size(100, 23);
             TStock.TabIndex = 27;
@@ -324,7 +330,7 @@
             // LStock
             // 
             LStock.AutoSize = true;
-            LStock.Location = new Point(13, 78);
+            LStock.Location = new Point(61, 72);
             LStock.Name = "LStock";
             LStock.Size = new Size(42, 15);
             LStock.TabIndex = 26;
@@ -342,9 +348,12 @@
             // panel4
             // 
             panel4.BackColor = SystemColors.ActiveCaption;
+            panel4.Controls.Add(TTotalVenta);
+            panel4.Controls.Add(BCancelar);
+            panel4.Controls.Add(BFinalizar);
             panel4.Location = new Point(53, 450);
             panel4.Name = "panel4";
-            panel4.Size = new Size(595, 67);
+            panel4.Size = new Size(1259, 67);
             panel4.TabIndex = 26;
             // 
             // dataGridView1
@@ -355,6 +364,13 @@
             dataGridView1.Size = new Size(608, 291);
             dataGridView1.TabIndex = 27;
             // 
+            // TTotalVenta
+            // 
+            TTotalVenta.Location = new Point(1139, 27);
+            TTotalVenta.Name = "TTotalVenta";
+            TTotalVenta.Size = new Size(100, 23);
+            TTotalVenta.TabIndex = 28;
+            // 
             // FormCarrito
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -364,8 +380,6 @@
             Controls.Add(dataGridView1);
             Controls.Add(panel4);
             Controls.Add(panel3);
-            Controls.Add(BCancelar);
-            Controls.Add(BGuardar);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FormCarrito";
@@ -378,6 +392,8 @@
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
@@ -392,7 +408,7 @@
         private Label LVendedor;
         private ComboBox comboBox2;
         private Label LCliente;
-        private Button BGuardar;
+        private Button BFinalizar;
         private Button BCancelar;
         private Button BNuevoCliente;
         private Label LNombreVendedor;
@@ -415,5 +431,6 @@
         private Label LDescuento;
         private Button BAgregar;
         private DataGridView dataGridView1;
+        private TextBox TTotalVenta;
     }
 }

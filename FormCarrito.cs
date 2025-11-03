@@ -59,6 +59,7 @@ namespace formLogin
 
             string query = "SELECT id_producto,nombre,descripcion,precio,stock,color,talle,categoria FROM Productos WHERE stock > 0";
 
+         
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
@@ -115,12 +116,12 @@ namespace formLogin
 
         private bool ValidarCampos()
         {
-            if (string.IsNullOrWhiteSpace(TCantidad.Text) || string.IsNullOrWhiteSpace(TDescuento.Text))
+            if (string.IsNullOrWhiteSpace(TCantidad.Text))
             {
                 MessageBox.Show("El campo cantidad es obligatorio");
-                return false;   
+                return false;
             }
-        
+
 
             if (comboBox2.SelectedIndex == -1)
             {
@@ -148,6 +149,7 @@ namespace formLogin
                 TStock.Text = filaSeleccionada["stock"].ToString();
                 TPrecio.Text = filaSeleccionada["precio"].ToString();
                 TTalle.Text = filaSeleccionada["talle"].ToString();
+                CalcularTotal(); // calcula automáticamente el total
             }
             else
             {
@@ -159,7 +161,7 @@ namespace formLogin
 
         private void BAgregar_Click(object sender, EventArgs e)
         {
-            if(!ValidarCampos())
+            if (!ValidarCampos())
                 return;
 
             DataRowView fila = comboBox1.SelectedItem as DataRowView;
@@ -178,18 +180,170 @@ namespace formLogin
 
             // Agregamos la fila al carrito
             carrito.Rows.Add(id, nombre, precio, cantidad, descuento, total);
+            ActualizarTotalVenta();
             limpiarCampos();
         }
 
         private void limpiarCampos()
         {
             comboBox1.SelectedIndex = -1;
-          
+
             TCantidad.Clear();
             TDescuento.Clear();
             TPrecio.Clear();
             TStock.Clear();
             TTalle.Clear();
+        }
+
+        private void CalcularTotal()
+        {
+            if (decimal.TryParse(TPrecio.Text, out decimal precio) &&
+                int.TryParse(TCantidad.Text, out int cantidad))
+            {
+                decimal descuento = 0;
+                if (!string.IsNullOrEmpty(TDescuento.Text))
+                    decimal.TryParse(TDescuento.Text, out descuento);
+
+                decimal total = (precio * cantidad) - descuento;
+                TTotal.Text = total.ToString("0.00");
+            }
+            else
+            {
+                TTotal.Text = "0.00";
+            }
+        }
+
+        private void TCantidad_TextChanged(object sender, EventArgs e)
+        {
+            CalcularTotal();
+            if (int.TryParse(TCantidad.Text, out int cantidad) &&
+       int.TryParse(TStock.Text, out int stock))
+            {
+                if (cantidad > stock)
+                {
+                    MessageBox.Show("La cantidad supera el stock disponible.",
+                                    "Stock insuficiente",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    TCantidad.Text = stock.ToString();
+                }
+            }
+        }
+
+        private void TDescuento_TextChanged(object sender, EventArgs e)
+        {
+            CalcularTotal();
+            if (string.IsNullOrEmpty(TDescuento.Text))
+            {
+                TDescuento.Text = "0.00";
+            }
+        }
+
+        private void BFinalizar_Click(object sender, EventArgs e)
+        {
+            if (carrito.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe agregar al menos un producto antes de finalizar.");
+                return;
+            }
+            int idCliente = Convert.ToInt32(comboBox2.SelectedValue);
+            int idUsuario = _usuario.Id;
+            decimal totalVenta = carrito.AsEnumerable().Sum(r => r.Field<decimal>("Total"));
+            DateTime fecha = DateTime.Now;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    // 1️⃣ Insertar la cabecera de la venta
+                    string queryVenta = @"INSERT INTO Venta (id_cliente, id_usuario, fecha, total)
+                                  VALUES (@id_cliente, @id_usuario, @fecha, @total);
+                                  SELECT SCOPE_IDENTITY();";
+
+                    SqlCommand cmdVenta = new SqlCommand(queryVenta, conn, transaction);
+                    cmdVenta.Parameters.AddWithValue("@id_cliente", idCliente);
+                    cmdVenta.Parameters.AddWithValue("@id_usuario", idUsuario);
+                    cmdVenta.Parameters.AddWithValue("@fecha", fecha);
+                    cmdVenta.Parameters.AddWithValue("@total", totalVenta);
+
+                    int idVenta = Convert.ToInt32(cmdVenta.ExecuteScalar()); // ← obtenemos el id_venta generado
+
+                    // 2️⃣ Insertar cada producto del carrito
+                    string queryDetalle = @"INSERT INTO DetalleVenta (id_venta, id_producto, cantidad, precio, descuento, total)
+                                    VALUES (@id_venta, @id_producto, @cantidad, @precio, @descuento, @total)";
+
+                    foreach (DataRow fila in carrito.Rows)
+                    {
+                        SqlCommand cmdDetalle = new SqlCommand(queryDetalle, conn, transaction);
+                        cmdDetalle.Parameters.AddWithValue("@id_venta", idVenta);
+                        cmdDetalle.Parameters.AddWithValue("@id_producto", fila["ID"]);
+                        cmdDetalle.Parameters.AddWithValue("@cantidad", fila["Cantidad"]);
+
+                        cmdDetalle.Parameters.AddWithValue("@precio", fila["Precio"]);
+                        cmdDetalle.Parameters.AddWithValue("@descuento", fila["Descuento"]);
+                        cmdDetalle.Parameters.AddWithValue("@total", fila["Total"]);
+                        cmdDetalle.ExecuteNonQuery();
+
+                        // 🔽 3️⃣ Descontar stock del producto
+                        SqlCommand cmdStock = new SqlCommand(
+                            "UPDATE Productos SET stock = stock - @cantidad WHERE id_producto = @id_producto",
+                            conn, transaction);
+                        
+                        cmdStock.Parameters.AddWithValue("@cantidad", Convert.ToInt32(fila["Cantidad"]));
+                        cmdStock.Parameters.AddWithValue("@id_producto", Convert.ToInt32(fila["ID"]));
+                        cmdStock.ExecuteNonQuery();
+                    }
+
+                    // ✅ Confirmamos toda la transacción
+                    transaction.Commit();
+                    cargarProductos();
+                    MessageBox.Show("Venta guardada correctamente.");
+
+                    carrito.Clear(); // Limpiamos el carrito
+                    comboBox2.SelectedIndex = -1;
+                    comboBox2.Text = "Seleccione un Cliente...";
+
+                    // 🔄 🔹 Volver a cargar los productos disponibles
+                   
+                    comboBox1.SelectedIndex = -1;
+                    comboBox1.Text = "Seleccione un producto...";
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show("Error al guardar la venta: " + ex.Message);
+                }
+            }
+        }
+
+
+
+        private void ActualizarTotalVenta()
+        {
+            if (carrito.Rows.Count > 0)
+            {
+                decimal total = carrito.AsEnumerable().Sum(r => r.Field<decimal>("Total"));
+                TTotalVenta.Text = total.ToString("0.00");
+            }
+            else
+            {
+                TTotalVenta.Text = "0.00";
+            }
+        }
+
+        private void BCancelar_Click(object sender, EventArgs e)
+        {
+            // 🔹 1. Limpiar el DataGridView (carrito)
+            //dgvCarrito.Rows.Clear();   // si lo llenás manualmente
+            carrito.Clear();        // si usás un DataTable como DataSource
+
+            limpiarCampos();
+            // 🔹 4. Limpiar total general
+            TTotalVenta.Text = "0.00";
+
         }
     }
 

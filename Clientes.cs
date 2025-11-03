@@ -130,10 +130,7 @@ namespace formLogin
                 carrito.cargarClientes();  // recarga los datos del combo
                 carrito.Show();            // muestra el carrito nuevamente
             }
-            else
-            {
-                _FormAnterior.Show();      // por si se abrió desde otro formulario
-            }
+        
 
         }
 
@@ -234,8 +231,14 @@ namespace formLogin
             cargarDatos();
           
             limpiarCampos();
+            // Volvemos al formulario anterior
+            if (_FormAnterior is FormCarrito carrito)
+            {
+                carrito.cargarClientes();  // recarga los datos del combo
+                carrito.Show();            // muestra el carrito nuevamente
+            }
 
-          
+
         }
 
         private void BVaciar_Click(object sender, EventArgs e)
@@ -271,6 +274,8 @@ namespace formLogin
                     BActivar.Visible = false; // ocultar si ya está activo
                 }
             }
+         
+
         }
 
         private void BEliminar_Click(object sender, EventArgs e)
@@ -318,6 +323,13 @@ namespace formLogin
               
                 BActivar.Visible = false; // ocultar el botón otra vez
             }
+            // Volvemos al formulario anterior
+            if (_FormAnterior is FormCarrito carrito)
+            {
+                carrito.cargarClientes();  // recarga los datos del combo
+                carrito.Show();            // muestra el carrito nuevamente
+            }
+
         }
 
         private void BFiltrar_Click(object sender, EventArgs e)

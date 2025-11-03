@@ -43,24 +43,26 @@
             BGuardar = new Button();
             BCancelar = new Button();
             panel3 = new Panel();
+            LTotal = new Label();
+            BAgregar = new Button();
+            TTotal = new TextBox();
             TTalle = new TextBox();
+            TDescuento = new TextBox();
+            LDescuento = new Label();
             LTalle = new Label();
             TPrecio = new TextBox();
+            TCantidad = new TextBox();
+            label2 = new Label();
             LPrecio = new Label();
             TStock = new TextBox();
             LStock = new Label();
-            TCantidad = new TextBox();
-            label2 = new Label();
             label1 = new Label();
             panel4 = new Panel();
-            LDescuento = new Label();
-            textBox1 = new TextBox();
-            TTotal = new TextBox();
-            LTotal = new Label();
-            BAgregar = new Button();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -112,7 +114,7 @@
             panel2.Controls.Add(comboBox2);
             panel2.Controls.Add(LCliente);
             panel2.Controls.Add(LVendedor);
-            panel2.Location = new Point(337, 118);
+            panel2.Location = new Point(53, 128);
             panel2.Name = "panel2";
             panel2.Size = new Size(595, 104);
             panel2.TabIndex = 1;
@@ -206,7 +208,7 @@
             panel3.Controls.Add(BAgregar);
             panel3.Controls.Add(TTotal);
             panel3.Controls.Add(TTalle);
-            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(TDescuento);
             panel3.Controls.Add(LDescuento);
             panel3.Controls.Add(LTalle);
             panel3.Controls.Add(TPrecio);
@@ -217,10 +219,36 @@
             panel3.Controls.Add(LStock);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(comboBox1);
-            panel3.Location = new Point(337, 228);
+            panel3.Location = new Point(53, 238);
             panel3.Name = "panel3";
             panel3.Size = new Size(595, 183);
             panel3.TabIndex = 22;
+            // 
+            // LTotal
+            // 
+            LTotal.AutoSize = true;
+            LTotal.Location = new Point(377, 130);
+            LTotal.Name = "LTotal";
+            LTotal.Size = new Size(35, 15);
+            LTotal.TabIndex = 29;
+            LTotal.Text = "Total:";
+            // 
+            // BAgregar
+            // 
+            BAgregar.Location = new Point(506, 148);
+            BAgregar.Name = "BAgregar";
+            BAgregar.Size = new Size(75, 23);
+            BAgregar.TabIndex = 32;
+            BAgregar.Text = "Agregar";
+            BAgregar.UseVisualStyleBackColor = true;
+            BAgregar.Click += BAgregar_Click;
+            // 
+            // TTotal
+            // 
+            TTotal.Location = new Point(377, 148);
+            TTotal.Name = "TTotal";
+            TTotal.Size = new Size(100, 23);
+            TTotal.TabIndex = 28;
             // 
             // TTalle
             // 
@@ -228,6 +256,22 @@
             TTalle.Name = "TTalle";
             TTalle.Size = new Size(100, 23);
             TTalle.TabIndex = 31;
+            // 
+            // TDescuento
+            // 
+            TDescuento.Location = new Point(222, 148);
+            TDescuento.Name = "TDescuento";
+            TDescuento.Size = new Size(100, 23);
+            TDescuento.TabIndex = 27;
+            // 
+            // LDescuento
+            // 
+            LDescuento.AutoSize = true;
+            LDescuento.Location = new Point(222, 130);
+            LDescuento.Name = "LDescuento";
+            LDescuento.Size = new Size(66, 15);
+            LDescuento.TabIndex = 26;
+            LDescuento.Text = "Descuento:";
             // 
             // LTalle
             // 
@@ -244,6 +288,22 @@
             TPrecio.Name = "TPrecio";
             TPrecio.Size = new Size(100, 23);
             TPrecio.TabIndex = 29;
+            // 
+            // TCantidad
+            // 
+            TCantidad.Location = new Point(61, 148);
+            TCantidad.Name = "TCantidad";
+            TCantidad.Size = new Size(100, 23);
+            TCantidad.TabIndex = 25;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(61, 130);
+            label2.Name = "label2";
+            label2.Size = new Size(61, 15);
+            label2.TabIndex = 24;
+            label2.Text = "Cantidad: ";
             // 
             // LPrecio
             // 
@@ -270,22 +330,6 @@
             LStock.TabIndex = 26;
             LStock.Text = "Stock: ";
             // 
-            // TCantidad
-            // 
-            TCantidad.Location = new Point(61, 148);
-            TCantidad.Name = "TCantidad";
-            TCantidad.Size = new Size(100, 23);
-            TCantidad.TabIndex = 25;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(61, 130);
-            label2.Name = "label2";
-            label2.Size = new Size(61, 15);
-            label2.TabIndex = 24;
-            label2.Text = "Cantidad: ";
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -298,51 +342,18 @@
             // panel4
             // 
             panel4.BackColor = SystemColors.ActiveCaption;
-            panel4.Location = new Point(337, 440);
+            panel4.Location = new Point(53, 450);
             panel4.Name = "panel4";
             panel4.Size = new Size(595, 67);
             panel4.TabIndex = 26;
             // 
-            // LDescuento
+            // dataGridView1
             // 
-            LDescuento.AutoSize = true;
-            LDescuento.Location = new Point(222, 130);
-            LDescuento.Name = "LDescuento";
-            LDescuento.Size = new Size(66, 15);
-            LDescuento.TabIndex = 26;
-            LDescuento.Text = "Descuento:";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(222, 148);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 27;
-            // 
-            // TTotal
-            // 
-            TTotal.Location = new Point(377, 148);
-            TTotal.Name = "TTotal";
-            TTotal.Size = new Size(100, 23);
-            TTotal.TabIndex = 28;
-            // 
-            // LTotal
-            // 
-            LTotal.AutoSize = true;
-            LTotal.Location = new Point(377, 130);
-            LTotal.Name = "LTotal";
-            LTotal.Size = new Size(35, 15);
-            LTotal.TabIndex = 29;
-            LTotal.Text = "Total:";
-            // 
-            // BAgregar
-            // 
-            BAgregar.Location = new Point(506, 148);
-            BAgregar.Name = "BAgregar";
-            BAgregar.Size = new Size(75, 23);
-            BAgregar.TabIndex = 32;
-            BAgregar.Text = "Agregar";
-            BAgregar.UseVisualStyleBackColor = true;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(704, 128);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(608, 291);
+            dataGridView1.TabIndex = 27;
             // 
             // FormCarrito
             // 
@@ -350,6 +361,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(1352, 729);
+            Controls.Add(dataGridView1);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(BCancelar);
@@ -366,6 +378,7 @@
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -398,8 +411,9 @@
         private Panel panel4;
         private Label LTotal;
         private TextBox TTotal;
-        private TextBox textBox1;
+        private TextBox TDescuento;
         private Label LDescuento;
         private Button BAgregar;
+        private DataGridView dataGridView1;
     }
 }

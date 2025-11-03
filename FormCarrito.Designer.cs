@@ -33,22 +33,9 @@
             LVolver = new Label();
             BSalir = new Button();
             panel2 = new Panel();
-            BNuevoCliente = new Button();
-            LPrecioTotal = new Label();
-            LTotal = new Label();
             comboBox1 = new ComboBox();
-            LFactura = new Label();
-            textBox1 = new TextBox();
-            LStock = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            LFecha = new Label();
-            TVendedor = new TextBox();
-            numericUpDown1 = new NumericUpDown();
-            LCantidad = new Label();
-            TDescripcion = new TextBox();
-            LDescripcion = new Label();
-            comboBox3 = new ComboBox();
-            LProductos = new Label();
+            LNombreVendedor = new Label();
+            BNuevoCliente = new Button();
             comboBox2 = new ComboBox();
             LCliente = new Label();
             LVendedor = new Label();
@@ -56,7 +43,6 @@
             BCancelar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -102,176 +88,56 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(LNombreVendedor);
             panel2.Controls.Add(BNuevoCliente);
-            panel2.Controls.Add(LPrecioTotal);
-            panel2.Controls.Add(LTotal);
-            panel2.Controls.Add(comboBox1);
-            panel2.Controls.Add(LFactura);
-            panel2.Controls.Add(textBox1);
-            panel2.Controls.Add(LStock);
-            panel2.Controls.Add(dateTimePicker1);
-            panel2.Controls.Add(LFecha);
-            panel2.Controls.Add(TVendedor);
-            panel2.Controls.Add(numericUpDown1);
-            panel2.Controls.Add(LCantidad);
-            panel2.Controls.Add(TDescripcion);
-            panel2.Controls.Add(LDescripcion);
-            panel2.Controls.Add(comboBox3);
-            panel2.Controls.Add(LProductos);
             panel2.Controls.Add(comboBox2);
             panel2.Controls.Add(LCliente);
             panel2.Controls.Add(LVendedor);
             panel2.Location = new Point(303, 118);
             panel2.Name = "panel2";
-            panel2.Size = new Size(655, 232);
+            panel2.Size = new Size(595, 104);
             panel2.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(456, 392);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 21;
+            // 
+            // LNombreVendedor
+            // 
+            LNombreVendedor.AutoSize = true;
+            LNombreVendedor.Location = new Point(84, 12);
+            LNombreVendedor.Name = "LNombreVendedor";
+            LNombreVendedor.Size = new Size(38, 15);
+            LNombreVendedor.TabIndex = 20;
+            LNombreVendedor.Text = "label1";
             // 
             // BNuevoCliente
             // 
             BNuevoCliente.BackColor = Color.MintCream;
             BNuevoCliente.Image = Properties.Resources.nueva_cuenta__1_;
-            BNuevoCliente.Location = new Point(541, 9);
+            BNuevoCliente.Location = new Point(506, 54);
             BNuevoCliente.Name = "BNuevoCliente";
             BNuevoCliente.Size = new Size(75, 23);
             BNuevoCliente.TabIndex = 19;
             BNuevoCliente.UseVisualStyleBackColor = false;
             BNuevoCliente.Click += BNuevoCliente_Click;
             // 
-            // LPrecioTotal
-            // 
-            LPrecioTotal.AutoSize = true;
-            LPrecioTotal.Location = new Point(337, 207);
-            LPrecioTotal.Name = "LPrecioTotal";
-            LPrecioTotal.Size = new Size(43, 15);
-            LPrecioTotal.TabIndex = 18;
-            LPrecioTotal.Text = " Precio";
-            // 
-            // LTotal
-            // 
-            LTotal.AutoSize = true;
-            LTotal.Location = new Point(284, 207);
-            LTotal.Name = "LTotal";
-            LTotal.Size = new Size(47, 15);
-            LTotal.TabIndex = 17;
-            LTotal.Text = "Total $: ";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(337, 128);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(200, 23);
-            comboBox1.TabIndex = 16;
-            // 
-            // LFactura
-            // 
-            LFactura.AutoSize = true;
-            LFactura.Location = new Point(259, 136);
-            LFactura.Name = "LFactura";
-            LFactura.Size = new Size(76, 15);
-            LFactura.TabIndex = 15;
-            LFactura.Text = "Factura tipo: ";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(128, 128);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(120, 23);
-            textBox1.TabIndex = 14;
-            // 
-            // LStock
-            // 
-            LStock.AutoSize = true;
-            LStock.Location = new Point(0, 131);
-            LStock.Name = "LStock";
-            LStock.Size = new Size(42, 15);
-            LStock.TabIndex = 13;
-            LStock.Text = "Stock: ";
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(337, 90);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 12;
-            // 
-            // LFecha
-            // 
-            LFecha.AutoSize = true;
-            LFecha.Location = new Point(259, 96);
-            LFecha.Name = "LFecha";
-            LFecha.Size = new Size(44, 15);
-            LFecha.TabIndex = 11;
-            LFecha.Text = "Fecha: ";
-            // 
-            // TVendedor
-            // 
-            TVendedor.Location = new Point(69, 9);
-            TVendedor.Name = "TVendedor";
-            TVendedor.Size = new Size(180, 23);
-            TVendedor.TabIndex = 10;
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(128, 88);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(120, 23);
-            numericUpDown1.TabIndex = 9;
-            // 
-            // LCantidad
-            // 
-            LCantidad.AutoSize = true;
-            LCantidad.Location = new Point(0, 90);
-            LCantidad.Name = "LCantidad";
-            LCantidad.Size = new Size(61, 15);
-            LCantidad.TabIndex = 8;
-            LCantidad.Text = "Cantidad: ";
-            // 
-            // TDescripcion
-            // 
-            TDescripcion.Location = new Point(337, 49);
-            TDescripcion.Name = "TDescripcion";
-            TDescripcion.Size = new Size(299, 23);
-            TDescripcion.TabIndex = 7;
-            // 
-            // LDescripcion
-            // 
-            LDescripcion.AutoSize = true;
-            LDescripcion.Location = new Point(256, 52);
-            LDescripcion.Name = "LDescripcion";
-            LDescripcion.Size = new Size(75, 15);
-            LDescripcion.TabIndex = 6;
-            LDescripcion.Text = "Descripcion: ";
-            // 
-            // comboBox3
-            // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(128, 49);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(121, 23);
-            comboBox3.TabIndex = 5;
-            // 
-            // LProductos
-            // 
-            LProductos.AutoSize = true;
-            LProductos.Location = new Point(0, 52);
-            LProductos.Name = "LProductos";
-            LProductos.Size = new Size(121, 15);
-            LProductos.TabIndex = 4;
-            LProductos.Text = "Seleccione Producto: ";
-            // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(374, 9);
+            comboBox2.Location = new Point(134, 54);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
+            comboBox2.Size = new Size(330, 23);
             comboBox2.TabIndex = 3;
             // 
             // LCliente
             // 
             LCliente.AutoSize = true;
-            LCliente.Location = new Point(259, 12);
+            LCliente.Location = new Point(13, 58);
             LCliente.Name = "LCliente";
             LCliente.Size = new Size(109, 15);
             LCliente.TabIndex = 2;
@@ -280,7 +146,7 @@
             // LVendedor
             // 
             LVendedor.AutoSize = true;
-            LVendedor.Location = new Point(0, 12);
+            LVendedor.Location = new Point(13, 12);
             LVendedor.Name = "LVendedor";
             LVendedor.Size = new Size(63, 15);
             LVendedor.TabIndex = 0;
@@ -288,7 +154,7 @@
             // 
             // BGuardar
             // 
-            BGuardar.Location = new Point(791, 369);
+            BGuardar.Location = new Point(791, 461);
             BGuardar.Name = "BGuardar";
             BGuardar.Size = new Size(75, 23);
             BGuardar.TabIndex = 2;
@@ -297,7 +163,7 @@
             // 
             // BCancelar
             // 
-            BCancelar.Location = new Point(883, 369);
+            BCancelar.Location = new Point(883, 461);
             BCancelar.Name = "BCancelar";
             BCancelar.Size = new Size(75, 23);
             BCancelar.TabIndex = 3;
@@ -310,6 +176,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(1352, 729);
+            Controls.Add(comboBox1);
             Controls.Add(BCancelar);
             Controls.Add(BGuardar);
             Controls.Add(panel2);
@@ -322,7 +189,6 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
         }
 
@@ -336,23 +202,10 @@
         private Label LVendedor;
         private ComboBox comboBox2;
         private Label LCliente;
-        private TextBox TDescripcion;
-        private Label LDescripcion;
-        private ComboBox comboBox3;
-        private Label LProductos;
-        private TextBox TVendedor;
-        private NumericUpDown numericUpDown1;
-        private Label LCantidad;
-        private ComboBox comboBox1;
-        private Label LFactura;
-        private TextBox textBox1;
-        private Label LStock;
-        private DateTimePicker dateTimePicker1;
-        private Label LFecha;
         private Button BGuardar;
         private Button BCancelar;
-        private Label LPrecioTotal;
-        private Label LTotal;
         private Button BNuevoCliente;
+        private Label LNombreVendedor;
+        private ComboBox comboBox1;
     }
 }

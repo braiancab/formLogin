@@ -17,7 +17,6 @@ namespace formLogin
 {
     public partial class Clientes : Form
     {
-
         private Form _FormAnterior;
         //Conectar con base de datos
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=BD_TALLER;Trusted_Connection=True;TrustServerCertificate=True;";
@@ -25,12 +24,14 @@ namespace formLogin
         private SqlConnection conn;
 
 
+     
 
-        public Clientes(Form formAnterior)
+        public Clientes( Form formAnterior)
         {
             InitializeComponent();
             cargarDatos();
             _FormAnterior = formAnterior;
+            
         }
 
         private void BSalir_Click(object sender, EventArgs e)
@@ -121,9 +122,18 @@ namespace formLogin
 
             }
             cargarDatos();
-
+           
             limpiarCampos();
-
+            // Volvemos al formulario anterior
+            if (_FormAnterior is FormCarrito carrito)
+            {
+                carrito.cargarClientes();  // recarga los datos del combo
+                carrito.Show();            // muestra el carrito nuevamente
+            }
+            else
+            {
+                _FormAnterior.Show();      // por si se abrió desde otro formulario
+            }
 
         }
 
@@ -222,7 +232,10 @@ namespace formLogin
                 conn.Close();
             }
             cargarDatos();
+          
             limpiarCampos();
+
+          
         }
 
         private void BVaciar_Click(object sender, EventArgs e)
@@ -277,6 +290,7 @@ namespace formLogin
                 conn.Close();
             }
             cargarDatos();
+          
             limpiarCampos();
         }
 
@@ -301,7 +315,7 @@ namespace formLogin
 
                 // Recargar los datos en el DataGridView
                 cargarDatos();
-
+              
                 BActivar.Visible = false; // ocultar el botón otra vez
             }
         }

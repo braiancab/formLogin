@@ -146,7 +146,7 @@ namespace formLogin
 
         private void BCarrito_Click(object sender, EventArgs e)
         {
-            FormCarrito f = new FormCarrito(this);
+            FormCarrito f = new FormCarrito(_usuario, this);
             f.Show();
             this.Hide();
         }

@@ -168,6 +168,7 @@ namespace formLogin
 
             int id = Convert.ToInt32(fila["id_producto"]);
             string nombre = fila["nombre"].ToString();
+            int stock = Convert.ToInt32(fila["stock"]);
             decimal precio = Convert.ToDecimal(fila["precio"]);
             int cantidad = Convert.ToInt32(TCantidad.Text);
             decimal descuento = string.IsNullOrWhiteSpace(TDescuento.Text) ? 0 : Convert.ToDecimal(TDescuento.Text);
@@ -177,6 +178,31 @@ namespace formLogin
 
 
             TTotal.Text = total.ToString("F2");     //Ver como actualizar el total a medida que se agregan productos
+
+            // 🔍 Verificar si el producto ya está en el carrito
+            foreach (DataRow fila2 in carrito.Rows)
+            {
+                int idExistente = Convert.ToInt32(fila2["ID"]);
+                if (idExistente == id)
+                {
+                    int cantidadActual = Convert.ToInt32(fila2["Cantidad"]);
+                    int nuevaCantidad = cantidadActual + cantidad;
+
+                    // 🧮 Verificar si la nueva cantidad supera el stock
+                    if (nuevaCantidad > stock)
+                    {
+                        MessageBox.Show("No hay más productos disponibles en stock.", "Stock agotado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    // ✅ Actualizar la fila existente
+                    fila["Cantidad"] = nuevaCantidad;
+                    fila["Total"] = nuevaCantidad * precio - descuento;
+                    ActualizarTotalVenta();
+                    return;
+                }
+            }
+
 
             // Agregamos la fila al carrito
             carrito.Rows.Add(id, nombre, precio, cantidad, descuento, total);

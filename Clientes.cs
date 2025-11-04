@@ -78,6 +78,8 @@ namespace formLogin
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
+                dataGridView1.AllowUserToAddRows = false; // 👈 evita la fila vacía
+                dataGridView1.ReadOnly = true; // opcional: evita edición manual
                 dataGridView1.Columns["id_cliente"].HeaderText = "Identificacion";              
                 dataGridView1.Columns["activo"].Visible = false;
                 dataGridView1.Columns["estado"].HeaderText = "Estado";

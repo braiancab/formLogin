@@ -60,6 +60,7 @@
             panel4 = new Panel();
             TTotalVenta = new TextBox();
             dataGridView1 = new DataGridView();
+            BFinalizarGuardar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -187,7 +188,7 @@
             // 
             // BFinalizar
             // 
-            BFinalizar.Location = new Point(414, 26);
+            BFinalizar.Location = new Point(244, 25);
             BFinalizar.Name = "BFinalizar";
             BFinalizar.Size = new Size(75, 23);
             BFinalizar.TabIndex = 2;
@@ -197,7 +198,7 @@
             // 
             // BCancelar
             // 
-            BCancelar.Location = new Point(506, 26);
+            BCancelar.Location = new Point(336, 25);
             BCancelar.Name = "BCancelar";
             BCancelar.Size = new Size(75, 23);
             BCancelar.TabIndex = 3;
@@ -348,6 +349,7 @@
             // panel4
             // 
             panel4.BackColor = SystemColors.ActiveCaption;
+            panel4.Controls.Add(BFinalizarGuardar);
             panel4.Controls.Add(TTotalVenta);
             panel4.Controls.Add(BCancelar);
             panel4.Controls.Add(BFinalizar);
@@ -371,6 +373,16 @@
             dataGridView1.Size = new Size(608, 291);
             dataGridView1.TabIndex = 27;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // BFinalizarGuardar
+            // 
+            BFinalizarGuardar.Location = new Point(438, 26);
+            BFinalizarGuardar.Name = "BFinalizarGuardar";
+            BFinalizarGuardar.Size = new Size(143, 23);
+            BFinalizarGuardar.TabIndex = 29;
+            BFinalizarGuardar.Text = "Finalizar e Imprimir";
+            BFinalizarGuardar.UseVisualStyleBackColor = true;
+            BFinalizarGuardar.Click += BFinalizarGuardar_Click;
             // 
             // FormCarrito
             // 
@@ -433,5 +445,6 @@
         private Button BAgregar;
         private DataGridView dataGridView1;
         private TextBox TTotalVenta;
+        private Button BFinalizarGuardar;
     }
 }

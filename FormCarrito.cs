@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static formLogin.Form1;
 using Microsoft.Data.SqlClient;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+
 
 namespace formLogin
 {
@@ -227,13 +231,13 @@ namespace formLogin
                 btnEliminar.DefaultCellStyle.BackColor = Color.Red;
                 btnEliminar.DefaultCellStyle.ForeColor = Color.White;
                 btnEliminar.FlatStyle = FlatStyle.Flat;
-               // dataGridView1.Columns.Add(btnEliminar);
+                // dataGridView1.Columns.Add(btnEliminar);
                 dataGridView1.Columns.Insert(0, btnEliminar); // la pone al inicio
-                // 🔸 Ocultar al inicio
-              //  dataGridView1.Columns["BEliminar"].Visible = false;
+                                                              // 🔸 Ocultar al inicio
+                                                              //  dataGridView1.Columns["BEliminar"].Visible = false;
             }
         }
-        
+
 
 
         private void limpiarCampos()
@@ -415,15 +419,87 @@ namespace formLogin
 
                 if (result == DialogResult.Yes)
                 {
-                   
-                    
-                        carrito.Rows.RemoveAt(e.RowIndex);
-                    
+
+
+                    carrito.Rows.RemoveAt(e.RowIndex);
+
 
                     ActualizarTotalVenta(); // <- recalcula el total después de eliminar
                 }
             }
         }
+
+        private void BFinalizarGuardar_Click(object sender, EventArgs e)
+        {
+            if (carrito.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe agregar al menos un producto antes de finalizar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            // Ruta del PDF (en el escritorio)
+            string ruta = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"Factura_{DateTime.Now:yyyyMMdd_HHmmss}.pdf");
+
+            // Crear documento PDF
+            Document doc = new Document(PageSize.A4, 40, 40, 40, 40);
+            PdfWriter.GetInstance(doc, new FileStream(ruta, FileMode.Create));
+            doc.Open();
+
+            // Fuente
+            var fontTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
+            var fontTexto = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+
+            // Encabezado
+            Paragraph titulo = new Paragraph("Factura de Venta", fontTitulo);
+            titulo.Alignment = Element.ALIGN_CENTER;
+            doc.Add(titulo);
+            doc.Add(new Paragraph("\n"));
+
+            // Datos del vendedor y cliente
+            string vendedor = "MARTIN LOPEZ"; // o _usuario.Nombre
+            string cliente = comboBox2.Text;  // suponiendo que comboBox2 tiene el cliente
+
+            doc.Add(new Paragraph($"Fecha: {DateTime.Now:dd/MM/yyyy}", fontTexto));
+            doc.Add(new Paragraph($"Vendedor: {vendedor}", fontTexto));
+            doc.Add(new Paragraph($"Cliente: {cliente}", fontTexto));
+            doc.Add(new Paragraph("\n"));
+
+            // Tabla de productos
+            PdfPTable tabla = new PdfPTable(5); // 5 columnas: Producto, Precio, Cantidad, Descuento, Total
+            tabla.WidthPercentage = 100;
+
+            tabla.AddCell("Producto");
+            tabla.AddCell("Precio");
+            tabla.AddCell("Cantidad");
+            tabla.AddCell("Descuento");
+            tabla.AddCell("Total");
+
+            foreach (DataRow fila in carrito.Rows)
+            {
+                tabla.AddCell(fila["Producto"].ToString());
+                tabla.AddCell(fila["Precio"].ToString());
+                tabla.AddCell(fila["Cantidad"].ToString());
+                tabla.AddCell(fila["Descuento"].ToString());
+                tabla.AddCell(fila["Total"].ToString());
+            }
+
+            doc.Add(tabla);
+            doc.Add(new Paragraph("\n"));
+
+            // Total general
+            decimal totalGeneral = carrito.AsEnumerable().Sum(r => r.Field<decimal>("Total"));
+            Paragraph total = new Paragraph($"Total General: ${totalGeneral:N2}", fontTitulo);
+            total.Alignment = Element.ALIGN_RIGHT;
+            doc.Add(total);
+
+            doc.Close();
+
+            MessageBox.Show($"Factura generada con éxito en:\n{ruta}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
     }
+    
 
 }

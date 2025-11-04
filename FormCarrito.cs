@@ -22,6 +22,7 @@ namespace formLogin
         public FormCarrito(Usuario usuario, Form formAnterior)
         {
             InitializeComponent();
+            FormVentas_Load(this, EventArgs.Empty);
             cargarClientes();
             cargarProductos();
             _FormAnterior = formAnterior;
@@ -59,7 +60,7 @@ namespace formLogin
 
             string query = "SELECT id_producto,nombre,descripcion,precio,stock,color,talle,categoria FROM Productos WHERE stock > 0";
 
-         
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
@@ -210,6 +211,31 @@ namespace formLogin
             limpiarCampos();
         }
 
+        private void FormVentas_Load(object sender, EventArgs e)
+        {
+
+            dataGridView1.AllowUserToAddRows = false; // 👈 evita la fila vacía
+            dataGridView1.ReadOnly = true; // opcional: evita edición manual
+            // Solo agregar si no existe ya
+            if (!dataGridView1.Columns.Contains("BEliminar"))
+            {
+                DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+                btnEliminar.HeaderText = "Acción";
+                btnEliminar.Name = "BEliminar";
+                btnEliminar.Text = "Eliminar";
+                btnEliminar.UseColumnTextForButtonValue = true;
+                btnEliminar.DefaultCellStyle.BackColor = Color.Red;
+                btnEliminar.DefaultCellStyle.ForeColor = Color.White;
+                btnEliminar.FlatStyle = FlatStyle.Flat;
+               // dataGridView1.Columns.Add(btnEliminar);
+                dataGridView1.Columns.Insert(0, btnEliminar); // la pone al inicio
+                // 🔸 Ocultar al inicio
+              //  dataGridView1.Columns["BEliminar"].Visible = false;
+            }
+        }
+        
+
+
         private void limpiarCampos()
         {
             comboBox1.SelectedIndex = -1;
@@ -317,7 +343,7 @@ namespace formLogin
                         SqlCommand cmdStock = new SqlCommand(
                             "UPDATE Productos SET stock = stock - @cantidad WHERE id_producto = @id_producto",
                             conn, transaction);
-                        
+
                         cmdStock.Parameters.AddWithValue("@cantidad", Convert.ToInt32(fila["Cantidad"]));
                         cmdStock.Parameters.AddWithValue("@id_producto", Convert.ToInt32(fila["ID"]));
                         cmdStock.ExecuteNonQuery();
@@ -333,7 +359,7 @@ namespace formLogin
                     comboBox2.Text = "Seleccione un Cliente...";
 
                     // 🔄 🔹 Volver a cargar los productos disponibles
-                   
+
                     comboBox1.SelectedIndex = -1;
                     comboBox1.Text = "Seleccione un producto...";
                 }
@@ -370,6 +396,33 @@ namespace formLogin
             // 🔹 4. Limpiar total general
             TTotalVenta.Text = "0.00";
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            dataGridView1.AllowUserToAddRows = false; // 👈 evita la fila vacía
+            dataGridView1.ReadOnly = true; // opcional: evita edición manual
+            // Verifica que sea el botón "Eliminar" y que no se trate de la fila de encabezado
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "BEliminar" && e.RowIndex >= 0)
+            {
+                DialogResult result = MessageBox.Show(
+                    "¿Desea eliminar este producto del carrito?",
+                    "Confirmar eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                   
+                    
+                        carrito.Rows.RemoveAt(e.RowIndex);
+                    
+
+                    ActualizarTotalVenta(); // <- recalcula el total después de eliminar
+                }
+            }
         }
     }
 

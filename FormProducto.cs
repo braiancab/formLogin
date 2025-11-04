@@ -67,6 +67,8 @@ namespace formLogin
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
 
+                dataGridView1.AllowUserToAddRows = false; // 👈 evita la fila vacía
+                dataGridView1.ReadOnly = true; // opcional: evita edición manual
                 // Agregar el botón Editar solo si no existe
                 if (!dataGridView1.Columns.Contains("BEditar"))
                 {
@@ -75,7 +77,8 @@ namespace formLogin
                     btnColumna.Name = "BEditar";
                     btnColumna.Text = "Editar";
                     btnColumna.UseColumnTextForButtonValue = true;
-                    dataGridView1.Columns.Add(btnColumna);
+                    //dataGridView1.Columns.Add(btnColumna);
+                    dataGridView1.Columns.Insert(0, btnColumna);
                 }
 
                 // Actualizar etiqueta o mostrar la página actual

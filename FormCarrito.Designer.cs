@@ -58,8 +58,8 @@
             LStock = new Label();
             label1 = new Label();
             panel4 = new Panel();
-            dataGridView1 = new DataGridView();
             TTotalVenta = new TextBox();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -356,6 +356,13 @@
             panel4.Size = new Size(1259, 67);
             panel4.TabIndex = 26;
             // 
+            // TTotalVenta
+            // 
+            TTotalVenta.Location = new Point(1139, 27);
+            TTotalVenta.Name = "TTotalVenta";
+            TTotalVenta.Size = new Size(100, 23);
+            TTotalVenta.TabIndex = 28;
+            // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -363,13 +370,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(608, 291);
             dataGridView1.TabIndex = 27;
-            // 
-            // TTotalVenta
-            // 
-            TTotalVenta.Location = new Point(1139, 27);
-            TTotalVenta.Name = "TTotalVenta";
-            TTotalVenta.Size = new Size(100, 23);
-            TTotalVenta.TabIndex = 28;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // FormCarrito
             // 

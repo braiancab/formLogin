@@ -201,8 +201,8 @@ namespace formLogin
                     }
 
                     // ✅ Actualizar la fila existente
-                    fila["Cantidad"] = nuevaCantidad;
-                    fila["Total"] = nuevaCantidad * precio - descuento;
+                    fila2["Cantidad"] = nuevaCantidad;
+                    fila2["Total"] = nuevaCantidad * precio - descuento;
                     ActualizarTotalVenta();
                     return;
                 }
@@ -359,6 +359,8 @@ namespace formLogin
                     MessageBox.Show("Venta guardada correctamente.");
 
                     carrito.Clear(); // Limpiamos el carrito
+                                     // 🔹 4. Limpiar total general
+                    TTotalVenta.Text = "0.00";
                     comboBox2.SelectedIndex = -1;
                     comboBox2.Text = "Seleccione un Cliente...";
 
@@ -415,6 +417,7 @@ namespace formLogin
                     "Confirmar eliminación",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
+
                 );
 
                 if (result == DialogResult.Yes)

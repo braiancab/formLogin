@@ -58,9 +58,9 @@
             LStock = new Label();
             label1 = new Label();
             panel4 = new Panel();
+            BFinalizarGuardar = new Button();
             TTotalVenta = new TextBox();
             dataGridView1 = new DataGridView();
-            BFinalizarGuardar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -119,13 +119,13 @@
             panel2.Controls.Add(LVendedor);
             panel2.Location = new Point(53, 128);
             panel2.Name = "panel2";
-            panel2.Size = new Size(595, 104);
+            panel2.Size = new Size(524, 104);
             panel2.TabIndex = 1;
             // 
             // LFecha
             // 
             LFecha.AutoSize = true;
-            LFecha.Location = new Point(353, 12);
+            LFecha.Location = new Point(336, 12);
             LFecha.Name = "LFecha";
             LFecha.Size = new Size(38, 15);
             LFecha.TabIndex = 21;
@@ -144,7 +144,7 @@
             // 
             BNuevoCliente.BackColor = Color.MintCream;
             BNuevoCliente.Image = Properties.Resources.nueva_cuenta__1_;
-            BNuevoCliente.Location = new Point(506, 54);
+            BNuevoCliente.Location = new Point(438, 54);
             BNuevoCliente.Name = "BNuevoCliente";
             BNuevoCliente.Size = new Size(75, 23);
             BNuevoCliente.TabIndex = 19;
@@ -156,7 +156,7 @@
             comboBox2.FormattingEnabled = true;
             comboBox2.Location = new Point(147, 54);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(330, 23);
+            comboBox2.Size = new Size(266, 23);
             comboBox2.TabIndex = 3;
             // 
             // LCliente
@@ -182,13 +182,13 @@
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(147, 29);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(330, 23);
+            comboBox1.Size = new Size(266, 23);
             comboBox1.TabIndex = 21;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // BFinalizar
             // 
-            BFinalizar.Location = new Point(244, 25);
+            BFinalizar.Location = new Point(76, 25);
             BFinalizar.Name = "BFinalizar";
             BFinalizar.Size = new Size(75, 23);
             BFinalizar.TabIndex = 2;
@@ -198,7 +198,7 @@
             // 
             // BCancelar
             // 
-            BCancelar.Location = new Point(336, 25);
+            BCancelar.Location = new Point(168, 25);
             BCancelar.Name = "BCancelar";
             BCancelar.Size = new Size(75, 23);
             BCancelar.TabIndex = 3;
@@ -226,13 +226,13 @@
             panel3.Controls.Add(comboBox1);
             panel3.Location = new Point(53, 238);
             panel3.Name = "panel3";
-            panel3.Size = new Size(595, 183);
+            panel3.Size = new Size(524, 183);
             panel3.TabIndex = 22;
             // 
             // LTotal
             // 
             LTotal.AutoSize = true;
-            LTotal.Location = new Point(377, 130);
+            LTotal.Location = new Point(336, 126);
             LTotal.Name = "LTotal";
             LTotal.Size = new Size(35, 15);
             LTotal.TabIndex = 29;
@@ -240,7 +240,7 @@
             // 
             // BAgregar
             // 
-            BAgregar.Location = new Point(506, 148);
+            BAgregar.Location = new Point(438, 144);
             BAgregar.Name = "BAgregar";
             BAgregar.Size = new Size(75, 23);
             BAgregar.TabIndex = 32;
@@ -250,30 +250,30 @@
             // 
             // TTotal
             // 
-            TTotal.Location = new Point(377, 148);
+            TTotal.Location = new Point(336, 144);
             TTotal.Name = "TTotal";
-            TTotal.Size = new Size(100, 23);
+            TTotal.Size = new Size(77, 23);
             TTotal.TabIndex = 28;
             // 
             // TTalle
             // 
-            TTalle.Location = new Point(377, 90);
+            TTalle.Location = new Point(336, 86);
             TTalle.Name = "TTalle";
-            TTalle.Size = new Size(100, 23);
+            TTalle.Size = new Size(77, 23);
             TTalle.TabIndex = 31;
             // 
             // TDescuento
             // 
-            TDescuento.Location = new Point(222, 148);
+            TDescuento.Location = new Point(181, 144);
             TDescuento.Name = "TDescuento";
-            TDescuento.Size = new Size(100, 23);
+            TDescuento.Size = new Size(77, 23);
             TDescuento.TabIndex = 27;
             TDescuento.TextChanged += TDescuento_TextChanged;
             // 
             // LDescuento
             // 
             LDescuento.AutoSize = true;
-            LDescuento.Location = new Point(222, 130);
+            LDescuento.Location = new Point(181, 126);
             LDescuento.Name = "LDescuento";
             LDescuento.Size = new Size(66, 15);
             LDescuento.TabIndex = 26;
@@ -282,7 +282,7 @@
             // LTalle
             // 
             LTalle.AutoSize = true;
-            LTalle.Location = new Point(377, 72);
+            LTalle.Location = new Point(336, 68);
             LTalle.Name = "LTalle";
             LTalle.Size = new Size(36, 15);
             LTalle.TabIndex = 30;
@@ -290,23 +290,23 @@
             // 
             // TPrecio
             // 
-            TPrecio.Location = new Point(222, 90);
+            TPrecio.Location = new Point(181, 86);
             TPrecio.Name = "TPrecio";
-            TPrecio.Size = new Size(100, 23);
+            TPrecio.Size = new Size(77, 23);
             TPrecio.TabIndex = 29;
             // 
             // TCantidad
             // 
-            TCantidad.Location = new Point(61, 148);
+            TCantidad.Location = new Point(20, 144);
             TCantidad.Name = "TCantidad";
-            TCantidad.Size = new Size(100, 23);
+            TCantidad.Size = new Size(77, 23);
             TCantidad.TabIndex = 25;
             TCantidad.TextChanged += TCantidad_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(61, 130);
+            label2.Location = new Point(20, 126);
             label2.Name = "label2";
             label2.Size = new Size(61, 15);
             label2.TabIndex = 24;
@@ -315,7 +315,7 @@
             // LPrecio
             // 
             LPrecio.AutoSize = true;
-            LPrecio.Location = new Point(222, 72);
+            LPrecio.Location = new Point(181, 68);
             LPrecio.Name = "LPrecio";
             LPrecio.Size = new Size(46, 15);
             LPrecio.TabIndex = 28;
@@ -323,15 +323,15 @@
             // 
             // TStock
             // 
-            TStock.Location = new Point(61, 90);
+            TStock.Location = new Point(20, 86);
             TStock.Name = "TStock";
-            TStock.Size = new Size(100, 23);
+            TStock.Size = new Size(77, 23);
             TStock.TabIndex = 27;
             // 
             // LStock
             // 
             LStock.AutoSize = true;
-            LStock.Location = new Point(61, 72);
+            LStock.Location = new Point(20, 68);
             LStock.Name = "LStock";
             LStock.Size = new Size(42, 15);
             LStock.TabIndex = 26;
@@ -358,6 +358,16 @@
             panel4.Size = new Size(1259, 67);
             panel4.TabIndex = 26;
             // 
+            // BFinalizarGuardar
+            // 
+            BFinalizarGuardar.Location = new Point(270, 26);
+            BFinalizarGuardar.Name = "BFinalizarGuardar";
+            BFinalizarGuardar.Size = new Size(143, 23);
+            BFinalizarGuardar.TabIndex = 29;
+            BFinalizarGuardar.Text = "Finalizar e Imprimir";
+            BFinalizarGuardar.UseVisualStyleBackColor = true;
+            BFinalizarGuardar.Click += BFinalizarGuardar_Click;
+            // 
             // TTotalVenta
             // 
             TTotalVenta.Location = new Point(1139, 27);
@@ -367,22 +377,13 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(704, 128);
+            dataGridView1.Location = new Point(602, 128);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(608, 291);
+            dataGridView1.Size = new Size(710, 291);
             dataGridView1.TabIndex = 27;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // BFinalizarGuardar
-            // 
-            BFinalizarGuardar.Location = new Point(438, 26);
-            BFinalizarGuardar.Name = "BFinalizarGuardar";
-            BFinalizarGuardar.Size = new Size(143, 23);
-            BFinalizarGuardar.TabIndex = 29;
-            BFinalizarGuardar.Text = "Finalizar e Imprimir";
-            BFinalizarGuardar.UseVisualStyleBackColor = true;
-            BFinalizarGuardar.Click += BFinalizarGuardar_Click;
             // 
             // FormCarrito
             // 

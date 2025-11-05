@@ -33,12 +33,9 @@
             LBackup = new Label();
             BSalir = new Button();
             LBasededatos = new Label();
-            LRuta = new Label();
             groupBox1 = new GroupBox();
             BBackUp = new Button();
             comboBoxBD = new ComboBox();
-            BRuta = new Button();
-            TRuta = new TextBox();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -89,32 +86,18 @@
             LBasededatos.AutoSize = true;
             LBasededatos.BackColor = Color.Transparent;
             LBasededatos.ForeColor = SystemColors.ActiveCaptionText;
-            LBasededatos.Location = new Point(22, 57);
+            LBasededatos.Location = new Point(25, 30);
             LBasededatos.Name = "LBasededatos";
             LBasededatos.Size = new Size(82, 15);
             LBasededatos.TabIndex = 1;
             LBasededatos.Text = "Base de datos:";
-            // 
-            // LRuta
-            // 
-            LRuta.AutoSize = true;
-            LRuta.BackColor = Color.Transparent;
-            LRuta.ForeColor = SystemColors.ActiveCaptionText;
-            LRuta.Location = new Point(22, 117);
-            LRuta.Name = "LRuta";
-            LRuta.Size = new Size(34, 15);
-            LRuta.TabIndex = 2;
-            LRuta.Text = "Ruta:";
             // 
             // groupBox1
             // 
             groupBox1.BackColor = SystemColors.ActiveCaption;
             groupBox1.Controls.Add(BBackUp);
             groupBox1.Controls.Add(comboBoxBD);
-            groupBox1.Controls.Add(BRuta);
-            groupBox1.Controls.Add(TRuta);
             groupBox1.Controls.Add(LBasededatos);
-            groupBox1.Controls.Add(LRuta);
             groupBox1.ForeColor = SystemColors.ActiveCaptionText;
             groupBox1.Location = new Point(317, 118);
             groupBox1.Name = "groupBox1";
@@ -135,27 +118,10 @@
             // comboBoxBD
             // 
             comboBoxBD.FormattingEnabled = true;
-            comboBoxBD.Location = new Point(139, 49);
+            comboBoxBD.Location = new Point(142, 22);
             comboBoxBD.Name = "comboBoxBD";
             comboBoxBD.Size = new Size(121, 23);
             comboBoxBD.TabIndex = 5;
-            // 
-            // BRuta
-            // 
-            BRuta.Location = new Point(525, 114);
-            BRuta.Name = "BRuta";
-            BRuta.Size = new Size(75, 23);
-            BRuta.TabIndex = 4;
-            BRuta.Text = "Ruta";
-            BRuta.UseVisualStyleBackColor = true;
-            BRuta.Click += BRuta_Click;
-            // 
-            // TRuta
-            // 
-            TRuta.Location = new Point(139, 114);
-            TRuta.Name = "TRuta";
-            TRuta.Size = new Size(338, 23);
-            TRuta.TabIndex = 3;
             // 
             // FormBackUp
             // 
@@ -183,10 +149,7 @@
         private Button BSalir;
         private Label LVoler;
         private Label LBasededatos;
-        private Label LRuta;
         private GroupBox groupBox1;
-        private Button BRuta;
-        private TextBox TRuta;
         private ComboBox comboBoxBD;
         private Button BBackUp;
     }

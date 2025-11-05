@@ -27,16 +27,7 @@ namespace formLogin
             this.Close();
         }
 
-        private void BRuta_Click(object sender, EventArgs e)
-        {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
-            {
-                if (fbd.ShowDialog() == DialogResult.OK)
-                {
-                    TRuta.Text = fbd.SelectedPath;
-                }
-            }
-        }
+      
 
         private void FormBackUp_Load(object sender, EventArgs e)
         {
@@ -62,8 +53,8 @@ namespace formLogin
             try
             {
                 string database = comboBoxBD.Text;   // Nombre de la BD seleccionada
-                string path = TRuta.Text;          // Ruta donde guardar el .bak
-
+                //  string path = TRuta.Text;          // Ruta donde guardar el .bak
+                string path = @"C:\Users\Braian\OneDrive\BackupsSQL";
                 if (string.IsNullOrEmpty(database) || string.IsNullOrEmpty(path))
                 {
                     MessageBox.Show("Debe seleccionar una base de datos y una ruta para guardar el backup.");
@@ -86,7 +77,7 @@ namespace formLogin
                     // Crear archivo de respaldo con fecha y hora
                     string fileName = $"{database}_{DateTime.Now:yyyyMMdd_HHmmss}.bak";
                     string fullPath = System.IO.Path.Combine(path, fileName);
-
+              
                     string query = $"BACKUP DATABASE [{database}] TO DISK = '{fullPath}'";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))

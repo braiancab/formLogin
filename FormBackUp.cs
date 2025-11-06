@@ -22,7 +22,7 @@ namespace formLogin
 
        
         private bool backupRealizadoHoy = false; // Para evitar múltiples ejecuciones el mismo día
-
+    
         private Usuario _usuario;
         private Form _FormAnterior;
 
@@ -30,7 +30,9 @@ namespace formLogin
         public FormBackUp(Usuario usuario, Form formAnterior)
         {
             InitializeComponent();
+       
             IniciarTimerBackup();
+            TimerBackup_Tick(this, EventArgs.Empty); // Actualizar el label al iniciar
             _FormAnterior = formAnterior;
             _usuario = usuario;
         }
@@ -56,20 +58,22 @@ namespace formLogin
             timerBackup.Tick += TimerBackup_Tick;
             timerBackup.Start();
         }
-
+       
         private void TimerBackup_Tick(object sender, EventArgs e)
         {
+
+            Console.WriteLine("Tick"); // Para verificar que se ejecuta cada segundo
             DateTime ahora = DateTime.Now;
 
             // ⏱ Mostrar cuenta regresiva en un Label del formulario
             TimeSpan restante = proximoBackup - ahora;
             if (restante.TotalSeconds > 0)
             {
-                LTiempoBackup.Text = $"Próximo backup en: {restante:hh\\:mm\\:ss}";
+                LTimerBackup.Text = $"Próximo backup en: {restante:hh\\:mm\\:ss}";
             }
             else
             {
-                LTiempoBackup.Text = "Realizando backup...";
+                LTimerBackup.Text = "Realizando backup...";
             }
 
             // ⏰ Ejecutar backup automáticamente a las 21:00

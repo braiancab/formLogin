@@ -124,7 +124,7 @@ namespace formLogin
 
         private void BBackUp_Click(object sender, EventArgs e)
         {
-            FormBackUp f = new FormBackUp(this);
+            FormBackUp f = new FormBackUp(_usuario, this);
             f.Show();
             this.Hide();
         }

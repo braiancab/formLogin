@@ -86,7 +86,7 @@
             LBasededatos.AutoSize = true;
             LBasededatos.BackColor = Color.Transparent;
             LBasededatos.ForeColor = SystemColors.ActiveCaptionText;
-            LBasededatos.Location = new Point(25, 30);
+            LBasededatos.Location = new Point(32, 107);
             LBasededatos.Name = "LBasededatos";
             LBasededatos.Size = new Size(82, 15);
             LBasededatos.TabIndex = 1;
@@ -118,9 +118,9 @@
             // comboBoxBD
             // 
             comboBoxBD.FormattingEnabled = true;
-            comboBoxBD.Location = new Point(142, 22);
+            comboBoxBD.Location = new Point(149, 104);
             comboBoxBD.Name = "comboBoxBD";
-            comboBoxBD.Size = new Size(121, 23);
+            comboBoxBD.Size = new Size(361, 23);
             comboBoxBD.TabIndex = 5;
             // 
             // FormBackUp

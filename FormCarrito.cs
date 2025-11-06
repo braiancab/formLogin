@@ -450,8 +450,12 @@ namespace formLogin
             doc.Open();
 
             // Fuente
-            var fontTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
-            var fontTexto = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+         //   var fontTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
+          //  var fontTexto = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+
+            // 🔹 Fuente tipo "máquina de escribir" (Courier)
+            var fontTitulo = FontFactory.GetFont(FontFactory.COURIER_BOLD, 18);
+            var fontTexto = FontFactory.GetFont(FontFactory.COURIER, 10);
 
             // Encabezado
             Paragraph titulo = new Paragraph("Factura de Venta", fontTitulo);
@@ -460,8 +464,8 @@ namespace formLogin
             doc.Add(new Paragraph("\n"));
 
             // Datos del vendedor y cliente
-            string vendedor = "MARTIN LOPEZ"; // o _usuario.Nombre
-            string cliente = comboBox2.Text;  // suponiendo que comboBox2 tiene el cliente
+            string vendedor = _usuario.Nombre + " " + _usuario.Apellido; 
+            string cliente = comboBox2.Text;  // comboBox2 tiene el cliente
 
             doc.Add(new Paragraph($"Fecha: {DateTime.Now:dd/MM/yyyy}", fontTexto));
             doc.Add(new Paragraph($"Vendedor: {vendedor}", fontTexto));

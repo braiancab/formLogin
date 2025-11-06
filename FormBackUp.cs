@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,18 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static formLogin.Form1;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Microsoft.Data.SqlClient;
 namespace formLogin
 {
     public partial class FormBackUp : Form
     {
-
+        private Usuario _usuario;
         private Form _FormAnterior;
-        public FormBackUp(Form formAnterior)
+        public FormBackUp(Usuario usuario, Form formAnterior)
         {
             InitializeComponent();
             _FormAnterior = formAnterior;
+            _usuario = usuario;
         }
 
         private void BSalir_Click(object sender, EventArgs e)
@@ -50,7 +52,33 @@ namespace formLogin
        
         private void BBackUp_Click(object sender, EventArgs e)
         {
+
             try
+            {
+                // 🔐 Verificar rol
+                if (_usuario.Rol != "Administrador")
+                {
+                    MessageBox.Show("Solo los usuarios administradores pueden crear backups.",
+                                    "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 🔑 Solicitar clave de seguridad
+                string claveIngresada = Microsoft.VisualBasic.Interaction.InputBox(
+                    "Ingrese la clave de seguridad para continuar:",
+                    "Confirmar Backup",
+                    "");
+
+                // Verificar la clave
+                string claveCorrecta = "1234seguro"; // podés guardarla en config o BD
+                if (claveIngresada != claveCorrecta)
+                {
+                    MessageBox.Show("Clave incorrecta. Operación cancelada.",
+                                    "Error de seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            } catch { }
+                try
             {
                 string database = comboBoxBD.Text;   // Nombre de la BD seleccionada
                 //  string path = TRuta.Text;          // Ruta donde guardar el .bak

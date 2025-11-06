@@ -449,9 +449,7 @@ namespace formLogin
             PdfWriter.GetInstance(doc, new FileStream(ruta, FileMode.Create));
             doc.Open();
 
-            // Fuente
-         //   var fontTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
-          //  var fontTexto = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+         
 
             // 🔹 Fuente tipo "máquina de escribir" (Courier)
             var fontTitulo = FontFactory.GetFont(FontFactory.COURIER_BOLD, 18);

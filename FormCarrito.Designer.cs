@@ -61,6 +61,7 @@
             BFinalizarGuardar = new Button();
             TTotalVenta = new TextBox();
             dataGridView1 = new DataGridView();
+            label3 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -349,6 +350,7 @@
             // panel4
             // 
             panel4.BackColor = SystemColors.ActiveCaption;
+            panel4.Controls.Add(label3);
             panel4.Controls.Add(BFinalizarGuardar);
             panel4.Controls.Add(TTotalVenta);
             panel4.Controls.Add(BCancelar);
@@ -370,9 +372,9 @@
             // 
             // TTotalVenta
             // 
-            TTotalVenta.Location = new Point(1139, 27);
+            TTotalVenta.Location = new Point(1046, 27);
             TTotalVenta.Name = "TTotalVenta";
-            TTotalVenta.Size = new Size(100, 23);
+            TTotalVenta.Size = new Size(193, 23);
             TTotalVenta.TabIndex = 28;
             // 
             // dataGridView1
@@ -384,6 +386,15 @@
             dataGridView1.Size = new Size(710, 291);
             dataGridView1.TabIndex = 27;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(918, 35);
+            label3.Name = "label3";
+            label3.Size = new Size(110, 15);
+            label3.TabIndex = 30;
+            label3.Text = "Total de la compra: ";
             // 
             // FormCarrito
             // 
@@ -447,5 +458,6 @@
         private DataGridView dataGridView1;
         private TextBox TTotalVenta;
         private Button BFinalizarGuardar;
+        private Label label3;
     }
 }

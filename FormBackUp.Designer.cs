@@ -34,8 +34,13 @@
             BSalir = new Button();
             LBasededatos = new Label();
             groupBox1 = new GroupBox();
+            label1 = new Label();
+            LTiempoBackup = new Label();
             BBackUp = new Button();
             comboBoxBD = new ComboBox();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -86,7 +91,7 @@
             LBasededatos.AutoSize = true;
             LBasededatos.BackColor = Color.Transparent;
             LBasededatos.ForeColor = SystemColors.ActiveCaptionText;
-            LBasededatos.Location = new Point(32, 107);
+            LBasededatos.Location = new Point(31, 154);
             LBasededatos.Name = "LBasededatos";
             LBasededatos.Size = new Size(82, 15);
             LBasededatos.TabIndex = 1;
@@ -95,6 +100,11 @@
             // groupBox1
             // 
             groupBox1.BackColor = SystemColors.ActiveCaption;
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(LTiempoBackup);
             groupBox1.Controls.Add(BBackUp);
             groupBox1.Controls.Add(comboBoxBD);
             groupBox1.Controls.Add(LBasededatos);
@@ -104,6 +114,24 @@
             groupBox1.Size = new Size(655, 232);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(32, 31);
+            label1.Name = "label1";
+            label1.Size = new Size(242, 15);
+            label1.TabIndex = 8;
+            label1.Text = "El Backup automático se realizará dentro de: ";
+            // 
+            // LTiempoBackup
+            // 
+            LTiempoBackup.AutoSize = true;
+            LTiempoBackup.Location = new Point(330, 31);
+            LTiempoBackup.Name = "LTiempoBackup";
+            LTiempoBackup.Size = new Size(38, 15);
+            LTiempoBackup.TabIndex = 7;
+            LTiempoBackup.Text = "label1";
             // 
             // BBackUp
             // 
@@ -118,10 +146,37 @@
             // comboBoxBD
             // 
             comboBoxBD.FormattingEnabled = true;
-            comboBoxBD.Location = new Point(149, 104);
+            comboBoxBD.Location = new Point(148, 151);
             comboBoxBD.Name = "comboBoxBD";
             comboBoxBD.Size = new Size(361, 23);
             comboBoxBD.TabIndex = 5;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(31, 64);
+            label2.Name = "label2";
+            label2.Size = new Size(171, 15);
+            label2.TabIndex = 9;
+            label2.Text = "Si desea hacerlo manualmente:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(31, 93);
+            label3.Name = "label3";
+            label3.Size = new Size(167, 15);
+            label3.TabIndex = 10;
+            label3.Text = "1- Seleccione su base de datos";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(31, 108);
+            label4.Name = "label4";
+            label4.Size = new Size(155, 15);
+            label4.TabIndex = 11;
+            label4.Text = "2- Presione el boton Backup";
             // 
             // FormBackUp
             // 
@@ -152,5 +207,10 @@
         private GroupBox groupBox1;
         private ComboBox comboBoxBD;
         private Button BBackUp;
+        private Label LTiempoBackup;
+        private Label label1;
+        private Label label4;
+        private Label label3;
+        private Label label2;
     }
 }

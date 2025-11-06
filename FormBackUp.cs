@@ -10,15 +10,27 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static formLogin.Form1;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+
+using System.IO;
+using Timer = System.Windows.Forms.Timer;
+
 namespace formLogin
 {
     public partial class FormBackUp : Form
     {
+
+       
+        private bool backupRealizadoHoy = false; // Para evitar múltiples ejecuciones el mismo día
+
         private Usuario _usuario;
         private Form _FormAnterior;
+
+        private DateTime proximoBackup;  // guarda la fecha y hora del siguiente backup
         public FormBackUp(Usuario usuario, Form formAnterior)
         {
             InitializeComponent();
+            IniciarTimerBackup();
             _FormAnterior = formAnterior;
             _usuario = usuario;
         }
@@ -29,7 +41,85 @@ namespace formLogin
             this.Close();
         }
 
-      
+        private void IniciarTimerBackup()
+        {
+
+            // 📅 Definir el próximo backup (hoy a las 21:00 o mañana si ya pasó)
+            proximoBackup = DateTime.Today.AddHours(21);
+            if (DateTime.Now > proximoBackup)
+                proximoBackup = proximoBackup.AddDays(1);
+
+
+
+            Timer timerBackup = new Timer();
+            timerBackup.Interval = 60000; // cada 1 minuto
+            timerBackup.Tick += TimerBackup_Tick;
+            timerBackup.Start();
+        }
+
+        private void TimerBackup_Tick(object sender, EventArgs e)
+        {
+            DateTime ahora = DateTime.Now;
+
+            // ⏱ Mostrar cuenta regresiva en un Label del formulario
+            TimeSpan restante = proximoBackup - ahora;
+            if (restante.TotalSeconds > 0)
+            {
+                LTiempoBackup.Text = $"Próximo backup en: {restante:hh\\:mm\\:ss}";
+            }
+            else
+            {
+                LTiempoBackup.Text = "Realizando backup...";
+            }
+
+            // ⏰ Ejecutar backup automáticamente a las 21:00
+            if (ahora >= proximoBackup && !backupRealizadoHoy)
+            {
+                CrearBackupAutomatico();
+                backupRealizadoHoy = true;
+
+                // Programar el próximo backup para mañana
+                proximoBackup = proximoBackup.AddDays(1);
+            }
+
+            // 🔄 Reiniciar la bandera a medianoche
+            if (ahora.Hour == 0 && ahora.Minute == 0 && ahora.Second == 0)
+                backupRealizadoHoy = false;
+        }
+
+
+        private void CrearBackupAutomatico()
+        {
+            try
+            {
+                string database = "BD_TALLER"; // Cambiar por tu base
+                string path = @"C:\Users\Braian\OneDrive\BackupsSQL";
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                string connectionString = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;TrustServerCertificate=True;";
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string fileName = $"{database}_{DateTime.Now:yyyyMMdd_HHmmss}.bak";
+                    string fullPath = Path.Combine(path, fileName);
+                    string query = $"BACKUP DATABASE [{database}] TO DISK = '{fullPath}'";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                        // Si querés mostrar algo:
+                        // MessageBox.Show($"Backup automático realizado en:\n{fullPath}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en backup automático: " + ex.Message);
+            }
+        }
+
 
         private void FormBackUp_Load(object sender, EventArgs e)
         {

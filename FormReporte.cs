@@ -51,8 +51,8 @@ namespace formLogin
                         FROM Venta v
                         INNER JOIN Usuarios u ON v.id_usuario = u.id_usuario
                         INNER JOIN Cliente c ON v.id_cliente = c.id_cliente;
-                            "; 
-                    
+                            ";
+
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -62,13 +62,32 @@ namespace formLogin
                     dataGridView1.Columns["cliente"].HeaderText = "Cliente";
                     dataGridView1.Columns["fecha"].HeaderText = "Fecha venta";
                     dataGridView1.Columns["total"].HeaderText = "Total";
-                    
+
+
 
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
+
+                dataGridView1.AllowUserToAddRows = false; // 👈 evita la fila vacía
+                dataGridView1.ReadOnly = true; // opcional: evita edición manual
+
+                // Evita agregar la columna varias veces
+                if (!dataGridView1.Columns.Contains("Detalles"))
+                {
+                    DataGridViewButtonColumn BDetalles = new DataGridViewButtonColumn();
+                    BDetalles.Name = "Detalles";
+                    BDetalles.HeaderText = "Acción";
+                    BDetalles.Text = "Ver Detalles";
+                    BDetalles.UseColumnTextForButtonValue = true;
+                    BDetalles.Width = 100;
+                    // dataGridView1.Columns.Add(btnDetalles);
+                    dataGridView1.Columns.Insert(0, BDetalles);
+
+                }
+
             }
         }
 
@@ -106,7 +125,45 @@ namespace formLogin
             string nombre = TNombre.Text.Trim(); // el TextBox donde ingresás el nombre
             BuscarUsuarioVendedor(nombre);
         }
+        private void MostrarDetallesVenta(int idVenta)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT p.nombre AS Producto, dv.cantidad, dv.precio_unitario, dv.subtotal
+                         FROM detalle_venta dv
+                         INNER JOIN Productos p ON dv.id_producto = p.id_producto
+                         WHERE dv.id_venta = @idVenta";
 
-        
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@idVenta", idVenta);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                StringBuilder detalles = new StringBuilder();
+                while (reader.Read())
+                {
+                    detalles.AppendLine($"{reader["Producto"]} - Cant: {reader["cantidad"]} - Precio: {reader["precio_unitario"]} - Subtotal: {reader["subtotal"]}");
+                }
+
+                if (detalles.Length == 0)
+                    detalles.AppendLine("No hay detalles para esta venta.");
+
+                MessageBox.Show(detalles.ToString(), $"Detalles de Venta #{idVenta}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Verifica que la columna clickeada sea la del botón
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "BDetalles" && e.RowIndex >= 0)
+            {
+                DataGridViewRow filaSeleccionada = dataGridView1.Rows[e.RowIndex];
+
+                int idVenta = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_venta"].Value);
+
+                MostrarDetallesVenta(idVenta);
+
+            }
+        }
     }
 }

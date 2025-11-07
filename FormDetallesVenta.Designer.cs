@@ -69,9 +69,9 @@
             // 
             // BDescargar
             // 
-            BDescargar.Location = new Point(630, 441);
+            BDescargar.Location = new Point(605, 427);
             BDescargar.Name = "BDescargar";
-            BDescargar.Size = new Size(75, 23);
+            BDescargar.Size = new Size(100, 37);
             BDescargar.TabIndex = 3;
             BDescargar.Text = "Descargar";
             BDescargar.UseVisualStyleBackColor = true;

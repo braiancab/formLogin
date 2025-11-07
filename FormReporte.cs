@@ -24,7 +24,7 @@ namespace formLogin
         public FormReporte(Form formAnterior)
         {
             InitializeComponent();
-
+            cargarDatos();
             _FormAnterior = formAnterior;
         }
 
@@ -32,6 +32,44 @@ namespace formLogin
         {
             _FormAnterior.Show();
             this.Close();
+        }
+
+        private void cargarDatos()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"
+                        SELECT v.id_venta, 
+                        u.nombre as usuario,                      
+                        c.nombre as cliente,    
+                        v.fecha, 
+                        v.total
+                             
+                        FROM Venta v
+                        INNER JOIN Usuarios u ON v.id_usuario = u.id_usuario
+                        INNER JOIN Cliente c ON v.id_cliente = c.id_cliente;
+                            "; 
+                    
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dataGridView1.DataSource = dt; // muestra los resultados en el DataGridView
+                    dataGridView1.Columns["id_venta"].HeaderText = "Id de venta";
+                    dataGridView1.Columns["usuario"].HeaderText = "Vendedor";
+                    dataGridView1.Columns["cliente"].HeaderText = "Cliente";
+                    dataGridView1.Columns["fecha"].HeaderText = "Fecha venta";
+                    dataGridView1.Columns["total"].HeaderText = "Total";
+                    
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
         }
 
 

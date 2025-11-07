@@ -38,7 +38,6 @@
             RBProductos = new RadioButton();
             LTipoReporte = new Label();
             RBVentas = new RadioButton();
-            dataGridView1 = new DataGridView();
             LNombreVendedor = new Label();
             dateTimePicker2 = new DateTimePicker();
             TNombre = new TextBox();
@@ -47,6 +46,7 @@
             label2 = new Label();
             label1 = new Label();
             LTextoReporte = new Label();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -103,7 +103,6 @@
             groupBox1.Controls.Add(RBProductos);
             groupBox1.Controls.Add(LTipoReporte);
             groupBox1.Controls.Add(RBVentas);
-            groupBox1.Controls.Add(dataGridView1);
             groupBox1.Controls.Add(LNombreVendedor);
             groupBox1.Controls.Add(dateTimePicker2);
             groupBox1.Controls.Add(TNombre);
@@ -114,13 +113,13 @@
             groupBox1.Controls.Add(LTextoReporte);
             groupBox1.Location = new Point(364, 130);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(655, 370);
+            groupBox1.Size = new Size(655, 247);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             // 
             // BGenerar
             // 
-            BGenerar.Location = new Point(275, 341);
+            BGenerar.Location = new Point(272, 200);
             BGenerar.Name = "BGenerar";
             BGenerar.Size = new Size(129, 23);
             BGenerar.TabIndex = 10;
@@ -168,14 +167,6 @@
             RBVentas.TabStop = true;
             RBVentas.Text = "Ventas";
             RBVentas.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(176, 210);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(314, 111);
-            dataGridView1.TabIndex = 2;
             // 
             // LNombreVendedor
             // 
@@ -246,6 +237,15 @@
             LTextoReporte.TabIndex = 0;
             LTextoReporte.Text = "Seleccione fecha: ";
             // 
+            // dataGridView1
+            // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(248, 432);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(921, 246);
+            dataGridView1.TabIndex = 2;
+            // 
             // FormReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -254,6 +254,7 @@
             ClientSize = new Size(1352, 729);
             Controls.Add(groupBox1);
             Controls.Add(panel1);
+            Controls.Add(dataGridView1);
             Name = "FormReporte";
             Text = "FormReporte";
             WindowState = FormWindowState.Maximized;

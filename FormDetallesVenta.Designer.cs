@@ -69,7 +69,7 @@
             // 
             // BDescargar
             // 
-            BDescargar.Location = new Point(303, 441);
+            BDescargar.Location = new Point(630, 441);
             BDescargar.Name = "BDescargar";
             BDescargar.Size = new Size(75, 23);
             BDescargar.TabIndex = 3;

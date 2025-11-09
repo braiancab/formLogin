@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using iTextSharp.text.pdf.codec.wmf;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
@@ -340,7 +342,25 @@ namespace formLogin
             {
                 conn.Open();
 
-                string query = "SELECT * FROM Cliente WHERE 1=1"; // base de la consulta
+                string query =  @"
+                SELECT
+                c.id_cliente,
+                c.activo,
+                CASE
+                 WHEN c.activo = 1 THEN 'Activo'
+                 ELSE 'Inactivo'
+                 END AS estado,
+                c.nombre,
+                c.direccion,
+                c.cuit,
+                c.telefono,
+                c.tipo
+
+                FROM Cliente c
+                WHERE 1=1"; // base de la consulta
+
+
+
 
                 // Filtros dinámicos
                 if (!string.IsNullOrWhiteSpace(TFiltroNombre.Text))

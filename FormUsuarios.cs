@@ -106,7 +106,7 @@ namespace formLogin
 
         private void BAgregar_Click(object sender, EventArgs e)
         {
-
+            string hash = Seguridad.HashPassword(TContraseña.Text);
             if (!ValidarCampos())
                 return;
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -133,7 +133,7 @@ namespace formLogin
                     sexo = "Femenino";
                 }
                 cmd.Parameters.AddWithValue("@Sexo", sexo);
-                cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
+                cmd.Parameters.AddWithValue("@Contraseña", hash);
                 cmd.Parameters.AddWithValue("@Usuario", TUsuario.Text);
 
                 conn.Open();
@@ -163,6 +163,7 @@ namespace formLogin
 
         private void BActualizar_Click(object sender, EventArgs e)
         {
+            string hash = Seguridad.HashPassword(TContraseña.Text);
             if (idSeleccionado == 0) return;
             if (!ValidarCampos())
                 return;
@@ -189,7 +190,7 @@ namespace formLogin
                 }
 
                 cmd.Parameters.AddWithValue("@Sexo", sexo);
-                cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
+                cmd.Parameters.AddWithValue("@Contraseña", hash);
                 cmd.Parameters.AddWithValue("@Usuario", TUsuario.Text);
                 cmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
 
@@ -409,7 +410,30 @@ namespace formLogin
             {
                 conn.Open();
 
-                string query = "SELECT * FROM Usuarios WHERE 1=1"; // base de la consulta
+                string query =  @"
+            SELECT 
+                u.id_usuario,
+                u.id_rol,
+                r.nombre AS rol,
+                u.activo,
+                 CASE 
+                  WHEN u.activo = 1 THEN 'Activo'
+                 ELSE 'Inactivo'
+                 END AS estado,
+                u.nombre,
+                u.apellido,
+                u.direccion,
+                u.dni,
+                u.correo,
+                u.telefono,
+                u.sexo,
+                u.usuario,
+                u.contraseña
+            FROM Usuarios u
+            INNER JOIN Rol r ON u.id_rol = r.id_rol WHERE 1=1"; // base de la consulta
+
+
+
 
                 // Filtros dinámicos
                 if (!string.IsNullOrWhiteSpace(TFiltroNombre.Text))

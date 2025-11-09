@@ -55,9 +55,19 @@ namespace formLogin
 
                 int offset = (paginaActual - 1) * tamanioPagina;
 
-                string query = @"SELECT * FROM Productos
-                         ORDER BY id_producto
-                         OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY";
+                string query = @"  SELECT 
+                p.id_producto,
+                p.nombre,
+                p.descripcion,
+                p.precio,
+                p.stock,
+                p.color,
+                p.talle,
+                c.descripcion AS categoria
+            FROM Productos p
+            INNER JOIN Categoria c ON p.categoria = c.id_categoria
+            ORDER BY p.id_producto
+            OFFSET @offset ROWS FETCH NEXT @pageSize ROWS ONLY";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 da.SelectCommand.Parameters.AddWithValue("@offset", offset);
@@ -87,7 +97,7 @@ namespace formLogin
         }
 
 
-       
+
 
         private void BVolver_Click(object sender, EventArgs e)
         {
@@ -162,6 +172,54 @@ namespace formLogin
                 CargarDatos();
             }
         }
+
+        private void BFiltrar_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = @"
+            SELECT 
+                p.id_producto,
+                p.nombre,
+                p.descripcion,
+                p.precio,
+                p.stock,
+                p.color,
+                p.talle,
+                c.descripcion AS categoria
+            FROM Productos p
+            INNER JOIN Categoria c ON p.categoria = c.id_categoria
+            WHERE 1=1"; // base de la consulta dinámica
+
+                // Filtros dinámicos
+                if (!string.IsNullOrWhiteSpace(TNombre.Text))
+                    query += " AND nombre LIKE @nombre";
+
+              
+
+                if (RBActivo.Checked)  // si seleccionaste activo
+                    query += " AND stock >= 1";
+                else if (RBInactivo.Checked) // si seleccionaste Inactivo
+                    query += " AND stock = 0";
+                query += " ORDER BY p.id_producto";
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                // Agregar parámetros solo si los campos tienen valor
+                if (!string.IsNullOrWhiteSpace(TNombre.Text))
+                    cmd.Parameters.AddWithValue("@nombre", "%" + TNombre.Text + "%");
+
+             
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+            }
+        }
+    
     }
 }
 

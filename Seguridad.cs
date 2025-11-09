@@ -25,6 +25,12 @@ namespace formLogin
             }
         }
 
+        /// Verifica si la contraseña ingresada coincide con el hash almacenado.
+        public static bool VerificarPassword(string passwordIngresada, string hashAlmacenado)
+        {
+            string hashIngresada = HashPassword(passwordIngresada);
+            return hashIngresada.Equals(hashAlmacenado);
+        }
 
     }
 }

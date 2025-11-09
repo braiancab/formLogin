@@ -38,7 +38,7 @@ namespace formLogin
         {
             string usuario = TNombreUsuario.Text.Trim();
             string contraseña = TContraUsuario.Text.Trim();
-
+            string passwordHash = Seguridad.HashPassword(TContraUsuario.Text);
 
             if (string.IsNullOrWhiteSpace(TNombreUsuario.Text))
             {
@@ -63,7 +63,7 @@ namespace formLogin
                  WHERE u.Usuario = @usuario AND u.Contraseña = @contraseña AND u.activo = 1";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@usuario", usuario);
-                cmd.Parameters.AddWithValue("@contraseña", contraseña);
+                cmd.Parameters.AddWithValue("@contraseña", passwordHash);
 
                 conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();

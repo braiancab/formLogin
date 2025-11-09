@@ -131,7 +131,7 @@ namespace formLogin
 
         private void BReporte_Click(object sender, EventArgs e)
         {
-            FormReporte f = new FormReporte(this);
+            FormReporte f = new FormReporte(_usuario, this);
             f.Show();
             this.Hide();
         }

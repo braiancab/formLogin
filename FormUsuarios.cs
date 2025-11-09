@@ -107,6 +107,8 @@ namespace formLogin
         private void BAgregar_Click(object sender, EventArgs e)
         {
             string hash = Seguridad.HashPassword(TContraseña.Text);
+
+            string passwordHash = Seguridad.HashPassword(TContraseña.Text);
             if (!ValidarCampos())
                 return;
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -133,7 +135,7 @@ namespace formLogin
                     sexo = "Femenino";
                 }
                 cmd.Parameters.AddWithValue("@Sexo", sexo);
-                cmd.Parameters.AddWithValue("@Contraseña", hash);
+                cmd.Parameters.AddWithValue("@Contraseña", passwordHash);
                 cmd.Parameters.AddWithValue("@Usuario", TUsuario.Text);
 
                 conn.Open();
@@ -164,6 +166,8 @@ namespace formLogin
         private void BActualizar_Click(object sender, EventArgs e)
         {
             string hash = Seguridad.HashPassword(TContraseña.Text);
+
+            string passwordHash = Seguridad.HashPassword(TContraseña.Text);
             if (idSeleccionado == 0) return;
             if (!ValidarCampos())
                 return;
@@ -190,7 +194,7 @@ namespace formLogin
                 }
 
                 cmd.Parameters.AddWithValue("@Sexo", sexo);
-                cmd.Parameters.AddWithValue("@Contraseña", hash);
+                cmd.Parameters.AddWithValue("@Contraseña", passwordHash);
                 cmd.Parameters.AddWithValue("@Usuario", TUsuario.Text);
                 cmd.Parameters.AddWithValue("@id_usuario", idSeleccionado);
 

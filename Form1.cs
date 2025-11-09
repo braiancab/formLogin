@@ -2,6 +2,7 @@
 using System.Data;
 using System.DirectoryServices.ActiveDirectory;
 using System.Net;
+using static formLogin.Form1;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -36,67 +37,66 @@ namespace formLogin
 
         private void BIngresar_Click(object sender, EventArgs e)
         {
-            string usuario = TNombreUsuario.Text.Trim();
-            string contraseña = TContraUsuario.Text.Trim();
-            string passwordHash = Seguridad.HashPassword(TContraUsuario.Text);
 
-            if (string.IsNullOrWhiteSpace(TNombreUsuario.Text))
-            {
-                MessageBox.Show("Debe ingresar un nombre de usuario.");
-                TNombreUsuario.Focus();
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(TContraUsuario.Text))
-            {
-                MessageBox.Show("Debe ingresar una contraseña.");
-                TContraUsuario.Focus();
-                return;
-            }
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT u.id_usuario, u.Nombre, u.Apellido, u.Dni, 
-                        u.Correo, u.Usuario, r.nombre as id_rol
+                conn.Open();
+
+                string query = @"SELECT u.id_usuario, u.nombre, u.apellido, u.dni, 
+                        u.correo, u.usuario, r.nombre as id_rol, u.contraseña, u.id_rol
                  FROM Usuarios u
                  INNER JOIN Rol r ON u.id_rol = r.id_rol
-                 WHERE u.Usuario = @usuario AND u.Contraseña = @contraseña AND u.activo = 1";
+                 WHERE u.usuario = @usuario AND u.activo = 1";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@usuario", usuario);
-                cmd.Parameters.AddWithValue("@contraseña", passwordHash);
+                cmd.Parameters.AddWithValue("@usuario", TNombreUsuario.Text);
 
-                conn.Open();
-                SqlDataReader dr = cmd.ExecuteReader();
+                SqlDataReader reader = cmd.ExecuteReader();
 
-                if (dr.Read())
+                if (reader.Read())
                 {
-                    // Creamos el objeto usuario con los datos de la BD
-                    Usuario user = new Usuario()
-                    {
-                        Id = Convert.ToInt32(dr["id_usuario"]),
-                        Nombre = dr["Nombre"].ToString(),
-                        Apellido = dr["Apellido"].ToString(),
-                        Dni = dr["Dni"].ToString(),
-                        Correo = dr["Correo"].ToString(),
-                        Rol = dr["id_rol"].ToString(),
-                        Username = dr["Usuario"].ToString()
-                    };
+                    
 
-                    // Abrimos el menú
-                    FormMenu menu = new FormMenu(user, this);
-                    menu.Show();
-                    this.Hide();
+                    string hashAlmacenado = reader["contraseña"].ToString();
+
+                    // ✅ Compara el hash de la contraseña ingresada con la guardada
+                    if (Seguridad.VerificarPassword(TContraUsuario.Text, hashAlmacenado))
+                    {
+                        string nombre = reader["nombre"].ToString();
+                     
+
+                        Usuario user = new Usuario()
+                        {
+                            Id = Convert.ToInt32(reader["id_usuario"]),
+                            Nombre = reader["Nombre"].ToString(),
+                            Apellido = reader["Apellido"].ToString(),
+                            Dni = reader["Dni"].ToString(),
+                            Correo = reader["Correo"].ToString(),
+                            Rol = reader["id_rol"].ToString(),
+                            Username = reader["Usuario"].ToString()
+                        };
+
+                        // Abrimos el menú
+                        FormMenu menu = new FormMenu(user, this);
+                        menu.Show();
+                        this.Hide();
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Contraseña incorrecta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                conn.Close();
             }
         }
 
-        
+
+
 
 
         // Ver como hacer para presionar enter y pase a otro textbox

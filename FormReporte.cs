@@ -58,6 +58,8 @@ namespace formLogin
             {
                 CargarGraficoVendedores();
                 CargarTopProductos();
+                CalcularEstadisticasAdmin();
+                
 
             }
             else if (_usuario.Rol == "Gerente")
@@ -99,6 +101,41 @@ namespace formLogin
                 LTotalVentas.Text = $"Total de ventas: ${totalVentas:N2}";
             }
         }
+
+        private void CalcularEstadisticasAdmin()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"
+            SELECT 
+                COUNT(DISTINCT v.id_venta) AS TotalVentas,
+                SUM(dv.cantidad) AS TotalProductos,
+                SUM(v.total) AS TotalDinero
+            FROM Venta v
+            INNER JOIN DetalleVenta dv ON v.id_venta = dv.id_venta;
+        ";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int totalVentas = reader["TotalVentas"] != DBNull.Value ? Convert.ToInt32(reader["TotalVentas"]) : 0;
+                    int totalProductos = reader["TotalProductos"] != DBNull.Value ? Convert.ToInt32(reader["TotalProductos"]) : 0;
+                    decimal totalDinero = reader["TotalDinero"] != DBNull.Value ? Convert.ToDecimal(reader["TotalDinero"]) : 0;
+
+                    // Mostrar en labels
+                    LTotalVentas.Text = $"Total de Ventas: {totalVentas}";
+                    LPromedioDiario.Text = $"Productos Vendidos: {totalProductos}";
+                    LProcentaje.Text = $"Total Recaudado: ${totalDinero:N2}";
+
+                }
+            }
+        }
+
+
 
 
 

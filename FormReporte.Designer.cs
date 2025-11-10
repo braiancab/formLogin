@@ -34,15 +34,12 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
+            BHistorial = new Button();
             LUsuario = new Label();
             LVolver = new Label();
             LReporte = new Label();
             BSalir = new Button();
-            dataGridView1 = new DataGridView();
             groupBox1 = new GroupBox();
             BGenerar = new Button();
             DTHasta = new DateTimePicker();
@@ -52,27 +49,34 @@
             LTextoReporte = new Label();
             chartVentas = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chartTopProductos = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            chartSemanal = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartVentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartTopProductos).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartSemanal).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(BHistorial);
             panel1.Controls.Add(LUsuario);
             panel1.Controls.Add(LVolver);
             panel1.Controls.Add(LReporte);
             panel1.Controls.Add(BSalir);
-            panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(1328, 100);
             panel1.TabIndex = 0;
+            // 
+            // BHistorial
+            // 
+            BHistorial.Location = new Point(1166, 25);
+            BHistorial.Name = "BHistorial";
+            BHistorial.Size = new Size(143, 51);
+            BHistorial.TabIndex = 4;
+            BHistorial.Text = "Historial Ventas";
+            BHistorial.UseVisualStyleBackColor = true;
+            BHistorial.Click += BHistorial_Click;
             // 
             // LUsuario
             // 
@@ -113,16 +117,6 @@
             BSalir.TabStop = false;
             BSalir.UseVisualStyleBackColor = true;
             BSalir.Click += BSalir_Click;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(910, 42);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(276, 31);
-            dataGridView1.TabIndex = 2;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // groupBox1
             // 
@@ -225,29 +219,12 @@
             chartTopProductos.TabIndex = 4;
             chartTopProductos.Text = "chartTopProductos";
             // 
-            // chartSemanal
-            // 
-            chartArea3.Name = "ChartArea1";
-            chartSemanal.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            chartSemanal.Legends.Add(legend3);
-            chartSemanal.Location = new Point(818, 470);
-            chartSemanal.Name = "chartSemanal";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            chartSemanal.Series.Add(series3);
-            chartSemanal.Size = new Size(522, 236);
-            chartSemanal.TabIndex = 5;
-            chartSemanal.Text = "chartSemanal";
-            // 
             // FormReporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(1352, 729);
-            Controls.Add(chartSemanal);
             Controls.Add(chartTopProductos);
             Controls.Add(chartVentas);
             Controls.Add(groupBox1);
@@ -257,12 +234,10 @@
             WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chartVentas).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartTopProductos).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartSemanal).EndInit();
             ResumeLayout(false);
         }
 
@@ -278,11 +253,10 @@
         private DateTimePicker DTDesde;
         private Label label2;
         private Label label1;
-        private DataGridView dataGridView1;
         private Button BGenerar;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartVentas;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTopProductos;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartSemanal;
         private Label LUsuario;
+        private Button BHistorial;
     }
 }

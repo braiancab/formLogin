@@ -248,7 +248,7 @@ namespace formLogin
                 chartVentas.Titles.Add("Ventas por Vendedor");
             }
         }
-        // 📊 1. Evolución diaria de ventas
+        //  Evolución diaria de ventas
         private void CargarGraficoVentas()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -303,7 +303,7 @@ namespace formLogin
             }
         }
 
-        // 🥇 2. Top productos del período
+        // Top productos del período
         private void CargarTopProductos()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -345,7 +345,7 @@ namespace formLogin
                 chartTopProductos.Series.Add(serie);
             }
         }
-        // 📈 3. Evolución semanal
+        //  Evolución semanal
 
         private void CargarProductosConMasStock()
         {
@@ -379,7 +379,7 @@ namespace formLogin
 
                 Series serie = new Series("Stock");
                 serie.ChartType = SeriesChartType.Column;
-                serie.XValueType = ChartValueType.Int32; // Usaremos índices
+                serie.XValueType = ChartValueType.Int32; // Indice
                 serie.IsValueShownAsLabel = true;
                 serie["PointWidth"] = "0.6";
 

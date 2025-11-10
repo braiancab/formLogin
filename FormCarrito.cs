@@ -60,7 +60,7 @@ namespace formLogin
 
         private void cargarProductos()
         {
-            cargandoProductos = true; // 🔹 bloqueamos el evento mientras carga
+            cargandoProductos = true; //  bloqueamos el evento mientras carga
 
             string query = "SELECT id_producto,nombre,descripcion,precio,stock,color,talle,categoria FROM Productos WHERE stock > 0";
 
@@ -82,7 +82,7 @@ namespace formLogin
                 comboBox1.SelectedIndex = -1;
                 comboBox1.Text = "Seleccione un producto...";
             }
-            cargandoProductos = false; // 🔹 habilitamos el evento nuevamente
+            cargandoProductos = false; //  habilitamos el evento nuevamente
         }
 
 
@@ -107,7 +107,7 @@ namespace formLogin
             carrito.Columns.Add("Descuento", typeof(decimal));
             carrito.Columns.Add("Total", typeof(decimal));
 
-            dataGridView1.DataSource = carrito; // 🔹 Asignás la grilla para ver los datos
+            dataGridView1.DataSource = carrito; // Grilla para ver datos asignados al carrito
         }
 
         private void BNuevoCliente_Click(object sender, EventArgs e)
@@ -144,7 +144,7 @@ namespace formLogin
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cargandoProductos) return; // 🔹 evita ejecutar durante la carga
+            if (cargandoProductos) return; // evita ejecutar durante la carga
             if (comboBox1.SelectedItem == null)
                 return;
             DataRowView filaSeleccionada = comboBox1.SelectedItem as DataRowView;
@@ -184,7 +184,7 @@ namespace formLogin
 
             TTotal.Text = total.ToString("F2");     //Ver como actualizar el total a medida que se agregan productos
 
-            // 🔍 Verificar si el producto ya está en el carrito
+            // Verificar si el producto ya está en el carrito
             foreach (DataRow fila2 in carrito.Rows)
             {
                 int idExistente = Convert.ToInt32(fila2["ID"]);
@@ -193,14 +193,14 @@ namespace formLogin
                     int cantidadActual = Convert.ToInt32(fila2["Cantidad"]);
                     int nuevaCantidad = cantidadActual + cantidad;
 
-                    // 🧮 Verificar si la nueva cantidad supera el stock
+                    // Verificar si la nueva cantidad supera el stock
                     if (nuevaCantidad > stock)
                     {
                         MessageBox.Show("No hay más productos disponibles en stock.", "Stock agotado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
 
-                    // ✅ Actualizar la fila existente
+                    // Actualizar la fila existente
                     fila2["Cantidad"] = nuevaCantidad;
                     fila2["Total"] = nuevaCantidad * precio - descuento;
                     ActualizarTotalVenta();
@@ -218,7 +218,7 @@ namespace formLogin
         private void FormVentas_Load(object sender, EventArgs e)
         {
 
-            dataGridView1.AllowUserToAddRows = false; // 👈 evita la fila vacía
+            dataGridView1.AllowUserToAddRows = false; // evita la fila vacía
             dataGridView1.ReadOnly = true; // opcional: evita edición manual
             // Solo agregar si no existe ya
             if (!dataGridView1.Columns.Contains("BEliminar"))
@@ -233,8 +233,8 @@ namespace formLogin
                 btnEliminar.FlatStyle = FlatStyle.Flat;
                 // dataGridView1.Columns.Add(btnEliminar);
                 dataGridView1.Columns.Insert(0, btnEliminar); // la pone al inicio
-                                                              // 🔸 Ocultar al inicio
-                                                              //  dataGridView1.Columns["BEliminar"].Visible = false;
+                                                              // Ocultar al inicio
+                                                              
             }
         }
 
@@ -314,7 +314,7 @@ namespace formLogin
 
                 try
                 {
-                    // 1️⃣ Insertar la cabecera de la venta
+                    // 1Insertar la cabecera de la venta
                     string queryVenta = @"INSERT INTO Venta (id_cliente, id_usuario, fecha, total)
                                   VALUES (@id_cliente, @id_usuario, @fecha, @total);
                                   SELECT SCOPE_IDENTITY();";
@@ -325,9 +325,9 @@ namespace formLogin
                     cmdVenta.Parameters.AddWithValue("@fecha", fecha);
                     cmdVenta.Parameters.AddWithValue("@total", totalVenta);
 
-                    int idVenta = Convert.ToInt32(cmdVenta.ExecuteScalar()); // ← obtenemos el id_venta generado
+                    int idVenta = Convert.ToInt32(cmdVenta.ExecuteScalar()); // obtenemos el id_venta generado
 
-                    // 2️⃣ Insertar cada producto del carrito
+                    // 2Insertar cada producto del carrito
                     string queryDetalle = @"INSERT INTO DetalleVenta (id_venta, id_producto, cantidad, precio, descuento, total)
                                     VALUES (@id_venta, @id_producto, @cantidad, @precio, @descuento, @total)";
 
@@ -343,7 +343,7 @@ namespace formLogin
                         cmdDetalle.Parameters.AddWithValue("@total", fila["Total"]);
                         cmdDetalle.ExecuteNonQuery();
 
-                        // 🔽 3️⃣ Descontar stock del producto
+                        // Descontar stock del producto
                         SqlCommand cmdStock = new SqlCommand(
                             "UPDATE Productos SET stock = stock - @cantidad WHERE id_producto = @id_producto",
                             conn, transaction);
@@ -353,18 +353,18 @@ namespace formLogin
                         cmdStock.ExecuteNonQuery();
                     }
 
-                    // ✅ Confirmamos toda la transacción
+                    //  Confirmamos toda la transacción
                     transaction.Commit();
                     cargarProductos();
                     MessageBox.Show("Venta guardada correctamente.");
 
                     carrito.Clear(); // Limpiamos el carrito
-                                     // 🔹 4. Limpiar total general
+                                     // Limpiar total general
                     TTotalVenta.Text = "0.00";
                     comboBox2.SelectedIndex = -1;
                     comboBox2.Text = "Seleccione un Cliente...";
 
-                    // 🔄 🔹 Volver a cargar los productos disponibles
+                    // Volver a cargar los productos disponibles
 
                     comboBox1.SelectedIndex = -1;
                     comboBox1.Text = "Seleccione un producto...";
@@ -394,12 +394,12 @@ namespace formLogin
 
         private void BCancelar_Click(object sender, EventArgs e)
         {
-            // 🔹 1. Limpiar el DataGridView (carrito)
-            //dgvCarrito.Rows.Clear();   // si lo llenás manualmente
-            carrito.Clear();        // si usás un DataTable como DataSource
+            // Limpiar el DataGridView (carrito)
+           
+            carrito.Clear();        
 
             limpiarCampos();
-            // 🔹 4. Limpiar total general
+            //Limpiar total general
             TTotalVenta.Text = "0.00";
 
         }
@@ -407,8 +407,8 @@ namespace formLogin
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            dataGridView1.AllowUserToAddRows = false; // 👈 evita la fila vacía
-            dataGridView1.ReadOnly = true; // opcional: evita edición manual
+            dataGridView1.AllowUserToAddRows = false; // evita la fila vacía
+            dataGridView1.ReadOnly = true; // evita edición manual
             // Verifica que sea el botón "Eliminar" y que no se trate de la fila de encabezado
             if (dataGridView1.Columns[e.ColumnIndex].Name == "BEliminar" && e.RowIndex >= 0)
             {
@@ -427,7 +427,7 @@ namespace formLogin
                     carrito.Rows.RemoveAt(e.RowIndex);
 
 
-                    ActualizarTotalVenta(); // <- recalcula el total después de eliminar
+                    ActualizarTotalVenta(); // recalcula el total después de eliminar
                 }
             }
         }
@@ -451,7 +451,7 @@ namespace formLogin
 
          
 
-            // 🔹 Fuente tipo "máquina de escribir" (Courier)
+            //  Fuente tipo "máquina de escribir" (Courier)
             var fontTitulo = FontFactory.GetFont(FontFactory.COURIER_BOLD, 18);
             var fontTexto = FontFactory.GetFont(FontFactory.COURIER, 10);
 
@@ -471,9 +471,9 @@ namespace formLogin
             doc.Add(new Paragraph("\n"));
 
             // Tabla de productos
-            PdfPTable tabla = new PdfPTable(5); // 5 columnas: Producto, Precio, Cantidad, Descuento, Total
+            PdfPTable tabla = new PdfPTable(5); 
             tabla.WidthPercentage = 100;
-
+            //columnas
             tabla.AddCell("Producto");
             tabla.AddCell("Precio");
             tabla.AddCell("Cantidad");

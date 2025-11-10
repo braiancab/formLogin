@@ -73,8 +73,8 @@ namespace formLogin
                     MessageBox.Show("Error: " + ex.Message);
                 }
 
-                dataGridView1.AllowUserToAddRows = false; // 👈 evita la fila vacía
-                dataGridView1.ReadOnly = true; // opcional: evita edición manual
+                dataGridView1.AllowUserToAddRows = false; //vita la fila vacía
+                dataGridView1.ReadOnly = true; // evita edición manual
 
                 // Evita agregar la columna varias veces
                 if (!dataGridView1.Columns.Contains("Detalles"))

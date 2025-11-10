@@ -100,7 +100,7 @@ namespace formLogin
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    // Aquí guardas el producto en la base de datos o lista
+                    //  guarda el producto en la base de datos o lista
                     CargarDatos();
                     // Indica que todo salió bien y cierra el formulario
                     this.DialogResult = DialogResult.OK;
@@ -123,9 +123,9 @@ namespace formLogin
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    // Aquí guardas el producto en la base de datos o lista
+                   
                     CargarDatos();
-                    // Indica que todo salió bien y cierra el formulario
+                   
                     this.DialogResult = DialogResult.OK;
                     this.Close();
 
@@ -174,7 +174,7 @@ namespace formLogin
                 MessageBox.Show("Debe seleccionar una categoria en el ComboBox.");
                 return false;
             }
-            // ✅ Si pasa todas las validaciones
+            // Si pasa todas las validaciones
             return true;
         }
         private void LimpiarCampos()

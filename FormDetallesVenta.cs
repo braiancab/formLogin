@@ -101,19 +101,19 @@ namespace formLogin
                     PdfWriter.GetInstance(doc, new FileStream(saveFile.FileName, FileMode.Create));
                     doc.Open();
 
-                    // 🔹 Título
+                    //Título
                     Paragraph titulo = new Paragraph($"Detalles de la Venta #{idVenta}\n\n",
                         new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 16f, iTextSharp.text.Font.BOLD));
                     titulo.Alignment = Element.ALIGN_CENTER;
                     doc.Add(titulo);
 
-                    // 🔹 Fecha
+                    // Fecha
                     Paragraph fecha = new Paragraph($"Fecha de generación: {DateTime.Now}\n\n",
                         new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10f, iTextSharp.text.Font.ITALIC));
                     fecha.Alignment = Element.ALIGN_RIGHT;
                     doc.Add(fecha);
 
-                    // 🔹 Tabla de productos
+                    //Tabla de productos
                     PdfPTable tabla = new PdfPTable(dataGridView1.Columns.Count);
                     tabla.WidthPercentage = 100;
 
@@ -140,7 +140,7 @@ namespace formLogin
 
                     doc.Add(tabla);
 
-                    // 🔹 Total
+                    //Total
                     Paragraph total = new Paragraph($"\nTotal de la venta: {LTotalVenta.Text}",
                         new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.BOLD));
                     total.Alignment = Element.ALIGN_RIGHT;

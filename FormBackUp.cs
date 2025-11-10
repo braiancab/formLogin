@@ -46,7 +46,7 @@ namespace formLogin
         private void IniciarTimerBackup()
         {
 
-            // 📅 Definir el próximo backup (hoy a las 21:00 o mañana si ya pasó)
+            // Definir el próximo backup ( a las 21:00 o mañana si ya pasó)
             proximoBackup = DateTime.Today.AddHours(21);
             if (DateTime.Now > proximoBackup)
                 proximoBackup = proximoBackup.AddDays(1);
@@ -65,7 +65,7 @@ namespace formLogin
             Console.WriteLine("Tick"); // Para verificar que se ejecuta cada segundo
             DateTime ahora = DateTime.Now;
 
-            // ⏱ Mostrar cuenta regresiva en un Label del formulario
+            // Mostrar cuenta regresiva en un Label del formulario
             TimeSpan restante = proximoBackup - ahora;
             if (restante.TotalSeconds > 0)
             {
@@ -76,7 +76,7 @@ namespace formLogin
                 LTimerBackup.Text = "Realizando backup...";
             }
 
-            // ⏰ Ejecutar backup automáticamente a las 21:00
+            //  Ejecutar backup automáticamente a las 21:00
             if (ahora >= proximoBackup && !backupRealizadoHoy)
             {
                 CrearBackupAutomatico();
@@ -86,7 +86,7 @@ namespace formLogin
                 proximoBackup = proximoBackup.AddDays(1);
             }
 
-            // 🔄 Reiniciar la bandera a medianoche
+            // Reiniciar la bandera a medianoche
             if (ahora.Hour == 0 && ahora.Minute == 0 && ahora.Second == 0)
                 backupRealizadoHoy = false;
         }
@@ -96,7 +96,7 @@ namespace formLogin
         {
             try
             {
-                string database = "BD_TALLER"; // Cambiar por tu base
+                string database = "BD_TALLER"; 
                 string path = @"C:\Users\Braian\OneDrive\BackupsSQL";
 
                 if (!Directory.Exists(path))
@@ -113,8 +113,7 @@ namespace formLogin
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.ExecuteNonQuery();
-                        // Si querés mostrar algo:
-                        // MessageBox.Show($"Backup automático realizado en:\n{fullPath}");
+                        
                     }
                 }
             }
@@ -149,7 +148,7 @@ namespace formLogin
 
             try
             {
-                // 🔐 Verificar rol
+                //  Verificar rol
                 if (_usuario.Rol != "Administrador")
                 {
                     MessageBox.Show("Solo los usuarios administradores pueden crear backups.",
@@ -157,14 +156,14 @@ namespace formLogin
                     return;
                 }
 
-                // 🔑 Solicitar clave de seguridad
+                //  Solicitar clave de seguridad
                 string claveIngresada = Microsoft.VisualBasic.Interaction.InputBox(
                     "Ingrese la clave de seguridad para continuar:",
                     "Confirmar Backup",
                     "");
 
                 // Verificar la clave
-                string claveCorrecta = "1234seguro"; // podés guardarla en config o BD
+                string claveCorrecta = "1234seguro"; 
                 if (claveIngresada != claveCorrecta)
                 {
                     MessageBox.Show("Clave incorrecta. Operación cancelada.",

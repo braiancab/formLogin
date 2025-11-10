@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
             BHistorial = new Button();
-            LUsuario = new Label();
             LVolver = new Label();
             LReporte = new Label();
             BSalir = new Button();
@@ -49,17 +48,22 @@
             LTextoReporte = new Label();
             chartVentas = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chartTopProductos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            LPromedioDiario = new Label();
+            LProcentaje = new Label();
+            LTotalVentas = new Label();
+            panel2 = new Panel();
+            label3 = new Label();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartVentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartTopProductos).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(BHistorial);
-            panel1.Controls.Add(LUsuario);
             panel1.Controls.Add(LVolver);
             panel1.Controls.Add(LReporte);
             panel1.Controls.Add(BSalir);
@@ -77,15 +81,6 @@
             BHistorial.Text = "Historial Ventas";
             BHistorial.UseVisualStyleBackColor = true;
             BHistorial.Click += BHistorial_Click;
-            // 
-            // LUsuario
-            // 
-            LUsuario.AutoSize = true;
-            LUsuario.Location = new Point(400, 60);
-            LUsuario.Name = "LUsuario";
-            LUsuario.Size = new Size(38, 15);
-            LUsuario.TabIndex = 3;
-            LUsuario.Text = "label3";
             // 
             // LVolver
             // 
@@ -128,7 +123,7 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(LTextoReporte);
-            groupBox1.Location = new Point(27, 132);
+            groupBox1.Location = new Point(44, 132);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(586, 132);
             groupBox1.TabIndex = 1;
@@ -189,35 +184,84 @@
             // 
             // chartVentas
             // 
-            chartArea1.Name = "ChartArea1";
-            chartVentas.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            chartVentas.Legends.Add(legend1);
-            chartVentas.Location = new Point(818, 132);
+            chartArea3.Name = "ChartArea1";
+            chartVentas.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            chartVentas.Legends.Add(legend3);
+            chartVentas.Location = new Point(763, 132);
             chartVentas.Name = "chartVentas";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chartVentas.Series.Add(series1);
-            chartVentas.Size = new Size(522, 236);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            chartVentas.Series.Add(series3);
+            chartVentas.Size = new Size(522, 272);
             chartVentas.TabIndex = 3;
             chartVentas.Text = "chartVentas";
             // 
             // chartTopProductos
             // 
-            chartArea2.Name = "ChartArea1";
-            chartTopProductos.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            chartTopProductos.Legends.Add(legend2);
-            chartTopProductos.Location = new Point(27, 470);
+            chartArea4.Name = "ChartArea1";
+            chartTopProductos.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            chartTopProductos.Legends.Add(legend4);
+            chartTopProductos.Location = new Point(108, 408);
             chartTopProductos.Name = "chartTopProductos";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            chartTopProductos.Series.Add(series2);
-            chartTopProductos.Size = new Size(522, 236);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            chartTopProductos.Series.Add(series4);
+            chartTopProductos.Size = new Size(522, 272);
             chartTopProductos.TabIndex = 4;
             chartTopProductos.Text = "chartTopProductos";
+            // 
+            // LPromedioDiario
+            // 
+            LPromedioDiario.AutoSize = true;
+            LPromedioDiario.Location = new Point(14, 126);
+            LPromedioDiario.Name = "LPromedioDiario";
+            LPromedioDiario.Size = new Size(38, 15);
+            LPromedioDiario.TabIndex = 5;
+            LPromedioDiario.Text = "label3";
+            // 
+            // LProcentaje
+            // 
+            LProcentaje.AutoSize = true;
+            LProcentaje.Location = new Point(14, 174);
+            LProcentaje.Name = "LProcentaje";
+            LProcentaje.Size = new Size(38, 15);
+            LProcentaje.TabIndex = 6;
+            LProcentaje.Text = "label3";
+            // 
+            // LTotalVentas
+            // 
+            LTotalVentas.AutoSize = true;
+            LTotalVentas.Location = new Point(14, 75);
+            LTotalVentas.Name = "LTotalVentas";
+            LTotalVentas.Size = new Size(38, 15);
+            LTotalVentas.TabIndex = 7;
+            LTotalVentas.Text = "label3";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(LPromedioDiario);
+            panel2.Controls.Add(LTotalVentas);
+            panel2.Controls.Add(LProcentaje);
+            panel2.Location = new Point(842, 441);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(353, 239);
+            panel2.TabIndex = 8;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Sitka Text", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(117, 10);
+            label3.Name = "label3";
+            label3.Size = new Size(118, 28);
+            label3.TabIndex = 8;
+            label3.Text = "Mediciones";
             // 
             // FormReporte
             // 
@@ -225,6 +269,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(1352, 729);
+            Controls.Add(panel2);
             Controls.Add(chartTopProductos);
             Controls.Add(chartVentas);
             Controls.Add(groupBox1);
@@ -238,6 +283,8 @@
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chartVentas).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartTopProductos).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -256,7 +303,11 @@
         private Button BGenerar;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartVentas;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTopProductos;
-        private Label LUsuario;
         private Button BHistorial;
+        private Label LPromedioDiario;
+        private Label LProcentaje;
+        private Label LTotalVentas;
+        private Panel panel2;
+        private Label label3;
     }
 }

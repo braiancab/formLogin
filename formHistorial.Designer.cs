@@ -30,9 +30,13 @@
         {
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
-            LTitulo = new Label();
-            BVolver = new Button();
             label1 = new Label();
+            BVolver = new Button();
+            LTitulo = new Label();
+            label2 = new Label();
+            BFiltrar = new Button();
+            TNombreFiltro = new TextBox();
+            RBTodos = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -58,15 +62,14 @@
             panel1.Size = new Size(1328, 100);
             panel1.TabIndex = 1;
             // 
-            // LTitulo
+            // label1
             // 
-            LTitulo.AutoSize = true;
-            LTitulo.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LTitulo.Location = new Point(598, 25);
-            LTitulo.Name = "LTitulo";
-            LTitulo.Size = new Size(148, 37);
-            LTitulo.TabIndex = 0;
-            LTitulo.Text = "Historial";
+            label1.AutoSize = true;
+            label1.Location = new Point(35, 76);
+            label1.Name = "label1";
+            label1.Size = new Size(39, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Volver";
             // 
             // BVolver
             // 
@@ -78,20 +81,62 @@
             BVolver.UseVisualStyleBackColor = true;
             BVolver.Click += BVolver_Click;
             // 
-            // label1
+            // LTitulo
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(35, 76);
-            label1.Name = "label1";
-            label1.Size = new Size(39, 15);
-            label1.TabIndex = 2;
-            label1.Text = "Volver";
+            LTitulo.AutoSize = true;
+            LTitulo.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LTitulo.Location = new Point(598, 25);
+            LTitulo.Name = "LTitulo";
+            LTitulo.Size = new Size(148, 37);
+            LTitulo.TabIndex = 0;
+            LTitulo.Text = "Historial";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(605, 194);
+            label2.Name = "label2";
+            label2.Size = new Size(57, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Nombre: ";
+            // 
+            // BFiltrar
+            // 
+            BFiltrar.Location = new Point(1146, 190);
+            BFiltrar.Name = "BFiltrar";
+            BFiltrar.Size = new Size(75, 23);
+            BFiltrar.TabIndex = 3;
+            BFiltrar.Text = "Filtrar";
+            BFiltrar.UseVisualStyleBackColor = true;
+            BFiltrar.Click += BFiltrar_Click;
+            // 
+            // TNombreFiltro
+            // 
+            TNombreFiltro.Location = new Point(668, 190);
+            TNombreFiltro.Name = "TNombreFiltro";
+            TNombreFiltro.Size = new Size(176, 23);
+            TNombreFiltro.TabIndex = 4;
+            // 
+            // RBTodos
+            // 
+            RBTodos.AutoSize = true;
+            RBTodos.Location = new Point(953, 194);
+            RBTodos.Name = "RBTodos";
+            RBTodos.Size = new Size(94, 19);
+            RBTodos.TabIndex = 5;
+            RBTodos.TabStop = true;
+            RBTodos.Text = "Mostrar todo";
+            RBTodos.UseVisualStyleBackColor = true;
             // 
             // formHistorial
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1352, 729);
+            Controls.Add(RBTodos);
+            Controls.Add(TNombreFiltro);
+            Controls.Add(BFiltrar);
+            Controls.Add(label2);
             Controls.Add(panel1);
             Controls.Add(dataGridView1);
             Name = "formHistorial";
@@ -101,6 +146,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -110,5 +156,9 @@
         private Label LTitulo;
         private Button BVolver;
         private Label label1;
+        private Label label2;
+        private Button BFiltrar;
+        private TextBox TNombreFiltro;
+        private RadioButton RBTodos;
     }
 }

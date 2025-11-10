@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
 
 namespace formLogin
 {
@@ -97,6 +98,48 @@ namespace formLogin
 
             _FormAnterior.Show();
             this.Close();
+        }
+
+        private void BFiltrar_Click(object sender, EventArgs e)
+        {
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = @"SELECT v.id_venta, 
+                        u.nombre as usuario,                      
+                        c.nombre as cliente,    
+                        v.fecha, 
+                        v.total
+                             
+                        FROM Venta v
+                        INNER JOIN Usuarios u ON v.id_usuario = u.id_usuario
+                        INNER JOIN Cliente c ON v.id_cliente = c.id_cliente
+                        WHERE 1=1"; 
+                // Condición base para facilitar la adición de filtros
+
+                // Filtros dinámicos
+                if (!string.IsNullOrWhiteSpace(TNombreFiltro.Text))
+                    query += " AND usuario LIKE @nombre";
+
+
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                // Agregar parámetros solo si los campos tienen valor
+                if (!string.IsNullOrWhiteSpace(TNombreFiltro.Text))
+                    cmd.Parameters.AddWithValue("@nombre", "%" + TNombreFiltro.Text + "%");
+
+                if (RBTodos.Checked)  // si seleccionaste activo
+                    query += " AND 1 = 1";
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+
+            }
         }
     }
 }

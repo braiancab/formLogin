@@ -244,6 +244,8 @@ namespace formLogin
                 chartTopProductos.Series.Clear();
                 chartTopProductos.ChartAreas.Clear();
                 chartTopProductos.ChartAreas.Add(new ChartArea());
+                chartTopProductos.Titles.Clear(); 
+                chartTopProductos.Titles.Add("Top Productos Mas Vendidos");
 
                 Series serie = new Series("Top Productos");
                 serie.ChartType = SeriesChartType.Doughnut;
@@ -253,7 +255,7 @@ namespace formLogin
 
 
 
-                chartTopProductos.Titles.Add("Top Productos Mas Vendidos");
+              
                 chartTopProductos.DataSource = dt;
                 chartTopProductos.Series.Add(serie);
             }
@@ -272,13 +274,13 @@ namespace formLogin
             ORDER BY stock DESC";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-
                 DataTable dt = new DataTable();
                 new SqlDataAdapter(cmd).Fill(dt);
 
                 // Limpiamos el chart
                 chartVentas.Series.Clear();
                 chartVentas.ChartAreas.Clear();
+                chartVentas.Titles.Clear();
 
                 // Agregamos un área de gráfico
                 ChartArea area = new ChartArea();
@@ -286,19 +288,38 @@ namespace formLogin
 
                 // Creamos la serie
                 Series serie = new Series("Stock");
-                serie.ChartType = SeriesChartType.Column;  // Columnas verticales
+                serie.ChartType = SeriesChartType.Column;
                 serie.XValueMember = "nombre";
                 serie.YValueMembers = "stock";
                 serie.IsValueShownAsLabel = true;
                 serie.Color = Color.RoyalBlue;
-                serie["PointWidth"] = "0.6"; // ancho de columnas
+                serie["PointWidth"] = "0.6";
 
-                // Asignamos el origen de datos
-                chartVentas.DataSource = dt;
+                // Agregamos la serie al chart
                 chartVentas.Series.Add(serie);
 
+           
+
+                // 🔹 Agregamos los puntos con colores personalizados
+                foreach (DataRow row in dt.Rows)
+                {
+                    string nombre = row["nombre"].ToString();
+                    int stock = Convert.ToInt32(row["stock"]);
+
+                    int pointIndex = serie.Points.AddXY(nombre, stock);
+
+                    // 🔸 Color dinámico según el valor del stock
+                    if (stock < 10)
+                        serie.Points[pointIndex].Color = Color.Red;         // bajo
+                    else if (stock <= 30)
+                        serie.Points[pointIndex].Color = Color.Goldenrod;   // medio
+                    else
+                        serie.Points[pointIndex].Color = Color.ForestGreen; // alto
+                }
+
+
+
                 // Título y estilo
-                chartVentas.Titles.Clear();
                 chartVentas.Titles.Add("Productos con Más Stock");
                 chartVentas.Titles[0].Font = new Font("Segoe UI", 11, FontStyle.Bold);
 
@@ -317,46 +338,34 @@ namespace formLogin
             {
                 string query = @"
             SELECT 
-                CAST(v.fecha AS DATE) AS Dia,
-                SUM(d.cantidad) AS ProductosVendidos
+                CONVERT(date, v.fecha) AS Fecha,
+                SUM(d.cantidad) AS TotalVendidos
             FROM DetalleVenta d
             INNER JOIN Venta v ON v.id_venta = d.id_venta
-            WHERE v.fecha BETWEEN @desde AND @hasta
-            GROUP BY CAST(v.fecha AS DATE)
-            ORDER BY Dia";
+            GROUP BY CONVERT(date, v.fecha)
+            ORDER BY Fecha";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@desde", DTDesde.Value.Date);
-                cmd.Parameters.AddWithValue("@hasta", DTHasta.Value.Date);
-
                 DataTable dt = new DataTable();
                 new SqlDataAdapter(cmd).Fill(dt);
 
                 chartTopProductos.Series.Clear();
                 chartTopProductos.ChartAreas.Clear();
+                chartTopProductos.Titles.Clear();
+
                 chartTopProductos.ChartAreas.Add(new ChartArea());
+                chartTopProductos.Titles.Add("Días con más productos vendidos");
 
                 Series serie = new Series("Productos Vendidos");
-                serie.ChartType = SeriesChartType.Line;   // o Column si querés barras
-                serie.XValueMember = "Dia";
-                serie.YValueMembers = "ProductosVendidos";
-                serie.IsValueShownAsLabel = true;
+                serie.ChartType = SeriesChartType.Line;
+                serie.XValueMember = "Fecha";
+                serie.YValueMembers = "TotalVendidos";
                 serie.BorderWidth = 3;
-                serie.Color = Color.DarkOrange;
+                serie.Color = Color.Orange;
+                serie.IsValueShownAsLabel = true;
 
                 chartTopProductos.DataSource = dt;
                 chartTopProductos.Series.Add(serie);
-
-                chartTopProductos.Titles.Clear();
-                chartTopProductos.Titles.Add("Días con más productos vendidos");
-
-
-                foreach (DataPoint p in serie.Points)
-                {
-                    DateTime fecha = DateTime.FromOADate(p.XValue);
-                    string diaSemana = fecha.ToString("dddd", new System.Globalization.CultureInfo("es-ES"));
-                    p.AxisLabel = $"{fecha:dd/MM} ({diaSemana})"; // ejemplo: 03/11 (lunes)
-                }
 
 
 

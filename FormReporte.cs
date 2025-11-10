@@ -246,6 +246,12 @@ namespace formLogin
                 chartVentas.Series.Add(serie);
                 chartVentas.Titles.Clear();
                 chartVentas.Titles.Add("Ventas por Vendedor");
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    serie.Points.AddXY(row["Vendedor"], row["TotalVendido"]);
+                }
+
             }
         }
         //  Evolución diaria de ventas

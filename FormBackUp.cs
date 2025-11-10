@@ -175,7 +175,7 @@ namespace formLogin
             {
                 string database = comboBoxBD.Text;   // Nombre de la BD seleccionada
                 //  string path = TRuta.Text;          // Ruta donde guardar el .bak
-                string path = @"C:\Users\Braian\OneDrive\BackupsSQL";
+                string path = @"C:\Users\lucas\OneDrive\BackupsSQL";
                 if (string.IsNullOrEmpty(database) || string.IsNullOrEmpty(path))
                 {
                     MessageBox.Show("Debe seleccionar una base de datos y una ruta para guardar el backup.");

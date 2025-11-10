@@ -58,10 +58,10 @@
             LStock = new Label();
             label1 = new Label();
             panel4 = new Panel();
+            label3 = new Label();
             BFinalizarGuardar = new Button();
             TTotalVenta = new TextBox();
             dataGridView1 = new DataGridView();
-            label3 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -75,36 +75,38 @@
             panel1.Controls.Add(LVentas);
             panel1.Controls.Add(LVolver);
             panel1.Controls.Add(BSalir);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(14, 16);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1328, 100);
+            panel1.Size = new Size(1518, 133);
             panel1.TabIndex = 0;
             // 
             // LVentas
             // 
             LVentas.AutoSize = true;
             LVentas.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LVentas.Location = new Point(559, 26);
+            LVentas.Location = new Point(639, 35);
             LVentas.Name = "LVentas";
-            LVentas.Size = new Size(123, 37);
+            LVentas.Size = new Size(150, 46);
             LVentas.TabIndex = 1;
             LVentas.Text = "Ventas";
             // 
             // LVolver
             // 
             LVolver.AutoSize = true;
-            LVolver.Location = new Point(32, 76);
+            LVolver.Location = new Point(37, 101);
             LVolver.Name = "LVolver";
-            LVolver.Size = new Size(39, 15);
+            LVolver.Size = new Size(50, 20);
             LVolver.TabIndex = 1;
             LVolver.Text = "Volver";
             // 
             // BSalir
             // 
             BSalir.Image = Properties.Resources.volver;
-            BSalir.Location = new Point(13, 3);
+            BSalir.Location = new Point(15, 4);
+            BSalir.Margin = new Padding(3, 4, 3, 4);
             BSalir.Name = "BSalir";
-            BSalir.Size = new Size(80, 70);
+            BSalir.Size = new Size(91, 93);
             BSalir.TabIndex = 1;
             BSalir.UseVisualStyleBackColor = true;
             BSalir.Click += BSalir_Click;
@@ -118,26 +120,27 @@
             panel2.Controls.Add(comboBox2);
             panel2.Controls.Add(LCliente);
             panel2.Controls.Add(LVendedor);
-            panel2.Location = new Point(53, 128);
+            panel2.Location = new Point(61, 171);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(524, 104);
+            panel2.Size = new Size(599, 139);
             panel2.TabIndex = 1;
             // 
             // LFecha
             // 
             LFecha.AutoSize = true;
-            LFecha.Location = new Point(336, 12);
+            LFecha.Location = new Point(384, 16);
             LFecha.Name = "LFecha";
-            LFecha.Size = new Size(38, 15);
+            LFecha.Size = new Size(47, 20);
             LFecha.TabIndex = 21;
             LFecha.Text = "Fecha";
             // 
             // LNombreVendedor
             // 
             LNombreVendedor.AutoSize = true;
-            LNombreVendedor.Location = new Point(84, 12);
+            LNombreVendedor.Location = new Point(96, 16);
             LNombreVendedor.Name = "LNombreVendedor";
-            LNombreVendedor.Size = new Size(38, 15);
+            LNombreVendedor.Size = new Size(50, 20);
             LNombreVendedor.TabIndex = 20;
             LNombreVendedor.Text = "label1";
             // 
@@ -145,9 +148,10 @@
             // 
             BNuevoCliente.BackColor = Color.MintCream;
             BNuevoCliente.Image = Properties.Resources.nueva_cuenta__1_;
-            BNuevoCliente.Location = new Point(438, 54);
+            BNuevoCliente.Location = new Point(501, 72);
+            BNuevoCliente.Margin = new Padding(3, 4, 3, 4);
             BNuevoCliente.Name = "BNuevoCliente";
-            BNuevoCliente.Size = new Size(75, 23);
+            BNuevoCliente.Size = new Size(86, 31);
             BNuevoCliente.TabIndex = 19;
             BNuevoCliente.UseVisualStyleBackColor = false;
             BNuevoCliente.Click += BNuevoCliente_Click;
@@ -155,43 +159,46 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(147, 54);
+            comboBox2.Location = new Point(168, 72);
+            comboBox2.Margin = new Padding(3, 4, 3, 4);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(266, 23);
+            comboBox2.Size = new Size(303, 28);
             comboBox2.TabIndex = 3;
             // 
             // LCliente
             // 
             LCliente.AutoSize = true;
-            LCliente.Location = new Point(13, 58);
+            LCliente.Location = new Point(15, 77);
             LCliente.Name = "LCliente";
-            LCliente.Size = new Size(109, 15);
+            LCliente.Size = new Size(137, 20);
             LCliente.TabIndex = 2;
             LCliente.Text = "Seleccione Cliente: ";
             // 
             // LVendedor
             // 
             LVendedor.AutoSize = true;
-            LVendedor.Location = new Point(13, 12);
+            LVendedor.Location = new Point(15, 16);
             LVendedor.Name = "LVendedor";
-            LVendedor.Size = new Size(63, 15);
+            LVendedor.Size = new Size(80, 20);
             LVendedor.TabIndex = 0;
             LVendedor.Text = "Vendedor: ";
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(147, 29);
+            comboBox1.Location = new Point(168, 39);
+            comboBox1.Margin = new Padding(3, 4, 3, 4);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(266, 23);
+            comboBox1.Size = new Size(303, 28);
             comboBox1.TabIndex = 21;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // BFinalizar
             // 
-            BFinalizar.Location = new Point(76, 25);
+            BFinalizar.Location = new Point(87, 33);
+            BFinalizar.Margin = new Padding(3, 4, 3, 4);
             BFinalizar.Name = "BFinalizar";
-            BFinalizar.Size = new Size(75, 23);
+            BFinalizar.Size = new Size(86, 31);
             BFinalizar.TabIndex = 2;
             BFinalizar.Text = "Finalizar";
             BFinalizar.UseVisualStyleBackColor = true;
@@ -199,9 +206,10 @@
             // 
             // BCancelar
             // 
-            BCancelar.Location = new Point(168, 25);
+            BCancelar.Location = new Point(192, 33);
+            BCancelar.Margin = new Padding(3, 4, 3, 4);
             BCancelar.Name = "BCancelar";
-            BCancelar.Size = new Size(75, 23);
+            BCancelar.Size = new Size(86, 31);
             BCancelar.TabIndex = 3;
             BCancelar.Text = "Cancelar";
             BCancelar.UseVisualStyleBackColor = true;
@@ -225,25 +233,27 @@
             panel3.Controls.Add(LStock);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(comboBox1);
-            panel3.Location = new Point(53, 238);
+            panel3.Location = new Point(61, 317);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(524, 183);
+            panel3.Size = new Size(599, 244);
             panel3.TabIndex = 22;
             // 
             // LTotal
             // 
             LTotal.AutoSize = true;
-            LTotal.Location = new Point(336, 126);
+            LTotal.Location = new Point(384, 168);
             LTotal.Name = "LTotal";
-            LTotal.Size = new Size(35, 15);
+            LTotal.Size = new Size(45, 20);
             LTotal.TabIndex = 29;
             LTotal.Text = "Total:";
             // 
             // BAgregar
             // 
-            BAgregar.Location = new Point(438, 144);
+            BAgregar.Location = new Point(501, 192);
+            BAgregar.Margin = new Padding(3, 4, 3, 4);
             BAgregar.Name = "BAgregar";
-            BAgregar.Size = new Size(75, 23);
+            BAgregar.Size = new Size(86, 31);
             BAgregar.TabIndex = 32;
             BAgregar.Text = "Agregar";
             BAgregar.UseVisualStyleBackColor = true;
@@ -251,99 +261,105 @@
             // 
             // TTotal
             // 
-            TTotal.Location = new Point(336, 144);
+            TTotal.Location = new Point(384, 192);
+            TTotal.Margin = new Padding(3, 4, 3, 4);
             TTotal.Name = "TTotal";
-            TTotal.Size = new Size(77, 23);
+            TTotal.Size = new Size(87, 27);
             TTotal.TabIndex = 28;
             // 
             // TTalle
             // 
-            TTalle.Location = new Point(336, 86);
+            TTalle.Location = new Point(384, 115);
+            TTalle.Margin = new Padding(3, 4, 3, 4);
             TTalle.Name = "TTalle";
-            TTalle.Size = new Size(77, 23);
+            TTalle.Size = new Size(87, 27);
             TTalle.TabIndex = 31;
             // 
             // TDescuento
             // 
-            TDescuento.Location = new Point(181, 144);
+            TDescuento.Location = new Point(207, 192);
+            TDescuento.Margin = new Padding(3, 4, 3, 4);
             TDescuento.Name = "TDescuento";
-            TDescuento.Size = new Size(77, 23);
+            TDescuento.Size = new Size(87, 27);
             TDescuento.TabIndex = 27;
             TDescuento.TextChanged += TDescuento_TextChanged;
             // 
             // LDescuento
             // 
             LDescuento.AutoSize = true;
-            LDescuento.Location = new Point(181, 126);
+            LDescuento.Location = new Point(207, 168);
             LDescuento.Name = "LDescuento";
-            LDescuento.Size = new Size(66, 15);
+            LDescuento.Size = new Size(82, 20);
             LDescuento.TabIndex = 26;
             LDescuento.Text = "Descuento:";
             // 
             // LTalle
             // 
             LTalle.AutoSize = true;
-            LTalle.Location = new Point(336, 68);
+            LTalle.Location = new Point(384, 91);
             LTalle.Name = "LTalle";
-            LTalle.Size = new Size(36, 15);
+            LTalle.Size = new Size(46, 20);
             LTalle.TabIndex = 30;
             LTalle.Text = "Talle: ";
             // 
             // TPrecio
             // 
-            TPrecio.Location = new Point(181, 86);
+            TPrecio.Location = new Point(207, 115);
+            TPrecio.Margin = new Padding(3, 4, 3, 4);
             TPrecio.Name = "TPrecio";
-            TPrecio.Size = new Size(77, 23);
+            TPrecio.Size = new Size(87, 27);
             TPrecio.TabIndex = 29;
             // 
             // TCantidad
             // 
-            TCantidad.Location = new Point(20, 144);
+            TCantidad.Location = new Point(23, 192);
+            TCantidad.Margin = new Padding(3, 4, 3, 4);
             TCantidad.Name = "TCantidad";
-            TCantidad.Size = new Size(77, 23);
+            TCantidad.Size = new Size(87, 27);
             TCantidad.TabIndex = 25;
             TCantidad.TextChanged += TCantidad_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(20, 126);
+            label2.Location = new Point(23, 168);
             label2.Name = "label2";
-            label2.Size = new Size(61, 15);
+            label2.Size = new Size(76, 20);
             label2.TabIndex = 24;
             label2.Text = "Cantidad: ";
             // 
             // LPrecio
             // 
             LPrecio.AutoSize = true;
-            LPrecio.Location = new Point(181, 68);
+            LPrecio.Location = new Point(207, 91);
             LPrecio.Name = "LPrecio";
-            LPrecio.Size = new Size(46, 15);
+            LPrecio.Size = new Size(57, 20);
             LPrecio.TabIndex = 28;
             LPrecio.Text = "Precio: ";
             // 
             // TStock
             // 
-            TStock.Location = new Point(20, 86);
+            TStock.Location = new Point(23, 115);
+            TStock.Margin = new Padding(3, 4, 3, 4);
             TStock.Name = "TStock";
-            TStock.Size = new Size(77, 23);
+            TStock.Size = new Size(87, 27);
             TStock.TabIndex = 27;
             // 
             // LStock
             // 
             LStock.AutoSize = true;
-            LStock.Location = new Point(20, 68);
+            LStock.Location = new Point(23, 91);
             LStock.Name = "LStock";
-            LStock.Size = new Size(42, 15);
+            LStock.Size = new Size(52, 20);
             LStock.TabIndex = 26;
             LStock.Text = "Stock: ";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(13, 32);
+            label1.Location = new Point(15, 43);
             label1.Name = "label1";
-            label1.Size = new Size(121, 15);
+            label1.Size = new Size(152, 20);
             label1.TabIndex = 23;
             label1.Text = "Seleccione producto: ";
             // 
@@ -355,61 +371,67 @@
             panel4.Controls.Add(TTotalVenta);
             panel4.Controls.Add(BCancelar);
             panel4.Controls.Add(BFinalizar);
-            panel4.Location = new Point(53, 450);
+            panel4.Location = new Point(61, 600);
+            panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1259, 67);
+            panel4.Size = new Size(1439, 89);
             panel4.TabIndex = 26;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1049, 47);
+            label3.Name = "label3";
+            label3.Size = new Size(141, 20);
+            label3.TabIndex = 30;
+            label3.Text = "Total de la compra: ";
             // 
             // BFinalizarGuardar
             // 
-            BFinalizarGuardar.Location = new Point(270, 26);
+            BFinalizarGuardar.Location = new Point(309, 35);
+            BFinalizarGuardar.Margin = new Padding(3, 4, 3, 4);
             BFinalizarGuardar.Name = "BFinalizarGuardar";
-            BFinalizarGuardar.Size = new Size(143, 23);
+            BFinalizarGuardar.Size = new Size(163, 31);
             BFinalizarGuardar.TabIndex = 29;
-            BFinalizarGuardar.Text = "Finalizar e Imprimir";
+            BFinalizarGuardar.Text = "Imprimir";
             BFinalizarGuardar.UseVisualStyleBackColor = true;
             BFinalizarGuardar.Click += BFinalizarGuardar_Click;
             // 
             // TTotalVenta
             // 
-            TTotalVenta.Location = new Point(1046, 27);
+            TTotalVenta.Location = new Point(1195, 36);
+            TTotalVenta.Margin = new Padding(3, 4, 3, 4);
             TTotalVenta.Name = "TTotalVenta";
-            TTotalVenta.Size = new Size(193, 23);
+            TTotalVenta.Size = new Size(220, 27);
             TTotalVenta.TabIndex = 28;
             // 
             // dataGridView1
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(602, 128);
+            dataGridView1.Location = new Point(688, 171);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(710, 291);
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(811, 388);
             dataGridView1.TabIndex = 27;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(918, 35);
-            label3.Name = "label3";
-            label3.Size = new Size(110, 15);
-            label3.TabIndex = 30;
-            label3.Text = "Total de la compra: ";
-            // 
             // FormCarrito
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(1352, 729);
+            ClientSize = new Size(1545, 972);
             Controls.Add(dataGridView1);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormCarrito";
             Text = "ma";
-            WindowState = FormWindowState.Maximized;
             Load += FormCarrito_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

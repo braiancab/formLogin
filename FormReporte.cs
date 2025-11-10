@@ -185,10 +185,6 @@ namespace formLogin
         }
 
 
-
-
-
-
         private decimal CalcularPromedioDiario()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -278,6 +274,7 @@ namespace formLogin
                 chartVentas.ChartAreas.Clear();
                 ChartArea area = new ChartArea();
                 chartVentas.ChartAreas.Add(area);
+                chartVentas.Titles.Clear();
                 chartVentas.Titles.Add("Evolución Diaria de Ventas");
 
                 // Ventas ($)
@@ -493,6 +490,7 @@ namespace formLogin
                 serie.MarkerStyle = MarkerStyle.Circle;
                 serie.IsValueShownAsLabel = false;
 
+                chartTopProductos.Titles.Clear();
                 chartTopProductos.Titles.Add("Evolución Semanal de Ventas");
                 chartTopProductos.DataSource = dt;
                 chartTopProductos.Series.Add(serie);

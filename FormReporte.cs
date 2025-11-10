@@ -97,7 +97,10 @@ namespace formLogin
                 decimal porcentaje20 = totalVentas * 0.20m;
 
                 // Mostrar en el label
+
+                //20 % de ganancia sobre el total de ventas
                 LProcentaje.Text = $"Ganancia: ${porcentaje20:N2}";
+                //Total de ventas
                 LTotalVentas.Text = $"Total de ventas: ${totalVentas:N2}";
             }
         }

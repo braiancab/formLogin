@@ -62,7 +62,7 @@ namespace formLogin
             {
                 //Botones por rol
                 BBackUp.Enabled = false;
-                BCarrito.Enabled = false;
+                BCarrito.Enabled = true;
                 BCliente.Enabled = true;
                 BSalir.Enabled = true;
                 BReporte.Enabled = true;
@@ -70,7 +70,7 @@ namespace formLogin
                 BUsuario.Enabled = false;
                 //Labels por rol
                 LBackup.Enabled = false;
-                LCarrito.Enabled = false;
+                LCarrito.Enabled = true;
                 LClientes.Enabled = true;
                 LSalir.Enabled = true;
                 LUsuarios.Enabled = false;
@@ -87,13 +87,13 @@ namespace formLogin
                 BSalir.Enabled = true;
                 BReporte.Enabled = true;
                 BProductos.Enabled = false;
-                BUsuario.Enabled = false;
+                BUsuario.Enabled = true;
                 //Labels por rol
                 LBackup.Enabled = false;
                 LCarrito.Enabled = true;
                 LClientes.Enabled = true;
                 LSalir.Enabled = true;
-                LUsuarios.Enabled = false;
+                LUsuarios.Enabled = true;
                 LProductos.Enabled = false;
                 LReportes.Enabled = true;
 

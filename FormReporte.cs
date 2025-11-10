@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using static formLogin.Form1;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace formLogin
 {
@@ -78,30 +79,28 @@ namespace formLogin
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"
-            SELECT 
-                SUM(total) AS TotalVentas
-            FROM Venta
-            WHERE fecha BETWEEN @desde AND @hasta";
+            SELECT SUM(d.cantidad * d.precio) AS TotalVentas
+            FROM Venta v
+            INNER JOIN DetalleVenta d ON v.id_venta = d.id_venta
+            WHERE v.fecha BETWEEN @desde AND @hasta;
+        ";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@desde", DTDesde.Value.Date);
                 cmd.Parameters.AddWithValue("@hasta", DTHasta.Value.Date);
 
                 conn.Open();
-                object resultado = cmd.ExecuteScalar(); // devuelve el primer valor de la primera fila
+                object resultado = cmd.ExecuteScalar();
 
                 decimal totalVentas = 0;
                 if (resultado != DBNull.Value && resultado != null)
                     totalVentas = Convert.ToDecimal(resultado);
 
                 decimal porcentaje20 = totalVentas * 0.20m;
-
-                // Mostrar en el label
-
-                //20 % de ganancia sobre el total de ventas
-                LProcentaje.Text = $"Ganancia: ${porcentaje20:N2}";
+                //20% de las ventas totales
+                LProcentaje.Text = $"Ganancia : ${porcentaje20:N2}";
                 //Total de ventas
-                LTotalVentas.Text = $"Total de ventas: ${totalVentas:N2}";
+                LTotalVentas.Text = $"Total de ventas : ${totalVentas:N2}";
             }
         }
 
@@ -115,10 +114,16 @@ namespace formLogin
                 SUM(dv.cantidad) AS TotalProductos,
                 SUM(v.total) AS TotalDinero
             FROM Venta v
-            INNER JOIN DetalleVenta dv ON v.id_venta = dv.id_venta;
+            INNER JOIN DetalleVenta dv ON v.id_venta = dv.id_venta
+            WHERE v.fecha BETWEEN @desde AND @hasta;
         ";
 
+
                 SqlCommand cmd = new SqlCommand(query, conn);
+
+
+                cmd.Parameters.AddWithValue("@desde", DTDesde.Value.Date);
+                cmd.Parameters.AddWithValue("@hasta", DTHasta.Value.Date);
                 conn.Open();
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -150,14 +155,17 @@ namespace formLogin
             SELECT 
                 COUNT(DISTINCT v.id_venta) AS CantidadVentas,
                 SUM(dv.cantidad) AS CantidadProductos,
-                SUM(v.total) AS DineroTotal
+                SUM(dv.cantidad * dv.precio) AS DineroTotal
             FROM Venta v
             INNER JOIN DetalleVenta dv ON v.id_venta = dv.id_venta
-            WHERE v.id_usuario = @idVendedor;
+            WHERE v.id_usuario = @idVendedor
+            AND v.fecha BETWEEN @desde AND @hasta;
         ";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@idVendedor", _usuario.Id);
+                cmd.Parameters.AddWithValue("@desde", DTDesde.Value.Date);
+                cmd.Parameters.AddWithValue("@hasta", DTHasta.Value.Date);
 
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -347,70 +355,63 @@ namespace formLogin
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"
-            SELECT TOP 10 
-                nombre,
-                stock
-            FROM Productos
-            ORDER BY stock DESC";
+        SELECT TOP 10 
+            nombre,
+            stock
+        FROM Productos
+        ORDER BY stock DESC";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 DataTable dt = new DataTable();
                 new SqlDataAdapter(cmd).Fill(dt);
 
-                // Limpiamos el chart
                 chartVentas.Series.Clear();
                 chartVentas.ChartAreas.Clear();
                 chartVentas.Titles.Clear();
+                chartVentas.Legends.Clear();
+                chartVentas.Annotations.Clear();
 
-                // Agregamos un área de gráfico
-                ChartArea area = new ChartArea();
+                ChartArea area = new ChartArea("MainArea");
+                area.AxisX.Interval = 1;
+                area.AxisX.LabelStyle.Angle = -45;
+                area.AxisX.MajorGrid.Enabled = false;
+                area.AxisY.MajorGrid.LineColor = Color.LightGray;
+                area.AxisX.LabelStyle.Font = new Font("Segoe UI", 9);
+                area.AxisX.IsMarginVisible = true;
                 chartVentas.ChartAreas.Add(area);
 
-                // Creamos la serie
                 Series serie = new Series("Stock");
                 serie.ChartType = SeriesChartType.Column;
-                serie.XValueMember = "nombre";
-                serie.YValueMembers = "stock";
+                serie.XValueType = ChartValueType.Int32; // Usaremos índices
                 serie.IsValueShownAsLabel = true;
-                serie.Color = Color.RoyalBlue;
                 serie["PointWidth"] = "0.6";
 
-                // Agregamos la serie al chart
                 chartVentas.Series.Add(serie);
 
-           
-
-                // 🔹 Agregamos los puntos con colores personalizados
+                int index = 0;
                 foreach (DataRow row in dt.Rows)
                 {
                     string nombre = row["nombre"].ToString();
                     int stock = Convert.ToInt32(row["stock"]);
 
-                    int pointIndex = serie.Points.AddXY(nombre, stock);
+                    int pointIndex = serie.Points.AddXY(index, stock);
+                    serie.Points[pointIndex].AxisLabel = nombre;
 
-                    // 🔸 Color dinámico según el valor del stock
                     if (stock < 10)
-                        serie.Points[pointIndex].Color = Color.Red;         // bajo
+                        serie.Points[pointIndex].Color = Color.Red;
                     else if (stock <= 30)
-                        serie.Points[pointIndex].Color = Color.Goldenrod;   // medio
+                        serie.Points[pointIndex].Color = Color.Goldenrod;
                     else
-                        serie.Points[pointIndex].Color = Color.ForestGreen; // alto
+                        serie.Points[pointIndex].Color = Color.ForestGreen;
+
+                    index++;
                 }
 
-
-
-                // Título y estilo
                 chartVentas.Titles.Add("Productos con Más Stock");
                 chartVentas.Titles[0].Font = new Font("Segoe UI", 11, FontStyle.Bold);
-
-                // Eje X
-                chartVentas.ChartAreas[0].AxisX.Interval = 1;
-                chartVentas.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
-                chartVentas.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
-                chartVentas.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
-                chartVentas.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Segoe UI", 9);
             }
         }
+
 
         private void CargarDiasConMasVentas()
         {

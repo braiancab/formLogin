@@ -38,7 +38,7 @@ namespace formLogin
             LNombreUser.Text = _usuario.Nombre + " " + _usuario.Apellido+ " " + _usuario.Dni;
           
             LRolUser.Text = _usuario.Rol;
-            if (_usuario.Rol == "Admin")
+            if (_usuario.Rol == "Administrador")
             {
                 //Botones por rol
                 BBackUp.Enabled = true;

@@ -17,6 +17,10 @@ namespace formLogin
 
     public partial class FormReporte : Form
     {
+
+        public static string RolUsuarioActual; // "admin" o "vendedor" o "Gerente"
+        public static int IdUsuarioActual;
+
         private Usuario _usuario;
         //Conectar con base de datos
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=BD_TALLER;Trusted_Connection=True;TrustServerCertificate=True;";
@@ -149,17 +153,56 @@ namespace formLogin
             }
             else if (_usuario.Rol == "Administrador")
             {
-               // CargarGraficoVentas();
-               // CargarTopProductos();
-               // CargarEvolucionSemanal();
+                 CargarGraficoVendedores();
+                // CargarTopProductos();
+                // CargarEvolucionSemanal();
             }
             else if (_usuario.Rol == "Gerente")
             {
                 //  CargarGraficoVentas();
                 //  CargarTopProductos();
                 //  CargarEvolucionSemanal();
-                 MessageBox.Show("No tiene permisos para generar reportes.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No tiene permisos para generar reportes.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+            }
+        }
+
+        private void CargarGraficoVendedores()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"
+            SELECT 
+                u.nombre AS Vendedor,
+                SUM(v.total) AS TotalVendido
+            FROM Venta v
+            INNER JOIN Usuarios u ON u.id_usuario = v.id_usuario
+            WHERE v.fecha BETWEEN @desde AND @hasta
+            GROUP BY u.nombre
+            ORDER BY TotalVendido DESC";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@desde", DTDesde.Value.Date);
+                cmd.Parameters.AddWithValue("@hasta", DTHasta.Value.Date);
+
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+
+                chartVentas.Series.Clear();
+                chartVentas.ChartAreas.Clear();
+                chartVentas.ChartAreas.Add(new ChartArea());
+
+                Series serie = new Series("Vendedores");
+                serie.ChartType = SeriesChartType.Bar;
+                serie.XValueMember = "Vendedor";
+                serie.YValueMembers = "TotalVendido";
+                serie.IsValueShownAsLabel = true;
+                serie.Color = Color.SteelBlue;
+
+                chartVentas.DataSource = dt;
+                chartVentas.Series.Add(serie);
+                chartVentas.Titles.Clear();
+                chartVentas.Titles.Add("Ventas por Vendedor");
             }
         }
         // 📊 1. Evolución diaria de ventas
@@ -237,7 +280,7 @@ namespace formLogin
 
                 DataTable dt = new DataTable();
                 new SqlDataAdapter(cmd).Fill(dt);
-                
+
                 chartTopProductos.Series.Clear();
                 chartTopProductos.ChartAreas.Clear();
                 chartTopProductos.ChartAreas.Add(new ChartArea());
@@ -291,7 +334,6 @@ namespace formLogin
             }
         }
 
-
-
+       
     }
 }

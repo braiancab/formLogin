@@ -51,6 +51,7 @@ namespace formLogin
             {
                 CargarGraficoVentas();
                 CargarEvolucionSemanal();
+                CalcularEstadisticasVendedor();
 
             }
             else if (_usuario.Rol == "Administrador")
@@ -98,6 +99,45 @@ namespace formLogin
                 LTotalVentas.Text = $"Total de ventas: ${totalVentas:N2}";
             }
         }
+
+
+
+        private void CalcularEstadisticasVendedor()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"
+            SELECT 
+                COUNT(DISTINCT v.id_venta) AS CantidadVentas,
+                SUM(dv.cantidad) AS CantidadProductos,
+                SUM(v.total) AS DineroTotal
+            FROM Venta v
+            INNER JOIN DetalleVenta dv ON v.id_venta = dv.id_venta
+            WHERE v.id_usuario = @idVendedor;
+        ";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@idVendedor", _usuario.Id);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int cantidadVentas = reader["CantidadVentas"] != DBNull.Value ? Convert.ToInt32(reader["CantidadVentas"]) : 0;
+                    int cantidadProductos = reader["CantidadProductos"] != DBNull.Value ? Convert.ToInt32(reader["CantidadProductos"]) : 0;
+                    decimal dineroTotal = reader["DineroTotal"] != DBNull.Value ? Convert.ToDecimal(reader["DineroTotal"]) : 0;
+
+                    // Mostrar en labels
+                    LTotalVentas.Text = $"Ventas realizadas: {cantidadVentas}";
+                    LPromedioDiario.Text = $"Productos vendidos: {cantidadProductos}";
+                    LProcentaje.Text = $"Total recaudado: ${dineroTotal:N2}";
+                }
+            }
+        }
+
+
+
 
 
 
